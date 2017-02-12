@@ -19,17 +19,17 @@
 <a href="#" class="btnNav">Nav</a> <a href="#" class="scrollup">Scroll</a>
 
 <div class="topicrow">
-@foreach ($topics as $topicrow)
-@for ($i=0; $i<=$numtopics2; $i++)
+@foreach ($topicrows as $topicrow)
+@for ($i=0; $i<=$numtopicrows; $i++)
 <div>
 
 <h2 id="topic_{{ $topicrow[$i]->topic_id }}">{{ $topicrow[$i]->topic }}
 <div>
 @for ($j=1; $j<=$numtopics; $j++)
-@if ($topicrow[$i]->topic==$topics2[$j-1]->topic)
+@if ($topicrow[$i]->topic==$topics[$j-1]->topic)
 <span class="current">&bull;</span>
 @else
-<span title2="topic_{{ $j }}" title="{{ $topics2[$j-1]->topic }}">&bull;</span>
+<span title2="topic_{{ $j }}" title="{{ $topics[$j-1]->topic }}">&bull;</span>
 @endif
 @if ($j % 3 ==0)
 <span class="sep">&VerticalSeparator;</span>
@@ -44,7 +44,13 @@
 @if ($stopic->topicid==$topicrow[$i]->topic_id)
 <h3><a href="/subtopic/rename" class="stopic_a" title="Rename Sub topic"><div>{{ $stopic->stopic }}</div>
 <div>
-
+@for ($j=1; $j<=$numtopics; $j++)
+@if ($topicrow[$i]->topic==$topics[$j-1]->topic)
+<span class="current">&bull;</span>
+@else
+<span title2="subtopicc_{{ $j }}" title="{{ $topics[$j-1]->topic }}">&bull;</span>
+@endif
+@endfor
 </div>
 </a></h3>
 @endif
