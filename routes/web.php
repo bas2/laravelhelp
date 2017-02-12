@@ -13,28 +13,20 @@
 
 Route::get('/', function () {
 
-  //$topics = \App\Topic::all();
-  $topics=DB::table('topics')->where('hide',0)->orderby('updated_at','desc')->get();
+  $topics=DB::table('topics')->where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
+  $stopics=DB::table('stopics')->where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']);
 
-  $stopics=DB::table('stopics')->where('hide',0)
-  ->orderby('updated_at','desc')->get();
+  $topicsperros = 3; # Topics to show per row.
 
-  // Need a counter for the table columns:
-  //$i             = 0;
-  //$topic_counter = 1;
-    
-  $items         = 3; # Topics to show per row.
-
-  $topics2=[];foreach($topics as $topic) {$topics2[]=$topic;}
-
-  $topics2=array_chunk($topics2, $items); # Group topics in threes.
+  $topicrows=[];foreach($topics as $topic) {$topics2[]=$topic;}
+  $topicrows=array_chunk($topics2, $topicsperros); # Group topics in threes.
   //die(var_dump($stopics));
 
   return view('welcome')
-  ->with('topics2',$topics)
-  ->with('topics',$topics2)
-  ->with('numtopics2',count($topics2))
+  ->with('topics',$topics)
   ->with('numtopics',count($topics))
+  ->with('topicrows',$topicrows)
+  ->with('numtopicrows',count($topicrows))
   ->with('stopics',$stopics)
   ;
 });
