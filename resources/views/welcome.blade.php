@@ -44,13 +44,14 @@
 @if ($stopic->topicid==$topicrow[$i]->topic_id)
 <h3><a href="/subtopic/rename" class="stopic_a" title="Rename Sub topic"><div>{{ $stopic->stopic }}</div>
 <div>
-@for ($j=1; $j<=$numtopics; $j++)
-@if ($topicrow[$i]->topic==$topics[$j-1]->topic)
+<?php $subtopics=App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id); ?>
+@foreach ($subtopics as $subtopic)
+@if ($subtopic->stopic==$stopic->stopic)
 <span class="current">&bull;</span>
 @else
-<span title2="subtopicc_{{ $j }}" title="{{ $topics[$j-1]->topic }}">&bull;</span>
+<span title2="subtopic_{{ $j }}" title="{{ $subtopic->stopic }}">&bull;</span>
 @endif
-@endfor
+@endforeach
 </div>
 </a></h3>
 @endif
