@@ -1,0 +1,501 @@
+body {
+  background: #000;
+  color: #fff;
+  font: 100%/1 arial, helvetica, sans-serif;
+
+}
+
+a {
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+  border:none;
+}
+
+h1 {text-align:center;display:none;}
+
+div.topicrow {
+  clear:left;
+
+  div {
+    float:left;
+    width: 32.9%;
+    margin-right:5px;
+
+    h2 {
+      position: relative;
+      margin: 0;
+      border-radius: .4em; 
+      padding:0;
+      background:hsla(0,100%,25%,1);
+      color: #fff;
+      font: 1.5em "Helvetica Neue", Sans-Serif;
+      text-align: center;
+      div {
+        float:none;
+        width: auto;
+      }
+    }
+    h3 {
+      text-align: center;
+      div {
+        float: none;
+        width:auto;
+        margin-right:auto;
+      }
+    }
+
+/* Sub topic text */
+a.stopic_a {
+  border: 1px solid rgb(0,0,0);
+  background: rgba(255,100,200,.4); /* Purple */
+  background: linear-gradient( rgba(255,100,200,.4), rgb(0,0,0) );
+  color: hsla(180, 50%, 40%, 1); /* light blue */
+  text-shadow: 1px 1px hsl(180, 100%, 20%);
+  border-radius:.6em;
+  box-shadow: 0px 1px hsl(60, 100%, 50%);
+  width: 95%;
+  margin: 0 auto;
+  padding: .4em 0;
+}
+
+    h2 span, h3 span {
+      position: absolute;
+      top:0;
+      right: 5px;
+      font-size: .5em;
+      cursor: pointer;
+    }
+
+    h2 div span, h3 div span { /* Topic 'dots' */
+    position: static;
+    font-size: 1em;
+    margin-right: .5em;
+    }
+
+    h3 div span {
+    font-size: 1.2em;
+    margin-right: .5em;
+    }
+
+    h2 div span.current, h3 div span.current {
+    color:yellow;
+    cursor: default;
+    }
+
+    h2 div span.sep {
+    cursor: default;
+    font-size: .5em;
+    }
+
+  }  
+}
+
+.scrollup {
+  width:40px;
+  height:40px;
+  opacity:0.3;
+  position: fixed;
+  text-indent:-9999px;
+  bottom:10px;
+  right:1%;
+  background: url('../img/icon_top.png') center center no-repeat;
+  z-index: 2;
+}
+
+
+
+table#helpsection {
+  clear: both;
+  tr {
+    vertical-align: top;
+  }
+  h2 {
+    position: relative;
+    margin: 0;
+    border-radius: .4em; 
+    padding:0;
+    background:hsla(0,100%,25%,1);
+    color: #fff;
+    font: 1.5em "Helvetica Neue", Sans-Serif;
+    text-align: center;
+  }
+  h2 span, h3 span {
+    position: absolute;
+    top:0;
+    right: 5px;
+    font-size: .5em;
+    cursor: pointer;
+  }
+
+  h2 div span, h3 div span { /* Topic 'dots' */
+    position: static;
+    font-size: 1em;
+    margin-right: .5em;
+  }
+
+  h3 div span {
+    font-size: 1.2em;
+    margin-right: .5em;
+  }
+
+  h2 div span.current, h3 div span.current {
+    color:yellow;
+    cursor: default;
+  }
+
+  h2 div span.sep {
+    cursor: default;
+    font-size: .5em;
+  }
+
+  h3 { /* Sub topics */
+    text-align: center;
+  }
+
+  div > ul {
+    padding-left: 0;
+  }
+
+  h3 + p {
+    span {
+      cursor: pointer;
+    }
+    span.omoddate {
+      color: yellow;
+    }
+  }
+
+  td {
+  background: rgba(255, 0, 50, .2); /* Purple */
+  border-radius:.9em; 
+  padding-right:0;
+  width: 33.3%;
+  }
+
+caption {
+  background: rgba(0,0,50,1);
+  color: hsla(0,100%,50%,1);
+  width: 90%;
+  margin: 0 auto;
+  padding: .3em 0;
+  font-weight: bold;
+  text-shadow: 2px 2px 1px rgba(255,255,255,.4);
+  display: none;
+}
+
+.articleoption {
+  border:1px solid #000;
+  background-color:#fff;
+  border-radius:.4em;
+  
+  a {
+  background: rgba(20,200,20,.2) url(../img/reply.png) no-repeat;
+  color:grey;
+  cursor: pointer;
+  padding: .5em;
+  border-radius: .3em;
+  }
+
+
+}
+
+  .newarticle a {
+  background: rgba(20,20,20,.2) url(../img/reply.png) no-repeat;
+  color:green;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: .4em;
+  padding-left: 3em;
+  }
+
+  a.newsubtopic {
+  background: rgba(20,20,20,.2) url(../img/reply.png) no-repeat;
+  color:red;
+  padding: .5em;
+  text-align: center;
+  border-radius: .3em;
+  text-transform: uppercase;
+  letter-spacing: .4em;
+  width: 80%;
+  margin: 0 auto;
+  }
+
+  a.reply {
+  text-transform: uppercase;
+  letter-spacing: .4em;
+  padding-left: 3em;
+  }
+
+
+}
+
+li.article_li {
+  list-style:none;
+  position:relative;
+  /*border: 1px hsla(180, 50%, 40%, .8) solid;  Light blue matching sub topic text */
+  border-radius: .5em;
+  margin-bottom:.5em;
+  padding: .3em;
+  background: rgba(200,200,200,.2);
+  
+}
+
+.moveright {
+  right: .3em;
+  top: 0; 
+}
+
+
+a.mainarticle {
+    clear:left;
+  /*padding: .3em 1em .3em 0;*/
+  cursor: pointer;
+  color: hsla(30,100%,50%,1);
+  text-shadow: 2px 1px 1px rgba(0,0,0,.8);
+
+  span.show {
+  position: absolute;
+  top:1px;
+  right:1px;
+  }
+  span.highlighted {  position: static;
+  display: block;
+  background:rgba(127,127,127,.5); 
+
+  /*text-indent:-1.4em;
+  margin-left:1.4em;*/}
+
+}
+
+a.mainarticle, a.subbarticle {font: bold 1em verdana;}
+
+a.mainarticle:hover, a.subbarticle:hover {color: rgba(247,162,72,.8);}
+
+a.subbarticle {  clear:left;
+  cursor: pointer;
+  color: rgba(247,162,72,.8);}
+
+#articlediv {
+    position: relative; /* So we can position an arrow to expand article width. */
+  display: none;
+  width: 100%;
+  background: linear-gradient( hsla(330,100%,20%,1), hsla(330,100%,20%,.1) );
+
+  .chkdiv_pintonav {
+  font-weight: bold;
+  float: right;
+  }
+}
+
+li ul #articlediv {
+    margin-left: -1em;
+  width:104%;
+}
+
+.divharteditform {
+    margin-bottom:2em;
+  background:rgba(255,100,200,.4);
+  padding:1em;
+  border-radius: .3em;
+  border:none;
+
+  input[type=text] {
+  text-align: center;
+  background-color: #ccc;
+  font-weight: bold;
+  border-top-left-radius: .3em;
+  border-top-right-radius: .3em;
+  }
+  .tinymce {
+font-size: 1.5em;
+  }
+}
+
+.active {
+    font-weight: bold;
+  font-size: 1.3em;
+}
+
+.aposter, .rposter {  font-style: italic;}
+
+#articlecontent {
+    position: absolute;
+  display: none;
+}
+
+.divartcontent {
+  margin-bottom:2em;
+  background:rgba(255,100,200,1);
+  background:hsla(330,100%,40%,1);
+  color: #000;
+  padding:1em;
+  border-radius: .3em;
+  border-bottom: 2px solid #ccc;
+  div:first-child {
+  border-bottom:1px solid yellow;
+  text-align: center;
+  }
+  div > em {
+    color: yellow;
+  font-weight: bold;
+  }
+  a {
+    display: inline;
+  border-bottom: 1px dotted #000;
+  }
+  ul {margin-top: 1em;}
+  li {
+    margin-bottom: .3em;
+  /*margin-left: -1em;*/
+  padding-left: 0;
+  }
+  ul li {
+    margin-bottom: .3em;
+  /*margin-left: -1em;*/
+  margin-left: 1em; /* Properly indent lists in replies.  */
+  list-style-type: square;
+  }
+  span {
+    position: absolute;
+  right:10px;
+  top:0;
+  cursor: pointer;
+  }
+
+}
+
+div#articlediv.togglewidth {
+  position: fixed;
+  top:0;left:0;
+  width:100%;
+  overflow:auto;
+  height:100%;
+  font-size:200%;
+  z-index:3;
+  margin: 0;
+  background: hsla(30,0%,50%,.5);
+  .divartcontent {
+  margin-bottom: 0;
+  padding-top: .5em;
+  border-radius: 0;
+  }
+
+}
+
+.togglewidth .divartcontent div:nth-child(2) {text-align: center;}
+
+.prepended {font-weight: bold;}
+
+.article_btns {
+  float:left;
+  text-align:right;
+  width:100%;
+  background:transparent;
+  margin:0 auto;
+  input {
+    background:rgba(255,50,0,.6);
+  border-radius: .3em;
+  border: 1px;
+  }
+}
+
+input[name=txt_helptitle] {
+    width:100%;
+  border:none;
+}
+
+.defaultSkin table.mceLayout {  border: none;}
+
+
+
+div.logout {
+  a {
+    position: absolute;
+    right:5px;
+    top:0;
+    text-align: center;
+    border: 2px solid purple;
+    border-radius: .3em;
+    padding: .3em;
+    width: 5em;
+    float: right;
+    color: purple;
+    font-style: italic;
+  }
+  a:hover {
+    background: purple;
+    color: white;
+  }
+}
+
+a.btnNav {
+  position: absolute;
+  right: 200px;
+  color: #fff;
+}
+
+div.divnav {
+  background: rgba(255,0,0,.5);
+  width: 50%;
+  margin: 0 auto 10px auto;
+  color: #fff;
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    caption {
+      text-align: center;
+      background: rgba(255,0,0,.5);
+      color: #fff;
+      display: none;
+    }
+
+    td {
+      text-align: center;
+      border: 0px solid #fff;
+      vertical-align: top;
+      a {
+        display: block;
+        color: #fff;
+        padding: .3em;
+        border-radius: .3em;
+      }
+      a:hover {
+        background: #f00;
+        text-align: center;
+      }
+    }
+
+  }
+  form#searchform {margin: 0 auto;}
+
+  ul.content {
+    list-style-type: square;
+    text-align: left;
+
+    li {cursor: default;}
+
+    li:hover {color: cyan;}
+  }
+
+  .nav-subtopics {text-align: left;}
+
+  .nav-subtopics, label {font-size: .8em;}
+
+  label {font-weight: bold;}
+
+  .divshowtopics {
+    float: right;
+    background: #c00;
+    padding: 0 10px 0 10px;
+    border-top-right-radius: .3em;
+    border-bottom-left-radius: .3em;
+  }
+
+}
+
+
+.topichidden {
+  display: none;
+  color: red;
+}
