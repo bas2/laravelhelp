@@ -78,14 +78,14 @@ div.topicrow {
       font-size: .5em;
       cursor: pointer;
     }
-    h2 div span.current, h3 div span.current {
-    color:yellow;
-    cursor: default;
+      h2 div span.current, h3 div span.current {
+      color:yellow;
+      cursor: default;
     }
 
     h2 div span.sep {
-    cursor: default;
-    font-size: .5em;
+      cursor: default;
+      font-size: .5em;
     }
     div {
       float:none;
@@ -101,19 +101,61 @@ div.topicrow {
     }
   }
   h2 div span, h3 div span { /* Topic 'dots' */
-  position: static;
-  font-size: 1em;
-  margin-right: .2em;
+    position: static;
+    font-size: 1em;
+    margin-right: .2em;
   }
 
-    h3 div span {
+  h3 div span {
     font-size: 1.2em;
     margin-right: .2em;
+  }
+
+  .articleoption {
+    border:1px solid #000;
+    background-color:#fff;
+    border-radius:.4em;
+    
+    a {
+      background: rgba(20,200,20,.2) url(../img/reply.png) no-repeat;
+      color:grey;
+      cursor: pointer;
+      padding: .5em;
+      border-radius: .3em;
     }
 
+  }
 
+  a.reply { /* Main article reply. */
+    text-transform: uppercase;
+    letter-spacing: .4em;
+    padding-left: 3em;
+  }
+
+  .newarticle a { /* New article. */
+    background: rgba(20,20,20,.2) url(../img/reply.png) no-repeat;
+    color:green;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: .4em;
+    padding-left: 3em;
+  }
+
+  a.newsubtopic { /* New subtopic */
+    background: rgba(20,20,20,.2) url(../img/reply.png) no-repeat;
+    color:red;
+    padding: .5em;
+    text-align: center;
+    border-radius: .3em;
+    text-transform: uppercase;
+    letter-spacing: .4em;
+    width: 80%;
+    margin: 0 auto;
+  }
 
 }
+
+
 
 .scrollup {
   width:40px;
@@ -149,129 +191,11 @@ div.topicrow {
 
 
 table#helpsection {
-  clear: both;
-  tr {
-    vertical-align: top;
-  }
-  h2 {
-    position: relative;
-    margin: 0;
-    border-radius: .4em; 
-    padding:0;
-    background:hsla(0,100%,25%,1);
-    color: #fff;
-    font: 1.5em "Helvetica Neue", Sans-Serif;
-    text-align: center;
-  }
-  h2 span, h3 span {
-    position: absolute;
-    top:0;
-    right: 5px;
-    font-size: .5em;
-    cursor: pointer;
-  }
 
-  h2 div span, h3 div span { /* Topic 'dots' */
-    position: static;
-    font-size: 1em;
-    margin-right: .5em;
-  }
-
-  h3 div span {
-    font-size: 1.2em;
-    margin-right: .5em;
-  }
-
-  h2 div span.current, h3 div span.current {
-    color:yellow;
-    cursor: default;
-  }
-
-  h2 div span.sep {
-    cursor: default;
-    font-size: .5em;
-  }
-
-  h3 { /* Sub topics */
-    text-align: center;
-  }
-
-  div > ul {
-    padding-left: 0;
-  }
-
-  h3 + p {
-    span {
-      cursor: pointer;
-    }
-    span.omoddate {
-      color: yellow;
-    }
-  }
-
-  td {
-  background: rgba(255, 0, 50, .2); /* Purple */
-  border-radius:.9em; 
-  padding-right:0;
-  width: 33.3%;
-  }
-
-caption {
-  background: rgba(0,0,50,1);
-  color: hsla(0,100%,50%,1);
-  width: 90%;
-  margin: 0 auto;
-  padding: .3em 0;
-  font-weight: bold;
-  text-shadow: 2px 2px 1px rgba(255,255,255,.4);
-  display: none;
-}
-
-.articleoption {
-  border:1px solid #000;
-  background-color:#fff;
-  border-radius:.4em;
-  
-  a {
-  background: rgba(20,200,20,.2) url(../img/reply.png) no-repeat;
-  color:grey;
-  cursor: pointer;
-  padding: .5em;
-  border-radius: .3em;
-  }
 
 
 }
 
-  .newarticle a {
-  background: rgba(20,20,20,.2) url(../img/reply.png) no-repeat;
-  color:green;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: .4em;
-  padding-left: 3em;
-  }
-
-  a.newsubtopic {
-  background: rgba(20,20,20,.2) url(../img/reply.png) no-repeat;
-  color:red;
-  padding: .5em;
-  text-align: center;
-  border-radius: .3em;
-  text-transform: uppercase;
-  letter-spacing: .4em;
-  width: 80%;
-  margin: 0 auto;
-  }
-
-  a.reply {
-  text-transform: uppercase;
-  letter-spacing: .4em;
-  padding-left: 3em;
-  }
-
-
-}
 
 li.article_li {
   list-style:none;
@@ -352,6 +276,9 @@ li ul #articlediv {
   }
   .tinymce {
     font-size: 1.5em;
+  }
+    select {
+    font-size:50%;
   }
 }
 
