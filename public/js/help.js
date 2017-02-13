@@ -7,7 +7,7 @@ $(document).ready(function() {
   }
   hideshow();
 
-  // Show option
+  // Show option - menu icon.
   $('a.mainarticle span.show').live('click', function(e) {
      $('.article' + $(this).parent().parent().parent().parent().prev().prev().attr('id').substr(2) + 'option').toggle(); // .articlexxxoption
      e.preventDefault();
@@ -17,21 +17,16 @@ $(document).ready(function() {
   // Show article: click on a main article or reply to a main article.
   $('.mainarticle, .subbarticle').die('click').live('click', function(e) {
     var articleid = $(this).attr('title2');
-    var classsel  = $(this).attr('class'); // Main article or reply?
+    var classsel  = '#' + $(this).attr('class') + articleid; // Main article or reply?
     var thisarticledivvisible = $(this).parent().find('#articlediv').is(":visible");
     $(this).css('background','rgba(255, 0, 50, .2)');
-
-
-
     $.ajax({
       "type":"get",
       "url":"ajax/" + parseInt(articleid),
       "success":function(data){
         if ($('#articlediv').is(":visible")) {$('#articlediv').remove();}
-        if (!thisarticledivvisible) {
-          $('<div id="articlediv">'+data+'</div>').insertAfter('#'+classsel+articleid).show();
-        }
-        $('html, body').animate({scrollTop: $('#'+classsel+articleid).offset().top}, 0);
+        if (!thisarticledivvisible) {$('<div id="articlediv">'+data+'</div>').insertAfter(classsel).show();}
+        $('html, body').animate({scrollTop: $(classsel).offset().top}, 0);
       } // End ajax success function
     });
     e.preventDefault();
@@ -61,16 +56,17 @@ $(document).ready(function() {
   $('a.reply').die('click').live('click',function(e) {
     var articleid = $(this).attr('title2');
     $.ajax({
-      "type":"POST",
-      "url":"_inc/ajax/ajax.hreplytoarticle.php",
-      "data": 'id=' + parseInt(articleid),
+      "type":"GET",
+      "url":"ajax/hreplytoarticle/" + parseInt(articleid),
       "success":function(data){
+        alert(data);
         var splitdata = data.split('|');
-        var str = '<li><a id="subbarticle'+splitdata[0]+'" class="subbarticle" href="#" title="View article" title2="'+splitdata[0]+'">View article</a><span id="rposter'+splitdata[0]+'" class="rposter">By ['+splitdata[1]+'] on ['+splitdata[2]+']</span></li>';
+        var str = '<li><a id="subbarticle'+splitdata[0]+'" class="subbarticle" href="#" title="View article" title2="'
+        +splitdata[0]+'">View article</a><span id="rposter'+splitdata[0]
+        +'" class="rposter">By ['+splitdata[1]+'] on ['+splitdata[2]+']</span></li>';
         if ($('#replylist'+articleid+' li').length>0) {
           $(str).insertAfter('#replylist'+articleid+' li:last'); // Replies exist already.
         } else {$('#replylist'+articleid).append(str);}
-
       } // End ajax success function
     });
     e.preventDefault();
@@ -83,8 +79,7 @@ $(document).ready(function() {
     var test     = $(this); // So we can add new article before new article link
     $.ajax({
       "type":"POST",
-      "url":"_inc/ajax/ajax.hnewarticle.php",
-      "data": 'id=' + parseInt(stopicid),
+      "url":"ajax/hnewarticle/" + parseInt(stopicid),
       "success":function(articleid){
         var splitdata = articleid.split('|');
         $('<a id="mainarticle' + splitdata[0] + '" class="mainarticle" title2="'
