@@ -63,7 +63,7 @@
         <li class="article_li"><a id="mainarticle{{ $content->content_id }}" class="mainarticle" title2="{{ $content->content_id }}">{{ $content->name }} {{ $content->title }}</a>
         <ul>
         @foreach (App\Content::getReplies($content->content_id) as $reply)
-        <li><a class="subbarticle">{{ $reply->title }}</a></li>
+        <li><a id="subbarticle{{ $reply->content_id }}" class="subbarticle" title2="{{ $reply->content_id }}">{{ $reply->title }}</a></li>
         @endforeach
         </ul>
         </li>
