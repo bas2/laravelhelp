@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Requests;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +15,8 @@
 
 Route::get('/', function () {
 
-  $topics=DB::table('topics')->where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
-  $stopics=DB::table('stopics')->where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']);
+  $topics =App\Topic::where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
+  $stopics=App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']);
 
   $topicsperros = 3; # Topics to show per row.
 
@@ -30,3 +32,38 @@ Route::get('/', function () {
   ->with('stopics',$stopics)
   ;
 });
+
+Route::post('ajax/harticleedit/{id}', function($id) {
+  $input=Request::all();
+  $videos = new \App\Content;
+  $videos = $videos::where('content_id',$id);
+  //$videos->content = $input['txt_helptitle'];
+  $videos->update(['title'=>$input['txt_helptitle'], 'content'=>$input['fedit_helpcontent']]);
+
+  return "{$id}=||={$input['txt_helptitle']}";
+});
+
+Route::get('ajax/harticleedit/{id}', function($id) {
+  $article=App\Content::where('content_id',$id)->get(['content_id','stopicid','groupid','title','content','pintonav']);
+  $article=$article[0];
+
+  $groupsall=App\Group::where('stopicid',$article->stopicid)->get(['group_id','name']);
+  $groups=['None'];foreach($groupsall as $group) {$groups[$group->group_id]="{$group->name}";}
+
+  $article2=App\Topic::where('topics.hide',0)
+  ->leftjoin('subtopics','subtopics.topicid','=','topics.topic_id')
+  ->orderby('topics.topic','asc','subtopics.stopic','asc')
+  ->get(['subtopics.stopic_id','topics.topic','subtopics.stopic']);
+
+  $stopics=[];foreach($article2 as $suptopic) {$stopics[$suptopic->stopic_id]="{$suptopic->topic} > {$suptopic->stopic}";}
+
+  return view('ajax.harticleedit')->with('content', $article)->with('groups',$groups)->with('subtopics',$stopics);
+});
+
+
+Route::get('ajax/{id}', function($id) {
+  $article=App\Content::where('content_id',$id)->get(['content_id','stopicid','created_at','updated_at','title','content']);
+  return view('ajax')->with('content', $article[0]);
+});
+
+
