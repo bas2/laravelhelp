@@ -16,8 +16,7 @@ class Content extends Model
 
     public static function getReplies($mainarticleid) {
       return static::where('contents.parentid',$mainarticleid)
-      //->leftJoin('groups','contents.groupid','=','groups.group_id')
       ->latest('contents.updated_at')
-      ->get(['contents.title']);
+      ->get(['content_id','contents.title']);
     }
 }
