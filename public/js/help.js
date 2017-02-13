@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   function hideshow() {
     $('.articleoption').hide();
-    $('<span class="show" title="Show"><img src="_inc/img/menu.png" width="30"></span>')
+    $('<span class="show" title="Show"><img src="../img/menu.png" width="30"></span>')
      .appendTo('a.mainarticle').addClass('moveright');
   }
   hideshow();
@@ -20,10 +20,12 @@ $(document).ready(function() {
     var classsel  = $(this).attr('class'); // Main article or reply?
     var thisarticledivvisible = $(this).parent().find('#articlediv').is(":visible");
     $(this).css('background','rgba(255, 0, 50, .2)');
+
+
+
     $.ajax({
-      "type":"POST",
-      "url":"_inc/ajax/ajax.hdisplayarticle.php",
-      "data": 'id=' + parseInt(articleid),
+      "type":"get",
+      "url":"ajax/" + parseInt(articleid),
       "success":function(data){
         if ($('#articlediv').is(":visible")) {$('#articlediv').remove();}
         if (!thisarticledivvisible) {
@@ -149,7 +151,7 @@ $(document).ready(function() {
   });
 
   // Hide topic link:
-  $('table#helpsection h2 span.hidetopic').click(function(){
+  $('div.topicrow h2 span.hidetopic').click(function(){
     var $that = $(this);
     $.ajax({
       "type":"GET",
@@ -186,7 +188,7 @@ $(document).ready(function() {
   });
 
   // Topic 'dots' tooltip.
-  $( "table#helpsection h2 div span, table#helpsection h3 div span" ).tooltip({
+  $( "div.topicrow h2 div span, div.topicrow h3 div span" ).tooltip({
     tooltipClass: "jquerytooltip",
     position: {
       "my": "center top-54",
@@ -199,16 +201,16 @@ $(document).ready(function() {
     hide: { effect: "none" }
   });
 
-  $( "table#helpsection h3 div span" ).tooltip({
+  $( "div.topicrow h3 div span" ).tooltip({
     tooltipClass: "jquerytooltip2",
     position: {
-      "my": "center top-40",
+      "my": "center top-50",
     },
     show: { effect: "none" },
     hide: { effect: "none" }
   });
 
-  $('table#helpsection h2 div span, table#helpsection h3 div span').click(function(e){
+  $('div.topicrow h2 div span, div.topicrow h3 div span').click(function(e){
     $('html, body').animate({scrollTop: $('#'+$(this).attr('title2')).offset().top}, 0);
     e.preventDefault();
   });
@@ -220,7 +222,7 @@ $(document).ready(function() {
     var $this = $(this);
     $.ajax({
       "type":"GET",
-      "url":"_inc/ajax/ajax.subtopicarticles.php?stopicid=" + stopicid,
+      "url":"ajax/subtopicarticles/" + stopicid,
       "data":"orderby=" + $this.attr('class') ,
 
       "success":function(data){
