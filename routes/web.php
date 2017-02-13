@@ -33,11 +33,11 @@ Route::get('/', function () {
   ;
 });
 
+// Complete article update:
 Route::post('ajax/harticleedit/{id}', function($id) {
   $input=Request::all();
   $videos = new \App\Content;
   $videos = $videos::where('content_id',$id);
-  //$videos->content = $input['txt_helptitle'];
   $videos->update(['title'=>$input['txt_helptitle'], 'content'=>$input['fedit_helpcontent']]);
 
   return "{$id}=||={$input['txt_helptitle']}";
@@ -67,3 +67,18 @@ Route::get('ajax/{id}', function($id) {
 });
 
 
+// Add new reply:
+Route::get('ajax/hreplytoarticle/{id}', function($id){
+  $subtopic=App\Content::where('content_id',$id)->get(['stopicid']);
+
+  $create= new App\Content;
+  $create->stopicid = $subtopic[0]->stopicid;
+  $create->parentid = $id;
+  $create->content = '';
+  $create->controllerid = 4;
+  $create->save();
+
+  $ret = ($create->save()) ? "{$create->id}|Bashir|" . date('l jS M Y, H:i') : 'No' ;
+  
+  return view('ajax.hreplytoarticle')->with('test',$ret);
+});
