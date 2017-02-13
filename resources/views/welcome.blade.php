@@ -7,62 +7,79 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="js/jquery/css/blitzer/jquery-ui-1.10.3.custom.min.css">
 
-  <script src="js/jquery/js/jquery-1.8.3.min.js"></script>
-  <script src="js/jquery/js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
   <script src="js/tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
 
   <script src="js/goup.js"></script>
   <script src="js/help.js"></script>
 </head>
 <body>
-<h1>Topics: {{ $numtopics }}</h1>
-<a href="#" class="btnNav">Nav</a> <a href="#" class="scrollup">Scroll</a>
+  <h1>Topics: {{ $numtopics }}</h1>
+  <a href="#" class="btnNav">Nav</a> <a href="#" class="scrollup">Scroll</a>
 
-<div class="topicrow">
-@foreach ($topicrows as $topicrow)
-@for ($i=0; $i<=$numtopicrows; $i++)
-<div>
+  <div class="topicrow">
+    @foreach ($topicrows as $topicrow)
+    @for ($i=0; $i<=$numtopicrows; $i++)
+    <div>
 
-<h2 id="topic_{{ $topicrow[$i]->topic_id }}">{{ $topicrow[$i]->topic }}
-<div>
-@for ($j=1; $j<=$numtopics; $j++)
-@if ($topicrow[$i]->topic==$topics[$j-1]->topic)
-<span class="current">&bull;</span>
-@else
-<span title2="topic_{{ $j }}" title="{{ $topics[$j-1]->topic }}">&bull;</span>
-@endif
-@if ($j % 3 ==0)
-<span class="sep">&VerticalSeparator;</span>
-@endif
-@endfor
-</div>
+      <h2 id="topic_{{ $topicrow[$i]->topic_id }}">{{ $topicrow[$i]->topic }}
+        <div>
+        @for ($j=1; $j<=$numtopics; $j++)
+        @if ($topicrow[$i]->topic==$topics[$j-1]->topic)
+        <span class="current">&bull;</span>
+        @else
+        <span title2="topic_{{ $topics[$j-1]->topic_id }}" title="{{ $topics[$j-1]->topic }}">&bull;</span>
+        @endif
+        @if ($j % 3 ==0)
+        <span class="sep">&VerticalSeparator;</span>
+        @endif
+        @endfor
+        </div>
 
-<span class="hidetopic"><img src="../img/hide.png" width="40"></span>
-</h2>
+        <span class="hidetopic"><img src="../img/hide.png" width="40"></span>
+      </h2>
 
-@foreach ($stopics as $stopic)
-@if ($stopic->topicid==$topicrow[$i]->topic_id)
-<h3><a href="/subtopic/rename" class="stopic_a" title="Rename Sub topic"><div>{{ $stopic->stopic }}</div>
-<div>
-<?php $subtopics=App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id); ?>
-@foreach ($subtopics as $subtopic)
-@if ($subtopic->stopic==$stopic->stopic)
-<span class="current">&bull;</span>
-@else
-<span title2="subtopic_{{ $j }}" title="{{ $subtopic->stopic }}">&bull;</span>
-@endif
-@endforeach
-</div>
-</a></h3>
-@endif
-@endforeach
+      @foreach ($stopics as $stopic)
+      @if ($stopic->topicid==$topicrow[$i]->topic_id)
+      <h3 id="s_{{ $stopic->stopic_id }}"><a href="/subtopic/rename" class="stopic_a" title="Rename Sub topic">
+      <div>{{ $stopic->stopic }}</div>
+        <div>
+        <?php $subtopics=App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id); ?>
+        @foreach ($subtopics as $subtopic)
+        @if ($subtopic->stopic==$stopic->stopic)
+        <span class="current">&bull;</span>
+        @else
+        <span title2="s_{{ $subtopic->stopic_id }}" title="{{ $subtopic->stopic }}">&bull;</span>
+        @endif
+        @endforeach
+        </div></a>
+      </h3>
 
-</div>
-@endfor
-</div>
-<div class="topicrow">
-@endforeach
-</div>
+      <p>Order by: <span class="oname">Name</span> <span class="omoddate">Mod date</span></p>
+      <div>
+      <ul>
+      @foreach (App\Content::getContent($stopic->stopic_id) as $content)
+        <li class="article_li"><a id="mainarticle{{ $content->content_id }}" class="mainarticle" title2="{{ $content->content_id }}">{{ $content->name }} {{ $content->title }}</a>
+        <ul>
+        @foreach (App\Content::getReplies($content->content_id) as $reply)
+        <li><a class="subbarticle">{{ $reply->title }}</a></li>
+        @endforeach
+        </ul>
+        </li>
+      @endforeach
+      </ul>
+      </div>
+
+      @endif
+      @endforeach
+
+    </div>
+    @endfor
+  </div>
+  <div class="topicrow">
+  @endforeach
+  </div>
 
 </body>
 </html>
