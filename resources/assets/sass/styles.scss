@@ -21,6 +21,7 @@ div.topicrow {
     float:left;
     width: 32.9%;
     margin-right:5px;
+    background: rgba(255, 0, 50, .2); /* Purple */
 
     h2 {
       position: relative;
@@ -34,6 +35,7 @@ div.topicrow {
       div {
         float:none;
         width: auto;
+        background: none;
       }
     }
     h3 {
@@ -42,22 +44,32 @@ div.topicrow {
         float: none;
         width:auto;
         margin-right:auto;
+        background: none;
+      }
+      + p {
+        text-align: center;
+        span {
+          cursor: pointer;
+        }
+        span.omoddate {
+          color: yellow;
+        }
       }
     }
 
-/* Sub topic text */
-a.stopic_a {
-  border: 1px solid rgb(0,0,0);
-  background: rgba(255,100,200,.4); /* Purple */
-  background: linear-gradient( rgba(255,100,200,.4), rgb(0,0,0) );
-  color: hsla(180, 50%, 40%, 1); /* light blue */
-  text-shadow: 1px 1px hsl(180, 100%, 20%);
-  border-radius:.6em;
-  box-shadow: 0px 1px hsl(60, 100%, 50%);
-  width: 95%;
-  margin: 0 auto;
-  padding: .4em 0;
-}
+    /* Sub topic text */
+    a.stopic_a {
+      border: 1px solid rgb(0,0,0);
+      background: rgba(255,100,200,.4); /* Purple */
+      background: linear-gradient( rgba(255,100,200,.4), rgb(0,0,0) );
+      color: hsla(180, 50%, 40%, 1); /* light blue */
+      text-shadow: 1px 1px hsl(180, 100%, 20%);
+      border-radius:.6em;
+      box-shadow: 0px 1px hsl(60, 100%, 50%);
+      width: 95%;
+      margin: 0 auto;
+      padding: .4em 0;
+    }
 
     h2 span, h3 span {
       position: absolute;
@@ -66,18 +78,6 @@ a.stopic_a {
       font-size: .5em;
       cursor: pointer;
     }
-
-    h2 div span, h3 div span { /* Topic 'dots' */
-    position: static;
-    font-size: 1em;
-    margin-right: .5em;
-    }
-
-    h3 div span {
-    font-size: 1.2em;
-    margin-right: .5em;
-    }
-
     h2 div span.current, h3 div span.current {
     color:yellow;
     cursor: default;
@@ -87,8 +87,32 @@ a.stopic_a {
     cursor: default;
     font-size: .5em;
     }
+    div {
+      float:none;
+      width:auto;
+      background: none;
+      ul {
+        padding-left: 0;
+        ul {
+          padding-left: 1.5em;
+          list-style: square;
+        }
+      }
+    }
+  }
+  h2 div span, h3 div span { /* Topic 'dots' */
+  position: static;
+  font-size: 1em;
+  margin-right: .2em;
+  }
 
-  }  
+    h3 div span {
+    font-size: 1.2em;
+    margin-right: .2em;
+    }
+
+
+
 }
 
 .scrollup {
@@ -102,6 +126,25 @@ a.stopic_a {
   background: url('../img/icon_top.png') center center no-repeat;
   z-index: 2;
 }
+
+.jquerytooltip {
+  background: hsla(0,100%,25%,1) !important;
+  padding: .3em !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font: .8em "Helvetica Neue", Sans-Serif !important;
+  box-shadow: 0 0 7px black !important;
+}
+
+.jquerytooltip2 {
+  background: linear-gradient( rgba(255,100,200,.4), rgb(0,0,0) ) !important;
+  padding: .3em !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font: .8em "Helvetica Neue", Sans-Serif !important;
+  box-shadow: 0 0 7px black !important;
+}
+
 
 
 
@@ -293,22 +336,22 @@ li ul #articlediv {
   width:104%;
 }
 
-.divharteditform {
-    margin-bottom:2em;
+#articlediv div.divharteditform {
+  margin-bottom:2em;
   background:rgba(255,100,200,.4);
   padding:1em;
   border-radius: .3em;
   border:none;
 
   input[type=text] {
-  text-align: center;
-  background-color: #ccc;
-  font-weight: bold;
-  border-top-left-radius: .3em;
-  border-top-right-radius: .3em;
+    text-align: center;
+    background-color: #ccc;
+    font-weight: bold;
+    border-top-left-radius: .3em;
+    border-top-right-radius: .3em;
   }
   .tinymce {
-font-size: 1.5em;
+    font-size: 1.5em;
   }
 }
 
@@ -324,7 +367,7 @@ font-size: 1.5em;
   display: none;
 }
 
-.divartcontent {
+#articlediv div.divartcontent {
   margin-bottom:2em;
   background:rgba(255,100,200,1);
   background:hsla(330,100%,40%,1);
@@ -400,7 +443,7 @@ div#articlediv.togglewidth {
   }
 }
 
-input[name=txt_helptitle] {
+input[name=helptitle] {
     width:100%;
   border:none;
 }
