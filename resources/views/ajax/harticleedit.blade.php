@@ -11,6 +11,7 @@
 {!! Form::label('groups', 'Add to group:') !!}
 {!! Form::select('groups', $groups, $content->groupid, ['id'=>'groups']) !!}
 </div>
+<div class="groupoptions" title2="{{ $content->stopicid }}"></div>
 <div>
 {!! Form::label('subtopics', 'Subtopic:') !!}
 {!! Form::select('subtopics', $subtopics, $content->stopicid, ['id'=>'subtopics']) !!}
