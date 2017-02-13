@@ -22,8 +22,8 @@ $(document).ready(function(){
       "success":function(data){
         $('#articlediv').html(data).fadeIn('slow');
 
-        if ($('#helpcontent').val().length==0) {$('#helpcontent').focus();}
-        if ($('#helptitle').val().length==0)  {$('#helptitle').focus();}      
+        //if ($('#helpcontent').val().length==0) {$('#helpcontent').focus();}
+        //if ($('#helptitle').val().length==0)  {$('#helptitle').focus();}      
       } // End ajax success function
     });
     $('html, body').animate({scrollTop: $('#articlediv').offset().top}, 0);
