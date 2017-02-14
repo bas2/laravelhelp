@@ -11,7 +11,7 @@ class ProjectsMenu extends Model
     echo '<ul id="projectsmenu">';
     foreach($list as $project){
       $projectname = ucwords(str_replace('../../', '', $project));
-      if ($projectname!='Shared') echo '<li><a href="/'.strtolower($projectname).'/public/">' . $projectname . '</a></li>';
+      if ($projectname!='Shared') echo '<li><a href="/'.strtolower($projectname).'/public/home">' . $projectname . '</a></li>';
     }
     echo '</ul>';
   }
