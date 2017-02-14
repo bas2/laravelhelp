@@ -17,7 +17,7 @@
 <body>
   <h1>Topics: {{ $numtopics }}</h1>
   <a href="#" class="btnNav">Nav</a> <a href="#" class="scrollup">Scroll</a>
-
+  {{ App\ProjectsMenu::display() }}
   <div class="topicrow">
     @foreach ($topicrows as $topicrow)
     @for ($i=0; $i<=$numtopicrows; $i++)
@@ -37,12 +37,12 @@
         @endfor
         </div>
 
-        <span class="hidetopic"><img src="../img/hide.png" width="40"></span>
+        <span class="hidetopic"><img src="img/hide.png" width="40"></span>
       </h2>
 
       @foreach ($stopics as $stopic)
       @if ($stopic->topicid==$topicrow[$i]->topic_id)
-      <h3 id="s_{{ $stopic->stopic_id }}"><a href="/subtopic/rename" class="stopic_a" title="Rename Sub topic">
+      <h3 id="s_{{ $stopic->stopic_id }}"><a href="subtopic/{{ $stopic->stopic_id }}/rename" class="stopic_a" title="Rename Sub topic">
       <div>{{ $stopic->stopic }}</div>
         <div>
         <?php $subtopics=App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id); ?>
@@ -58,35 +58,13 @@
 
       <p>Order by: <span class="oname">Name</span> <span class="omoddate">Mod date</span></p>
       <div>
-      <ul>
-      @foreach (App\Content::getContent($stopic->stopic_id) as $content)
-        <li class="article_li"><a id="mainarticle{{ $content->content_id }}" class="mainarticle" title2="{{ $content->content_id }}">
-        @if (!empty($content->name.$content->title))
-        {{ $content->name }} {{ $content->title }}
-        @else
-        &nbsp;
-        @endif
-        </a>
-        <ul id="replylist{{ $content->content_id }}">
-        @foreach (App\Content::getReplies($content->content_id) as $reply)
-        <li><a id="subbarticle{{ $reply->content_id }}" class="subbarticle" title2="{{ $reply->content_id }}">
-        @if(!empty($reply->title))
-        {{ $reply->title }}
-        @else
-        &nbsp;
-        @endif
-        </a></li>
-        @endforeach
-        </ul>
-        <p class="articleoption article{{ $stopic->stopic_id }}option"><a id="reply{{ $content->content_id }}" class="reply" title2="{{ $content->content_id }}">Reply</a></p>
-        </li>
-      @endforeach
-      </ul>
+      @include('ajax.content', ['orderby'=>['updated_at','desc']])
       </div>
 
       @endif
       @endforeach
 
+      <p><a href="stopic/new/{{ $stopic->stopic_id }}" class="newsubtopic">New sub topic</a></p>
     </div>
     @endfor
   </div>
