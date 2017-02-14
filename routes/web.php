@@ -90,8 +90,6 @@ Route::get('ajax/hreplytoarticle/{id}', function($id){
   $create->save();
 
   return ($create->save()) ? "{$create->id}|Bashir|" . date('l jS M Y, H:i') : 'No' ;
-  
-  //return view('ajax.hreplytoarticle')->with('test',$ret);
 });
 
 // Delete article
