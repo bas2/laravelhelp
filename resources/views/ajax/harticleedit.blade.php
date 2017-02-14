@@ -110,7 +110,7 @@ $(document).ready(function(){
   // DUPLICATED FROM HELP.JS!
   function hideshow() {
     $('.articleoption').hide();
-    $('<span class="show" title="Show"><img src="_inc/img/menu.png" width="30"></span>')
+    $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
      .appendTo('a.mainarticle').addClass('moveright');
   }
 
@@ -135,16 +135,19 @@ $(document).ready(function(){
         $('#mainarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+'<span class="show moveright"><img src="img/menu.png" width="30"></span>');
         $('#subbarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+' (0 days)');
         $('html, body').animate({scrollTop: subtopic.offset().top}, 0);
-        //$.ajax({
-        //  "type":"GET",
-        //  "url":"ajax/subtopicarticles/stopicid=" + subtopic.attr('id').substring(2),
-        //  "data":"orderby=omoddate" ,
-        //  "success":function(data) {
-        //    //alert(data);
-        //    subtopic.next().next().html(data);
-        //    hideshow();
-        //  } // End ajax success function
-        //});
+        $.ajax({
+          "type":"GET",
+          "url":"ajax/content/" + subtopic.attr('id').substring(2),
+          "data":"orderby=omoddate" ,
+          "success":function(data) {
+            //alert(data);
+            subtopic.next().next().html(data);
+            $('.articleoption').hide();
+            $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
+     .appendTo($('#mainarticle'+articleid)).addClass('moveright');
+            //hideshow();
+          } // End ajax success function
+        });
 
       } // End ajax success function
     });
