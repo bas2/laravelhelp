@@ -12,8 +12,11 @@ use App\Http\Requests;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::get('home', function() {
+  //return 'test';
+//});
 
-Route::get('/', function () {
+Route::get('home', function () {
 
   $topics =App\Topic::where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
   $stopics=App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']);
@@ -39,7 +42,7 @@ Route::post('ajax/harticleedit/{id}', function($id) {
   $videos = new \App\Content;
   $videos = $videos::where('content_id',$id);
   $article_body = (!empty($input['fedit_helpcontent'])) ? $input['fedit_helpcontent'] : '' ;
-  $videos->update(['title'=>$input['txt_helptitle'], 'content'=>$article_body]);
+  $videos->update(['title'=>$input['txt_helptitle'], 'content'=>$article_body, 'groupid'=>$input['groupid'], 'stopicid'=>$input['stopicid']]);
 
   return "{$id}=||={$input['txt_helptitle']}";
 });
@@ -108,4 +111,34 @@ Route::get('ajax/hnewarticle/{id}', function($stopicid){
   return ($create->save()) ? "{$create->id}|Bashir|" . date('l jS M Y, H:i') : 'No' ;
 });
 
+// New subtopic.
+Route::get('stopic/new/{id}', function($topicid){
+  return view('subtopicnew');
+});
 
+// New subtopic:
+Route::post('stopic/new/{id}', function($topicid) {
+  $create= new App\Subtopic;
+  $create->topicid = $topicid;
+  $create->save();
+
+  return redirect('home');
+});
+
+// Rename or delete subtopic page:
+Route::get('subtopic/{id}', function($subtopicid){
+  $subtopic=App\Subtopic::where('stopic_id',$subtopicid)->get(['stopic']);
+  return view('subtopicrename')->with('subtopic', $subtopic[0]);
+});
+
+// Rename or delete subtopic complete:
+Route::post('subtopic/{id}', function($subtopicid){
+  $input=Request::all();
+  $action = (isset($input['d'])) ? 'd' : 'u';
+  $videos = new \App\Subtopic;
+  $videos = $videos::where('stopic_id',$subtopicid);
+  if ($action=='d') {$videos->delete();} 
+  else {$videos->update(['stopic'=>$input['subtopic']]);}
+
+  return redirect('home');
+});
