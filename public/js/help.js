@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   function hideshow() {
     $('.articleoption').hide();
-    $('<span class="show" title="Show"><img src="../img/menu.png" width="30"></span>')
+    $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
      .appendTo('a.mainarticle').addClass('moveright');
   }
   hideshow();
@@ -95,7 +95,7 @@ $(document).ready(function() {
     var stopicid = $(this).attr('title2');
     var test     = $(this); // So we can add new article before new article link
     $.ajax({
-      "type":"POST",
+      "type":"GET",
       "url":"ajax/hnewarticle/" + parseInt(stopicid),
       "success":function(articleid){
         var splitdata = articleid.split('|');
@@ -234,12 +234,14 @@ $(document).ready(function() {
     var $this = $(this);
     $.ajax({
       "type":"GET",
-      "url":"ajax/subtopicarticles/" + stopicid,
+      "url":"ajax/content/" + stopicid,
       "data":"orderby=" + $this.attr('class') ,
-
       "success":function(data){
         $($this).parent().next().html(data);
-        hideshow();
+        $('.articleoption').hide();
+        $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
+     .appendTo($($this.parent().next().find('ul li a.mainarticle'))).addClass('moveright');
+        //hideshow();
       } // End ajax success function
 
     }); // End ajax.
