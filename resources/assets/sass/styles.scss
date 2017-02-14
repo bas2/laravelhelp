@@ -2,7 +2,7 @@ body {
   background: #000;
   color: #fff;
   font: 100%/1 arial, helvetica, sans-serif;
-
+  margin-top: 0;
 }
 
 a {
@@ -14,8 +14,25 @@ a {
 
 h1 {text-align:center;display:none;}
 
+ul#projectsmenu {
+  position:absolute;top:0;
+  margin-top:0;padding-left: 0;
+  li {
+    list-style: none;
+    padding-left: 0;
+    float:left;
+    a {
+      margin-right: .5em;
+    }
+  }
+
+}
+
+
 div.topicrow {
   clear:left;
+  float:left;
+  margin-top:1.3em;
 
   div {
     float:left;
