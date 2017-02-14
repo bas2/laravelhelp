@@ -2,7 +2,7 @@
 
 {!! Form::open() !!}
 <div>
-{!! Form::text('helptitle', $content->title) !!}
+{!! Form::text('helptitle', $content->title, ['placeholder'=>'Title is required']) !!}
 </div>
 <div>
 {!! Form::textarea('helpcontent', $content->content, ['id'=>'helpcontent']) !!}
