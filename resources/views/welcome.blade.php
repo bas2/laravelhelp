@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-<head>
-  <meta charset="utf-8">
-  <title>PHP App::Help!</title>
+@extends('layout')
 
-  <link rel="stylesheet" href="css/styles.css">
+@section('mainheader')
   <link rel="stylesheet" href="js/jquery/css/blitzer/jquery-ui-1.10.3.custom.min.css">
 
   <script src="js/jquery-1.8.3.min.js"></script>
@@ -13,8 +9,9 @@
 
   <script src="js/goup.js"></script>
   <script src="js/help.js"></script>
-</head>
-<body>
+@stop
+
+@section('content')
   <h1>Topics: {{ $numtopics }}</h1>
   <a href="#" class="btnNav">Nav</a> <a href="#" class="scrollup">Scroll</a>
   {{ App\ProjectsMenu::display() }}
@@ -42,7 +39,7 @@
 
       @foreach ($stopics as $stopic)
       @if ($stopic->topicid==$topicrow[$i]->topic_id)
-      <h3 id="s_{{ $stopic->stopic_id }}"><a href="subtopic/{{ $stopic->stopic_id }}/rename" class="stopic_a" title="Rename Sub topic">
+      <h3 id="s_{{ $stopic->stopic_id }}"><a href="subtopic/{{ $stopic->stopic_id }}" class="stopic_a" title="Rename Sub topic">
       <div>{{ $stopic->stopic }}</div>
         <div>
         <?php $subtopics=App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id); ?>
@@ -64,13 +61,11 @@
       @endif
       @endforeach
 
-      <p><a href="stopic/new/{{ $stopic->stopic_id }}" class="newsubtopic">New sub topic</a></p>
+      <p><a href="stopic/new/{{ $topicrow[$i]->topic_id }}" class="newsubtopic">New sub topic</a></p>
     </div>
     @endfor
   </div>
   <div class="topicrow">
   @endforeach
   </div>
-
-</body>
-</html>
+@stop
