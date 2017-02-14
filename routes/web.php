@@ -38,11 +38,13 @@ Route::post('ajax/harticleedit/{id}', function($id) {
   $input=Request::all();
   $videos = new \App\Content;
   $videos = $videos::where('content_id',$id);
-  $videos->update(['title'=>$input['txt_helptitle'], 'content'=>$input['fedit_helpcontent']]);
+  $article_body = (!empty($input['fedit_helpcontent'])) ? $input['fedit_helpcontent'] : '' ;
+  $videos->update(['title'=>$input['txt_helptitle'], 'content'=>$article_body]);
 
   return "{$id}=||={$input['txt_helptitle']}";
 });
 
+// Display article edit form.
 Route::get('ajax/harticleedit/{id}', function($id) {
   $article=App\Content::where('content_id',$id)->get(['content_id','stopicid','groupid','title','content','pintonav']);
   $article=$article[0];
@@ -58,6 +60,15 @@ Route::get('ajax/harticleedit/{id}', function($id) {
   $stopics=[];foreach($article2 as $suptopic) {$stopics[$suptopic->stopic_id]="{$suptopic->topic} > {$suptopic->stopic}";}
 
   return view('ajax.harticleedit')->with('content', $article)->with('groups',$groups)->with('subtopics',$stopics);
+});
+
+// Get subtopic articles:
+Route::get('ajax/content/{id}', function($subtopic) {
+  $input=Request::all();
+  $subtopic1=new App\Subtopic;
+  $subtopic1->stopic_id = $subtopic;
+  return view('ajax.content')->with('stopic', $subtopic1)->with('orderby', $input['orderby'] );
+  //->with('orderby', $orderby )
 });
 
 
@@ -78,7 +89,25 @@ Route::get('ajax/hreplytoarticle/{id}', function($id){
   $create->controllerid = 4;
   $create->save();
 
-  $ret = ($create->save()) ? "{$create->id}|Bashir|" . date('l jS M Y, H:i') : 'No' ;
+  return ($create->save()) ? "{$create->id}|Bashir|" . date('l jS M Y, H:i') : 'No' ;
   
-  return view('ajax.hreplytoarticle')->with('test',$ret);
+  //return view('ajax.hreplytoarticle')->with('test',$ret);
 });
+
+// Delete article
+Route::get('ajax/hdelarticle/{id}', function($id) {
+  $article=App\Content::where('content_id',$id)->delete();
+});
+
+// New article
+Route::get('ajax/hnewarticle/{id}', function($stopicid){
+  $create= new App\Content;
+  $create->stopicid = $stopicid;
+  $create->content = '';
+  $create->controllerid = 4;
+  $create->save();
+
+  return ($create->save()) ? "{$create->id}|Bashir|" . date('l jS M Y, H:i') : 'No' ;
+});
+
+
