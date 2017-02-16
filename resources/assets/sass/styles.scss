@@ -22,7 +22,8 @@ ul#projectsmenu {
     padding: 0 0 .5em 0;
     float:left;
     a {
-      margin-right: .5em;color:#ccc;
+      margin-right: .5em;
+      color:#ccc;
     }
     span {margin-right:.5em;font-weight: bold;color:yellow;}
   }
@@ -66,12 +67,8 @@ div.topicrow {
       }
       + p {
         text-align: center;
-        span {
-          cursor: pointer;
-        }
-        span.omoddate {
-          color: yellow;
-        }
+        span {cursor: pointer;}
+        span.omoddate {color: yellow;}
       }
     }
 
@@ -95,10 +92,9 @@ div.topicrow {
       right: 5px;
       font-size: .5em;
       cursor: pointer;
-    }
-      h2 div span.current, h3 div span.current {
-      color:yellow;
-      cursor: default;
+      &.current {
+        color:yellow;cursor: default;
+      }
     }
 
     h2 div span.sep {
@@ -210,8 +206,6 @@ div.topicrow {
 
 table#helpsection {
 
-
-
 }
 
 
@@ -233,23 +227,25 @@ li.article_li {
 
 
 a.mainarticle {
-    clear:left;
+  clear:left;
   /*padding: .3em 1em .3em 0;*/
   cursor: pointer;
   color: hsla(30,100%,50%,1);
   text-shadow: 2px 1px 1px rgba(0,0,0,.8);
 
   span.show {
-  position: absolute;
-  top:1px;
-  right:1px;
+    position: absolute;
+    top:1px;
+    right:1px;
   }
-  span.highlighted {  position: static;
-  display: block;
-  background:rgba(127,127,127,.5); 
+  span.highlighted {
+    position: static;
+    display: block;
+    background:rgba(127,127,127,.5); 
 
-  /*text-indent:-1.4em;
-  margin-left:1.4em;*/}
+    /*text-indent:-1.4em;
+    margin-left:1.4em;*/
+  }
 
 }
 
@@ -257,24 +253,25 @@ a.mainarticle, a.subbarticle {font: bold 1em verdana;}
 
 a.mainarticle:hover, a.subbarticle:hover {color: rgba(247,162,72,.8);}
 
-a.subbarticle {  clear:left;
+a.subbarticle {
+  clear:left;
   cursor: pointer;
   color: rgba(247,162,72,.8);}
 
 #articlediv {
-    position: relative; /* So we can position an arrow to expand article width. */
+  position: relative; /* So we can position an arrow to expand article width. */
   display: none;
   width: 100%;
   background: linear-gradient( hsla(330,100%,20%,1), hsla(330,100%,20%,.1) );
 
   .chkdiv_pintonav {
-  font-weight: bold;
-  float: right;
+    font-weight: bold;
+    float: right;
   }
 }
 
 li ul #articlediv {
-    margin-left: -1em;
+  margin-left: -1em;
   width:104%;
 }
 
@@ -295,20 +292,20 @@ li ul #articlediv {
   .tinymce {
     font-size: 1.5em;
   }
-    select {
+  select {
     font-size:50%;
   }
 }
 
 .active {
-    font-weight: bold;
+  font-weight: bold;
   font-size: 1.3em;
 }
 
 .aposter, .rposter {  font-style: italic;}
 
 #articlecontent {
-    position: absolute;
+  position: absolute;
   display: none;
 }
 
@@ -321,34 +318,34 @@ li ul #articlediv {
   border-radius: .3em;
   border-bottom: 2px solid #ccc;
   div:first-child {
-  border-bottom:1px solid yellow;
-  text-align: center;
+    border-bottom:1px solid yellow;
+    text-align: center;
   }
   div > em {
     color: yellow;
-  font-weight: bold;
+    font-weight: bold;
   }
   a {
     display: inline;
-  border-bottom: 1px dotted #000;
+    border-bottom: 1px dotted #000;
   }
   ul {margin-top: 1em;}
   li {
     margin-bottom: .3em;
-  /*margin-left: -1em;*/
-  padding-left: 0;
+    /*margin-left: -1em;*/
+    padding-left: 0;
   }
   ul li {
     margin-bottom: .3em;
-  /*margin-left: -1em;*/
-  margin-left: 1em; /* Properly indent lists in replies.  */
-  list-style-type: square;
+    /*margin-left: -1em;*/
+    margin-left: 1em; /* Properly indent lists in replies.  */
+    list-style-type: square;
   }
   span {
     position: absolute;
-  right:10px;
-  top:0;
-  cursor: pointer;
+    right:10px;
+    top:0;
+    cursor: pointer;
   }
 
 }
@@ -364,9 +361,9 @@ div#articlediv.togglewidth {
   margin: 0;
   background: hsla(30,0%,50%,.5);
   .divartcontent {
-  margin-bottom: 0;
-  padding-top: .5em;
-  border-radius: 0;
+    margin-bottom: 0;
+    padding-top: .5em;
+    border-radius: 0;
   }
 
 }
@@ -383,13 +380,13 @@ div#articlediv.togglewidth {
   margin:0 auto;
   input {
     background:rgba(255,50,0,.6);
-  border-radius: .3em;
-  border: 1px;
+    border-radius: .3em;
+    border: 1px;
   }
 }
 
 input[name=helptitle] {
-    width:100%;
+  width:100%;
   border:none;
 }
 
