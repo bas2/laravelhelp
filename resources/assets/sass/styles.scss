@@ -19,11 +19,12 @@ ul#projectsmenu {
   margin-top:0;padding-left: 0;
   li {
     list-style: none;
-    padding-left: 0;
+    padding: 0 0 .5em 0;
     float:left;
     a {
-      margin-right: .5em;
+      margin-right: .5em;color:#ccc;
     }
+    span {margin-right:.5em;font-weight: bold;color:yellow;}
   }
 
 }
