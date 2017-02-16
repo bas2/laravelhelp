@@ -39,11 +39,16 @@ Route::get('home', function () {
 // Complete article update:
 Route::post('ajax/harticleedit/{id}', function($id) {
   $input=Request::all();
-  $videos = new \App\Content;
-  $videos = $videos::where('content_id',$id);
+  $article = new \App\Content;
+  $article = $article::where('content_id',$id);
   $article_body = (!empty($input['fedit_helpcontent'])) ? $input['fedit_helpcontent'] : '' ;
-  $videos->update(['title'=>$input['txt_helptitle'], 'content'=>$article_body, 'groupid'=>$input['groupid'], 'stopicid'=>$input['stopicid']]);
+  $article->update(['title'=>$input['txt_helptitle'], 'content'=>$article_body, 'groupid'=>$input['groupid'], 'stopicid'=>$input['stopicid']]);
 
+  // Update update_at for topic:
+  $content=\App\Content::getContentrow($id, ['stopicid']);
+  $subtopic=\App\Subtopic::getTopicrow($content[0]->stopicid, ['topicid']);
+  $topic=\App\Topic::where('topic_id',$subtopic[0]->topicid)->update(['updated_at'=>\Carbon\Carbon::now()]);
+  $subtopic=\App\Subtopic::where('stopic_id',$content[0]->stopicid)->update(['updated_at'=>\Carbon\Carbon::now()]);
   return "{$id}=||={$input['txt_helptitle']}";
 });
 
