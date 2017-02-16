@@ -14,7 +14,7 @@ class ProjectsMenu extends Model
       $projectname = ucwords(str_replace('../../', '', $project));
       if ($projectname!='Shared') {
         if ($currentapp==$projectname) {
-        echo "<li><a>$projectname</a></li>";
+        echo "<li><span>$projectname</span></li>";
         } else {
         echo '<li><a href="/'.strtolower($projectname)."/public/home\">$projectname</a></li>" ;
         }
