@@ -21,4 +21,9 @@ class Content extends Model
       ->latest('contents.updated_at')
       ->get(['content_id','contents.title']);
     }
+
+    public static function getContentrow($id, $columns=['*']) {
+      return static::where('content_id',$id)
+      ->get($columns);
+    }
 }
