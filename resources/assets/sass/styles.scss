@@ -32,10 +32,9 @@ ul#projectsmenu {
 
 
 div.topicrow {
-  clear:left;
-  float:left;
+  display: flex;
+  flex-wrap: wrap;
   margin-top:1.3em;
-
   div {
     float:left;
     width: 32.9%;
