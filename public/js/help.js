@@ -99,12 +99,12 @@ $(document).ready(function() {
       "url":"ajax/hnewarticle/" + parseInt(stopicid),
       "success":function(articleid){
         var splitdata = articleid.split('|');
-        $('<a id="mainarticle' + splitdata[0] + '" class="mainarticle" title2="'
+        $('<li class="article_li"><a id="mainarticle' + splitdata[0] + '" class="mainarticle" title2="'
         +splitdata[0]+'" href="#">[New article]</a><span class="aposter" id="aposter'
         +splitdata[0]+'">By ['
         +splitdata[1]+'] on ['
-        +splitdata[2]+']</span>')
-        .insertBefore(test).show();
+        +splitdata[2]+']</span></li>')
+        .appendTo(test.prev()).show();
       } // End ajax success function
 
     });
