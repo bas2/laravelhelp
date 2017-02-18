@@ -18,15 +18,22 @@ $(document).ready(function() {
   $('.mainarticle, .subbarticle').die('click').live('click', function(e) {
     var articleid = $(this).attr('title2');
     var classsel  = '#' + $(this).attr('class') + articleid; // Main article or reply?
+    if ($(this).attr('class')=='subbarticle') {
+      // If reply is clicked, focus main article.
+      var mainarticleid = $(this).parent().parent().parent().find('a').attr('title2');
+      var mainarticle   = '#mainarticle' + mainarticleid;
+    } else {var mainarticle = classsel;}
+
     var thisarticledivvisible = $(this).parent().find('#articlediv').is(":visible");
+    var nextelement = $(this).next().attr('id');
     $(this).css('background','rgba(255, 0, 50, .2)');
     $.ajax({
       "type":"get",
       "url":"ajax/" + parseInt(articleid),
       "success":function(data){
         if ($('#articlediv').is(":visible")) {$('#articlediv').remove();}
-        if (!thisarticledivvisible) {$('<div id="articlediv">'+data+'</div>').insertAfter(classsel).show();}
-        $('html, body').animate({scrollTop: $(classsel).offset().top}, 0);
+        if (!thisarticledivvisible||nextelement!='articlediv') {$('<div id="articlediv">'+data+'</div>').insertAfter(classsel).show();}
+        $('html, body').animate({scrollTop: $(mainarticle).offset().top}, 500);
       } // End ajax success function
     });
     e.preventDefault();
