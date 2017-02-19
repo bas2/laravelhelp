@@ -227,7 +227,7 @@ li.article_li {
 
 a.mainarticle {
   clear:left;
-  /*padding: .3em 1em .3em 0;*/
+  padding: 0 23px 0 0;
   cursor: pointer;
   color: hsla(30,100%,50%,1);
   text-shadow: 2px 1px 1px rgba(0,0,0,.8);
@@ -309,7 +309,7 @@ li ul #articlediv {
 }
 
 #articlediv div.divartcontent {
-  margin-bottom:2em;
+  margin-bottom:.5em;
   background:rgba(255,100,200,1);
   background:hsla(330,100%,40%,1);
   color: #000;
