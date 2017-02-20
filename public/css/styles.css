@@ -1,7 +1,8 @@
 body {
   background: #000;
   color: #fff;
-  font: 100%/1 arial, helvetica, sans-serif; }
+  font: 100%/1 arial, helvetica, sans-serif;
+  margin-top: 0; }
 
 a {
   text-decoration: none;
@@ -13,12 +14,33 @@ h1 {
   text-align: center;
   display: none; }
 
+ul#projectsmenu {
+  position: absolute;
+  top: 0;
+  margin-top: 0;
+  padding-left: 0; }
+  ul#projectsmenu li {
+    list-style: none;
+    padding: 0 0 .5em 0;
+    float: left; }
+    ul#projectsmenu li a {
+      margin-right: .5em;
+      color: #ccc; }
+    ul#projectsmenu li span {
+      margin-right: .5em;
+      font-weight: bold;
+      color: yellow; }
+
 div.topicrow {
-  clear: left; }
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.3em; }
   div.topicrow div {
     float: left;
     width: 32.9%;
     margin-right: 5px;
+    background: rgba(255, 0, 50, 0.2);
+    /* Purple */
     /* Sub topic text */ }
     div.topicrow div h2 {
       position: relative;
@@ -31,13 +53,21 @@ div.topicrow {
       text-align: center; }
       div.topicrow div h2 div {
         float: none;
-        width: auto; }
+        width: auto;
+        background: none; }
     div.topicrow div h3 {
       text-align: center; }
       div.topicrow div h3 div {
         float: none;
         width: auto;
-        margin-right: auto; }
+        margin-right: auto;
+        background: none; }
+      div.topicrow div h3 + p {
+        text-align: center; }
+        div.topicrow div h3 + p span {
+          cursor: pointer; }
+        div.topicrow div h3 + p span.omoddate {
+          color: yellow; }
     div.topicrow div a.stopic_a {
       border: 1px solid black;
       background: rgba(255, 100, 200, 0.4);
@@ -57,20 +87,63 @@ div.topicrow {
       right: 5px;
       font-size: .5em;
       cursor: pointer; }
-    div.topicrow div h2 div span, div.topicrow div h3 div span {
-      /* Topic 'dots' */
-      position: static;
-      font-size: 1em;
-      margin-right: .5em; }
-    div.topicrow div h3 div span {
-      font-size: 1.2em;
-      margin-right: .5em; }
-    div.topicrow div h2 div span.current, div.topicrow div h3 div span.current {
-      color: yellow;
-      cursor: default; }
+      div.topicrow div h2 span.current, div.topicrow div h3 span.current {
+        color: yellow;
+        cursor: default; }
     div.topicrow div h2 div span.sep {
       cursor: default;
       font-size: .5em; }
+    div.topicrow div div {
+      float: none;
+      width: auto;
+      background: none; }
+      div.topicrow div div ul {
+        padding-left: 0; }
+        div.topicrow div div ul ul {
+          padding-left: 1.5em;
+          list-style: square; }
+  div.topicrow h2 div span, div.topicrow h3 div span {
+    /* Topic 'dots' */
+    position: static;
+    font-size: 1em;
+    margin-right: .2em; }
+  div.topicrow h3 div span {
+    font-size: 1.2em;
+    margin-right: .2em; }
+  div.topicrow .articleoption {
+    border: 1px solid #000;
+    background-color: #fff;
+    border-radius: .4em; }
+    div.topicrow .articleoption a {
+      background: rgba(20, 200, 20, 0.2) url(../img/reply.png) no-repeat;
+      color: grey;
+      cursor: pointer;
+      padding: .5em;
+      border-radius: .3em; }
+  div.topicrow a.reply {
+    /* Main article reply. */
+    text-transform: uppercase;
+    letter-spacing: .4em;
+    padding-left: 3em; }
+  div.topicrow .newarticle a {
+    /* New article. */
+    background: rgba(20, 20, 20, 0.2) url(../img/reply.png) no-repeat;
+    color: green;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: .4em;
+    padding-left: 3em; }
+  div.topicrow a.newsubtopic {
+    /* New subtopic */
+    background: rgba(20, 20, 20, 0.2) url(../img/reply.png) no-repeat;
+    color: red;
+    padding: .5em;
+    text-align: center;
+    border-radius: .3em;
+    text-transform: uppercase;
+    letter-spacing: .4em;
+    width: 80%;
+    margin: 0 auto; }
 
 .scrollup {
   width: 40px;
@@ -83,94 +156,21 @@ div.topicrow {
   background: url("../img/icon_top.png") center center no-repeat;
   z-index: 2; }
 
-table#helpsection {
-  clear: both; }
-  table#helpsection tr {
-    vertical-align: top; }
-  table#helpsection h2 {
-    position: relative;
-    margin: 0;
-    border-radius: .4em;
-    padding: 0;
-    background: maroon;
-    color: #fff;
-    font: 1.5em "Helvetica Neue", Sans-Serif;
-    text-align: center; }
-  table#helpsection h2 span, table#helpsection h3 span {
-    position: absolute;
-    top: 0;
-    right: 5px;
-    font-size: .5em;
-    cursor: pointer; }
-  table#helpsection h2 div span, table#helpsection h3 div span {
-    /* Topic 'dots' */
-    position: static;
-    font-size: 1em;
-    margin-right: .5em; }
-  table#helpsection h3 div span {
-    font-size: 1.2em;
-    margin-right: .5em; }
-  table#helpsection h2 div span.current, table#helpsection h3 div span.current {
-    color: yellow;
-    cursor: default; }
-  table#helpsection h2 div span.sep {
-    cursor: default;
-    font-size: .5em; }
-  table#helpsection h3 {
-    /* Sub topics */
-    text-align: center; }
-  table#helpsection div > ul {
-    padding-left: 0; }
-  table#helpsection h3 + p span {
-    cursor: pointer; }
-  table#helpsection h3 + p span.omoddate {
-    color: yellow; }
-  table#helpsection td {
-    background: rgba(255, 0, 50, 0.2);
-    /* Purple */
-    border-radius: .9em;
-    padding-right: 0;
-    width: 33.3%; }
-  table#helpsection caption {
-    background: #000032;
-    color: red;
-    width: 90%;
-    margin: 0 auto;
-    padding: .3em 0;
-    font-weight: bold;
-    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.4);
-    display: none; }
-  table#helpsection .articleoption {
-    border: 1px solid #000;
-    background-color: #fff;
-    border-radius: .4em; }
-    table#helpsection .articleoption a {
-      background: rgba(20, 200, 20, 0.2) url(../img/reply.png) no-repeat;
-      color: grey;
-      cursor: pointer;
-      padding: .5em;
-      border-radius: .3em; }
-  table#helpsection .newarticle a {
-    background: rgba(20, 20, 20, 0.2) url(../img/reply.png) no-repeat;
-    color: green;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: .4em;
-    padding-left: 3em; }
-  table#helpsection a.newsubtopic {
-    background: rgba(20, 20, 20, 0.2) url(../img/reply.png) no-repeat;
-    color: red;
-    padding: .5em;
-    text-align: center;
-    border-radius: .3em;
-    text-transform: uppercase;
-    letter-spacing: .4em;
-    width: 80%;
-    margin: 0 auto; }
-  table#helpsection a.reply {
-    text-transform: uppercase;
-    letter-spacing: .4em;
-    padding-left: 3em; }
+.jquerytooltip {
+  background: maroon !important;
+  padding: .3em !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font: .8em "Helvetica Neue", Sans-Serif !important;
+  box-shadow: 0 0 7px black !important; }
+
+.jquerytooltip2 {
+  background: linear-gradient(rgba(255, 100, 200, 0.4), black) !important;
+  padding: .3em !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font: .8em "Helvetica Neue", Sans-Serif !important;
+  box-shadow: 0 0 7px black !important; }
 
 li.article_li {
   list-style: none;
@@ -187,7 +187,7 @@ li.article_li {
 
 a.mainarticle {
   clear: left;
-  /*padding: .3em 1em .3em 0;*/
+  padding: 0 23px 0 0;
   cursor: pointer;
   color: #ff8000;
   text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.8); }
@@ -227,20 +227,22 @@ li ul #articlediv {
   margin-left: -1em;
   width: 104%; }
 
-.divharteditform {
+#articlediv div.divharteditform {
   margin-bottom: 2em;
   background: rgba(255, 100, 200, 0.4);
   padding: 1em;
   border-radius: .3em;
   border: none; }
-  .divharteditform input[type=text] {
+  #articlediv div.divharteditform input[type=text] {
     text-align: center;
     background-color: #ccc;
     font-weight: bold;
     border-top-left-radius: .3em;
     border-top-right-radius: .3em; }
-  .divharteditform .tinymce {
+  #articlediv div.divharteditform .tinymce {
     font-size: 1.5em; }
+  #articlediv div.divharteditform select {
+    font-size: 50%; }
 
 .active {
   font-weight: bold;
@@ -253,40 +255,45 @@ li ul #articlediv {
   position: absolute;
   display: none; }
 
-.divartcontent {
-  margin-bottom: 2em;
+#articlediv div.divartcontent {
+  margin-bottom: .5em;
   background: #ff64c8;
   background: #cc0066;
   color: #000;
   padding: 1em;
   border-radius: .3em;
   border-bottom: 2px solid #ccc; }
-  .divartcontent div:first-child {
+  #articlediv div.divartcontent div:first-child {
     border-bottom: 1px solid yellow;
     text-align: center; }
-  .divartcontent div > em {
+  #articlediv div.divartcontent div > em {
     color: yellow;
     font-weight: bold; }
-  .divartcontent a {
+  #articlediv div.divartcontent a {
     display: inline;
     border-bottom: 1px dotted #000; }
-  .divartcontent ul {
+  #articlediv div.divartcontent ul {
     margin-top: 1em; }
-  .divartcontent li {
+  #articlediv div.divartcontent li {
     margin-bottom: .3em;
     /*margin-left: -1em;*/
     padding-left: 0; }
-  .divartcontent ul li {
+  #articlediv div.divartcontent ul li {
     margin-bottom: .3em;
     /*margin-left: -1em;*/
     margin-left: 1em;
     /* Properly indent lists in replies.  */
     list-style-type: square; }
-  .divartcontent span {
+  #articlediv div.divartcontent span {
     position: absolute;
-    right: 10px;
     top: 0;
     cursor: pointer; }
+    #articlediv div.divartcontent span.edit {
+      right: 3em; }
+    #articlediv div.divartcontent span.close {
+      right: 2em; }
+    #articlediv div.divartcontent span.expand {
+      right: 1em; }
 
 div#articlediv.togglewidth {
   position: fixed;
@@ -321,7 +328,7 @@ div#articlediv.togglewidth {
     border-radius: .3em;
     border: 1px; }
 
-input[name=txt_helptitle] {
+input[name=helptitle] {
   width: 100%;
   border: none; }
 
