@@ -1,5 +1,5 @@
 <div class="divharteditform">
-
+<span class="close">X</span>
 {!! Form::open() !!}
 <div>
 {!! Form::text('helptitle', $content->title, ['placeholder'=>'Title is required']) !!}
@@ -59,6 +59,7 @@ $('textarea#helpcontent').tinymce({
   }
 });
 $(document).ready(function(){
+  $('.close').css({'cursor':'pointer','position':'absolute','right':'.5em','top':'0'});
   if ($('#groups').val()==0) {
     $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
   } else {
@@ -131,6 +132,9 @@ $(document).ready(function(){
         //alert(data);
         var datasplit = data.split('=||=');
         var subtopic = $("#articlediv").parent().parent().parent().prev().prev();
+        if ($("#articlediv").prev().attr('class')=='subbarticle') {
+          subtopic = $("#articlediv").parent().parent().parent().parent().parent().prev().prev();
+        }
         $('#articlediv').remove(); // Remove form.
         $('#mainarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+'<span class="show moveright"><img src="img/menu.png" width="30"></span>');
         $('#subbarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+' (0 days)');
@@ -152,6 +156,10 @@ $(document).ready(function(){
       } // End ajax success function
     });
     e.preventDefault();
+  });
+
+  $('.close').click(function(){
+    $('#articlediv').remove();
   });
 
 
