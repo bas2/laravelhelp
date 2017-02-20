@@ -40,10 +40,17 @@ $(document).ready(function() {
   });
   
 
-  // Close
+  // Close article view and edit forms.
   $('#closeeditarticle').live('click', function() {
-    $('html, body').animate({scrollTop: $("#articlediv").parent().find('a').offset().top}, 0);
-    $("#articlediv").parent().find('a')
+    if ($(this).parent().parent().parent().parent().parent().attr('class')=='divharteditform') {
+      var article=$(this).parent().parent().parent().parent().parent().parent().parent().find('a');
+      if (article.attr('class')=='subbarticle'){article=article.parent().parent().parent().find('a');}
+    } else {
+      var article = $(this).parent().parent().parent().parent().find('a');
+      if (article.attr('class')=='subbarticle'){article=article.parent().parent().parent().find('a');}
+    }
+    $('html, body').animate({scrollTop: article.offset().top}, 0);
+    $("#articlediv").parent().find('a').first()
     .css({'background':'blue','transition':'background 4s ease-out'})
     ;
     $('#articlediv').remove();
