@@ -45,7 +45,11 @@ Route::post('ajax/harticleedit/{id}', function($id) {
   $article->update(['title'=>$input['txt_helptitle'], 'content'=>$article_body, 'groupid'=>$input['groupid'], 'stopicid'=>$input['stopicid']]);
 
   // Update update_at for topic:
-  $content=\App\Content::getContentrow($id, ['stopicid']);
+  $content=\App\Content::getContentrow($id, ['stopicid','parentid']);
+  if ($content[0]->parentid>0) {
+    // Also set updated_at for the main article for this reply.
+    $mainarticle=\App\Content::where('content_id',$content[0]->parentid)->update(['updated_at'=>\Carbon\Carbon::now()]);
+  }
   $subtopic=\App\Subtopic::getTopicrow($content[0]->stopicid, ['topicid']);
   $topic=\App\Topic::where('topic_id',$subtopic[0]->topicid)->update(['updated_at'=>\Carbon\Carbon::now()]);
   $subtopic=\App\Subtopic::where('stopic_id',$content[0]->stopicid)->update(['updated_at'=>\Carbon\Carbon::now()]);
@@ -79,7 +83,7 @@ Route::get('ajax/content/{id}', function($subtopic) {
   //->with('orderby', $orderby )
 });
 
-
+// Get article contents.
 Route::get('ajax/{id}', function($id) {
   $article=App\Content::where('content_id',$id)->get(['content_id','stopicid','created_at','updated_at','title','content']);
   return view('ajax')->with('content', $article[0]);
