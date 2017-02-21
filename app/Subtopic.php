@@ -13,7 +13,7 @@ class Subtopic extends Model
      * @return ?
      */
     public static function getTopicSubtopics($topicid) {
-      return static::where('topicid',$topicid)->latest('updated_at')->get(['stopic_id','stopic']);
+      return static::where('topicid',$topicid)->where('hide',0)->latest('updated_at')->get(['stopic_id','stopic']);
     }
 
     public static function getTopicrow($subtopicid, $columns=['*']) {
