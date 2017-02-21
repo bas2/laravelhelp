@@ -8,7 +8,7 @@ class Content extends Model
 {
     public static function getContent($subtopicid, $orderby='moddate') {
       $orderby = ($orderby=='oname') ? 'concat_ws(" ",groups.name,contents.title)' 
-      : 'updated_at desc' ;
+      : 'contents.updated_at desc' ;
       return static::where('contents.stopicid',$subtopicid)
       ->leftJoin('groups','contents.groupid','=','groups.group_id')
       ->where('parentid', 0)
