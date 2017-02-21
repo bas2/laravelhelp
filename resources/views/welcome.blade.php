@@ -62,7 +62,11 @@
       @endforeach
 
       <p><a href="stopic/new/{{ $topicrow[$i]->topic_id }}" class="newsubtopic">New sub topic</a></p>
+
     </div>
+    @if ($i<$numtopicrows)
+    <div class="sep"></div>
+    @endif
     @endfor
   </div>
   <div class="topicrow">
