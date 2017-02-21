@@ -105,7 +105,7 @@ $(document).ready(function() {
    
 
   // Add new article:
-  $('.newarticle').click(function(e) {
+  $('.newarticle').die('click').live('click', function(e) {
     var stopicid = $(this).attr('title2');
     var test     = $(this); // So we can add new article before new article link
     $.ajax({
