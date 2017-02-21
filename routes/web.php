@@ -61,8 +61,8 @@ Route::get('ajax/harticleedit/{id}', function($id) {
   $article=App\Content::where('content_id',$id)->get(['content_id','stopicid','groupid','title','content','pintonav']);
   $article=$article[0];
 
-  $groupsall=App\Group::where('stopicid',$article->stopicid)->get(['group_id','name']);
-  $groups=['None'];foreach($groupsall as $group) {$groups[$group->group_id]="{$group->name}";}
+  $groupsall=App\Group::where('stopicid',$article->stopicid)->orderBy('name')->get(['group_id','name']);
+  $groups=['--None--'];foreach($groupsall as $group) {$groups[$group->group_id]="{$group->name}";}
 
   $article2=App\Topic::where('topics.hide',0)
   ->leftjoin('subtopics','subtopics.topicid','=','topics.topic_id')
@@ -150,4 +150,31 @@ Route::post('subtopic/{id}', function($subtopicid){
   else {$videos->update(['stopic'=>$input['subtopic']]);}
 
   return redirect('home');
+});
+
+
+// Add group.
+Route::post('ajax/groups/add/{id}', function($stopicid){
+  $input=Request::all();
+  $create= new App\Group;
+  $create->name = $input['name'];
+  $create->stopicid = $stopicid;
+  $create->save();
+
+  $groupsall=App\Group::where('stopicid',$stopicid)->orderBy('name')->get(['group_id','name']);
+  $groups=['--None--'];foreach($groupsall as $group) {$groups[$group->group_id]="{$group->name}";}
+
+  return view('ajax.groups')->with('groups',$groups)->with('groupid',$create->id);
+});
+
+// Remove group.
+Route::post('ajax/groups/remove/{id}', function($groupid){
+  $input=Request::all();
+  $delete=new App\Group;
+  $delete->where('group_id',$groupid)->delete();
+
+  $groupsall=App\Group::where('stopicid',$input['stopicid'])->orderBy('name')->get(['group_id','name']);
+  $groups=['--None--'];foreach($groupsall as $group) {$groups[$group->group_id]="{$group->name}";}
+
+  return view('ajax.groups')->with('groups',$groups)->with('groupid',$groupid);
 });
