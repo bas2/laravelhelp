@@ -1,5 +1,5 @@
 <div class="divharteditform">
-<span class="close">X</span>
+<span class="close"><img src="img/close.png" width="16"></span>
 {!! Form::open() !!}
 <div>
 {!! Form::text('helptitle', $content->title, ['placeholder'=>'Title is required']) !!}
@@ -42,6 +42,8 @@ $('textarea#helpcontent').tinymce({
   theme_advanced_toolbar_align      : "left",
   theme_advanced_statusbar_location : "bottom",
   theme_advanced_resizing           : true,
+  plugins : 'autoresize',
+  width: '100%',
 
   // Example content CSS (should be your site CSS)
   content_css : "css/tinymce.css",
@@ -59,13 +61,14 @@ $('textarea#helpcontent').tinymce({
   }
 });
 $(document).ready(function(){
-  $('.close').css({'cursor':'pointer','position':'absolute','right':'.5em','top':'0'});
+  $('.close').css({'cursor':'pointer','position':'absolute','right':'.1em','top':'0'});
+
   if ($('#groups').val()==0) {
     $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
   } else {
     $('.groupoptions').html('<a class="r" href="#">Remove group</a> <a class="u" href="#">Update group</a>');
   }
-  $('#groups').change(function(){
+  $('#groups').live('change',function(){
     var selval = $(this).val();
     if (selval==0) {
       $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
@@ -73,35 +76,36 @@ $(document).ready(function(){
       $('.groupoptions').html('<a class="r" href="#">Remove group</a> <a class="u" href="#">Update group</a>');
     }
   });
+  // Add group.
   $('.groupoptions .a').die('click').live('click',function(e){
     var stopicid = $(this).parent().attr('title2');
     var group    = $('.ngroup').val();
     var $this = $(this);
     $.ajax({
       "type":"POST",
-      "url":"_inc/ajax/ajax.groups.php",
-      "data": 'act=a&stopicid=' + parseInt(stopicid) + '&name=' + encodeURIComponent(group),
+      "url":"ajax/groups/add/" + parseInt(stopicid),
+      "data": 'name=' + encodeURIComponent(group) + '&_token={{ csrf_token() }}',
       "success":function(data){
-        //alert(data);
+        alert(data);
         $this.parent().prev().html(data);
         $('.groupoptions').html('<a class="r" href="#">Remove group</a> <a class="u" href="#">Update group</a>');
       } // End ajax success function
     });
     e.preventDefault();
   });
-
+  // Remove group.
   $('.groupoptions .r').die('click').live('click',function(e){
     var stopicid = $(this).parent().attr('title2');
     var groupid = $('#groups').val();
     var $this   = $(this);
     $.ajax({
       "type":"POST",
-      "url":"_inc/ajax/ajax.groups.php",
-      "data": 'act=r&groupid=' + parseInt(groupid) + '&stopicid=' + stopicid,
+      "url":"ajax/groups/remove/" + parseInt(groupid),
+      "data": 'stopicid=' + stopicid + '&_token={{ csrf_token() }}',
       "success":function(data){
         //alert(data);
         $this.parent().prev().html(data);
-        $('.groupoptions').html('<a class="a" href="#">Add group</a>');
+        $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
       } // End ajax success function
     });
     e.preventDefault();
