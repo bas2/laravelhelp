@@ -36,9 +36,9 @@ div.topicrow {
   flex-wrap: wrap;
   margin-top:1.3em;
   div {
-    float:left;
-    width: 32.9%;
-    margin-right:5px;
+    /*float:left;*/
+    width: 33%;
+    /*margin-right:5px;*/
     background: rgba(255, 0, 50, .2); /* Purple */
 
     h2 {
@@ -51,7 +51,7 @@ div.topicrow {
       font: 1.5em "Helvetica Neue", Sans-Serif;
       text-align: center;
       div {
-        float:none;
+        /*float:none;*/
         width: auto;
         background: none;
       }
@@ -59,9 +59,9 @@ div.topicrow {
     h3 {
       text-align: center;
       div {
-        float: none;
+        /*float: none;*/
         width:auto;
-        margin-right:auto;
+        /*margin-right:auto;*/
         background: none;
       }
       + p {
@@ -101,7 +101,7 @@ div.topicrow {
       font-size: .5em;
     }
     div {
-      float:none;
+      /*float:none;*/
       width:auto;
       background: none;
       ul {
@@ -113,6 +113,11 @@ div.topicrow {
       }
     }
   }
+
+  div.sep {
+    width:.5%;
+  }
+
   h2 div span, h3 div span { /* Topic 'dots' */
     position: static;
     font-size: 1em;
@@ -226,7 +231,7 @@ li.article_li {
 
 
 a.mainarticle {
-  clear:left;
+  /*clear:left;*/
   padding: 0 23px 0 0;
   cursor: pointer;
   color: hsla(30,100%,50%,1);
@@ -253,7 +258,7 @@ a.mainarticle, a.subbarticle {font: bold 1em verdana;}
 a.mainarticle:hover, a.subbarticle:hover {color: rgba(247,162,72,.8);}
 
 a.subbarticle {
-  clear:left;
+  /*clear:left;*/
   cursor: pointer;
   color: rgba(247,162,72,.8);}
 
@@ -292,7 +297,11 @@ li ul #articlediv {
     font-size: 1.5em;
   }
   select {
-    font-size:50%;
+    font-size:80%;
+  }
+  .groupoptions a {
+    display: inline;
+    background-color:blue;color:#fff;
   }
 }
 
@@ -301,7 +310,7 @@ li ul #articlediv {
   font-size: 1.3em;
 }
 
-.aposter, .rposter {  font-style: italic;}
+.aposter, .rposter {font-style: italic;}
 
 #articlecontent {
   position: absolute;
@@ -344,9 +353,10 @@ li ul #articlediv {
     position: absolute;
     top:0;
     cursor: pointer;
-    &.edit {right:3em;}
-    &.close {right:2em;}
-    &.expand {right:1em;}
+    color:#fff;
+    &.edit {right:2.7em;}
+    &.close {right:1.5em;}
+    &.expand {right:.2em;}
   }
   
 
@@ -367,6 +377,9 @@ div#articlediv.togglewidth {
     padding-top: .5em;
     border-radius: 0;
   }
+  img {
+    width: 32px;
+  }
 
 }
 
@@ -375,13 +388,15 @@ div#articlediv.togglewidth {
 .prepended {font-weight: bold;}
 
 .article_btns {
-  float:left;
+  /*float:left;*/
+  position: absolute;
+  right:0;
   text-align:right;
   width:100%;
   background:transparent;
   margin:0 auto;
   input {
-    background:rgba(255,50,0,.6);
+    background:hsla(30,100%,50%,.6);
     border-radius: .3em;
     border: 1px;
   }
