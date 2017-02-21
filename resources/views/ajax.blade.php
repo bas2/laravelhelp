@@ -1,6 +1,6 @@
 <div class="divartcontent">
 
-  <div><em>{{ $content->content_id }} / {{ \Carbon\Carbon::parse($content->created_at)->format('d/m/Y H:i') }} / {{ \Carbon\Carbon::parse($content->updated_at)->format('d/m/Y H:i') }}</em><span class="edit">E</span> <span class="close">X</span> <span class="expand" title="Expand">&uarr;</span></div>
+  <div><em>{{ $content->content_id }} / {{ \Carbon\Carbon::parse($content->created_at)->format('d/m/Y H:i') }} / {{ \Carbon\Carbon::parse($content->updated_at)->format('d/m/Y H:i') }}</em><span class="edit"><img src="img/write.png" width="15"></span> <span class="close"><img src="img/close.png" width="16"></span> <span class="expand" title="Expand"><img src="img/expand.png" width="16"></span></div>
   <div>{!! $content->content !!}</div>
 
   <div class="article_btns">
@@ -41,11 +41,11 @@ $(document).ready(function(){
       var subtopic = $(this).parent().parent().parent().parent().parent().parent().prev().prev().find('div').first().text();
       var article_name = $(this).parent().parent().parent().parent().find('a').first().text();
       $('<div class="prepended">'+subtopic+' &rarr; '+article_name+'</div>').prependTo($(this).parent().parent());
-      $(this).attr('title','Contract').html('&darr;');
+      $(this).attr('title','Contract').html('<img src="img/expand2.png">');
       $('.article_btns').hide();
       $('body, html').css('overflow','hidden');
     } else {
-      $(this).attr('title','Expand').html('&uarr;');
+      $(this).attr('title','Expand').html('<img src="img/expand.png" width="16">');
       $('.article_btns').show();
       $('div.prepended').remove();
       $('body, html').css('overflow','auto');
