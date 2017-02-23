@@ -337,7 +337,7 @@ li ul #articlediv {
     display: inline;
     border-bottom: 1px dotted #000;
   }
-  ul {margin-top: 1em;}
+  ul {margin-top: 1em;padding-left: 1em;}
   li {
     margin-bottom: .3em;
     /*margin-left: -1em;*/
@@ -346,7 +346,7 @@ li ul #articlediv {
   ul li {
     margin-bottom: .3em;
     /*margin-left: -1em;*/
-    margin-left: 1em; /* Properly indent lists in replies.  */
+    /*margin-left: 1em;*/ /* Properly indent lists in replies.  */
     list-style-type: square;
   }
   span {
@@ -376,6 +376,7 @@ div#articlediv.togglewidth {
     margin-bottom: 0;
     padding-top: .5em;
     border-radius: 0;
+    box-shadow: 0 5px 10px 5px;
   }
   img {
     width: 32px;
