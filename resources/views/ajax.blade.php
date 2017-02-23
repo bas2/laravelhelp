@@ -1,6 +1,6 @@
 <div class="divartcontent">
 
-  <div><em>{{ $content->content_id }} / {{ \Carbon\Carbon::parse($content->created_at)->format('d/m/Y H:i') }} / {{ \Carbon\Carbon::parse($content->updated_at)->format('d/m/Y H:i') }}</em><span class="edit"><img src="img/write.png" width="15"></span> <span class="close"><img src="img/close.png" width="16"></span> <span class="expand" title="Expand"><img src="img/expand.png" width="16"></span></div>
+  <div><em>{{ $content->content_id }} / {{ \Carbon\Carbon::parse($content->created_at)->format('d/m/Y H:i') }} / {{ \Carbon\Carbon::parse($content->updated_at)->format('d/m/Y H:i') }}</em><span class="edit"><img src="img/write.png" width="15"></span> <span class="close"><img src="img/close.png" width="16"></span> <span class="expand" title="Expand"><img src="img/expand.png" width="14"></span></div>
   <div>{!! $content->content !!}</div>
 
   <div class="article_btns">
@@ -54,6 +54,7 @@ $(document).ready(function(){
 
   $('.divartcontent span.close').click(function(){
     $('#articlediv').remove();
+    $('body, html').css('overflow','auto');
   });
 
   $('.divartcontent span.edit').click(function(){
