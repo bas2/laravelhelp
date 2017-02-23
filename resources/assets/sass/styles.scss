@@ -325,9 +325,10 @@ li ul #articlediv {
   padding:1em;
   border-radius: .3em;
   border-bottom: 2px solid #ccc;
-  div:first-child {
+  div:nth-child(2) {
+    padding-bottom: .3em;
     border-bottom:1px solid yellow;
-    text-align: center;
+    text-align: left;
   }
   div > em {
     color: yellow;
@@ -339,26 +340,23 @@ li ul #articlediv {
   }
   ul {margin-top: 1em;padding-left: 1em;}
   li {
-    margin-bottom: .3em;
-    /*margin-left: -1em;*/
+    margin-bottom: .5em;
     padding-left: 0;
   }
   ul li {
     margin-bottom: .3em;
-    /*margin-left: -1em;*/
-    /*margin-left: 1em;*/ /* Properly indent lists in replies.  */
     list-style-type: square;
   }
-  span {
+  ul.articleoptions {
     position: absolute;
-    top:0;
-    cursor: pointer;
-    color:#fff;
-    &.edit {right:2.7em;}
-    &.close {right:1.5em;}
-    &.expand {right:.2em;}
+    top:0;right:1em;
+    li {
+      list-style: none;
+      display: inline;
+      cursor: pointer;
+      color:#fff;      
+    }
   }
-  
 
 }
 
