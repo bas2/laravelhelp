@@ -86,7 +86,7 @@ $(document).ready(function(){
       "url":"ajax/groups/add/" + parseInt(stopicid),
       "data": 'name=' + encodeURIComponent(group) + '&_token={{ csrf_token() }}',
       "success":function(data){
-        alert(data);
+        //alert(data);
         $this.parent().prev().html(data);
         $('.groupoptions').html('<a class="r" href="#">Remove group</a> <a class="u" href="#">Update group</a>');
       } // End ajax success function
@@ -142,7 +142,8 @@ $(document).ready(function(){
         $('#articlediv').remove(); // Remove form.
         $('#mainarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+'<span class="show moveright"><img src="img/menu.png" width="30"></span>');
         $('#subbarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+' (0 days)');
-        $('html, body').animate({scrollTop: subtopic.offset().top}, 0);
+        $('html, body').animate({scrollTop: subtopic.offset().top}, 0).css('overflow','auto');
+        //$('body, html').css('overflow','auto');
         $.ajax({
           "type":"GET",
           "url":"ajax/content/" + subtopic.attr('id').substring(2),
