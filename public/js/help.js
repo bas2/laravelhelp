@@ -8,14 +8,14 @@ $(document).ready(function() {
   hideshow();
 
   // Show option - menu icon.
-  $('a.mainarticle span.show').live('click', function(e) {
+  $('a.mainarticle span.show').on('click', function(e) {
      $('.article' + $(this).parent().parent().parent().parent().prev().prev().attr('id').substr(2) + 'option').toggle(); // .articlexxxoption
      e.preventDefault();
   });
 
 
   // Show article: click on a main article or reply to a main article.
-  $('.mainarticle, .subbarticle').die('click').live('click', function(e) {
+  $('body').off('click').on('click','.mainarticle, .subbarticle', function(e) {
     var articleid = $(this).attr('title2');
     var classsel  = '#' + $(this).attr('class') + articleid; // Main article or reply?
     if ($(this).attr('class')=='subbarticle') {
@@ -41,7 +41,7 @@ $(document).ready(function() {
   
 
   // Close article view and edit forms.
-  $('#closeeditarticle').live('click', function() {
+  $('#closeeditarticle').on('click', function() {
     if ($(this).parent().parent().parent().parent().parent().attr('class')=='divharteditform') {
       var article=$(this).parent().parent().parent().parent().parent().parent().parent().find('a');
       if (article.attr('class')=='subbarticle'){article=article.parent().parent().parent().find('a');}
@@ -58,7 +58,7 @@ $(document).ready(function() {
   //transition: background-color 2s ease-out;
 
   // Delete
-  $('#deletearticle').live('click', function() {
+  $('#deletearticle').on('click', function() {
     if ($(this).val()=='Confirm?') { // Reply.
     var articleid = $(this).attr('title');
     $.ajax({
@@ -84,7 +84,7 @@ $(document).ready(function() {
   
    
   // Add new reply:
-  $('a.reply').die('click').live('click',function(e) {
+  $('a.reply').off('click').on('click',function(e) {
     var articleid = $(this).attr('title2');
     $.ajax({
       "type":"GET",
@@ -105,7 +105,7 @@ $(document).ready(function() {
    
 
   // Add new article:
-  $('.newarticle').die('click').live('click', function(e) {
+  $('.newarticle').off('click').on('click', function(e) {
     var stopicid = $(this).attr('title2');
     var test     = $(this); // So we can add new article before new article link
     $.ajax({
@@ -149,7 +149,7 @@ $(document).ready(function() {
   });
 
   // 20/08/15 - As we click in our Search box, open up DIV and display
-  $('form.searchform input[type=text]').live('click', function() {
+  $('form.searchform input[type=text]').on('click', function() {
       var $that = $(this);
       $.ajax({
         "type":"POST",
@@ -167,12 +167,12 @@ $(document).ready(function() {
 
   });
    
-  $('.divnav ul.content li').live('click', function() {
+  $('.divnav ul.content li').on('click', function() {
     $(this).find('span').toggle();
   });
 
   // Show suptopics when the checkbox is clicked:
-  $('.divnav #showsubtopics').live('click', function() {
+  $('.divnav #showsubtopics').on('click', function() {
     $('.nav-subtopics').toggle();
   });
 
@@ -194,12 +194,12 @@ $(document).ready(function() {
 
 
   // Show hidden topics when the checkbox is clicked:
-  $('.divnav #hiddentopics').live('click', function() {
+  $('.divnav #hiddentopics').on('click', function() {
     $('.topichidden').toggle();
   });
 
   // Pin or unpin content from nav:
-  $('#articlediv #pintonav').live('click', function() {
+  $('#articlediv #pintonav').on('click', function() {
       var $that = $(this);
       $.ajax({
         "type":"GET",
