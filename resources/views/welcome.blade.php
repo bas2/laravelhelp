@@ -1,10 +1,12 @@
 @extends('layout')
 
 @section('mainheader')
-  <link rel="stylesheet" href="js/jquery/css/blitzer/jquery-ui-1.10.3.custom.min.css">
+  {!! Html::style('js/jquery/jquery-ui-1.12.1.custom/jquery-ui.css') !!}
 
-  <script src="js/jquery-1.8.3.min.js"></script>
-  <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+  {!! Html::script('js/jquery/jquery-3.1.1.min.js') !!}
+  {!! Html::script('js/jquery/jquery-ui-1.12.1.custom/external/jquery/jquery.js') !!}
+  {!! Html::script('js/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js') !!}
+
   <script src="js/tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
 
   <script src="js/goup.js"></script>
