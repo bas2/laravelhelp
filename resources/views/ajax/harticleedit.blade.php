@@ -68,7 +68,7 @@ $(document).ready(function(){
   } else {
     $('.groupoptions').html('<a class="r" href="#">Remove group</a> <a class="u" href="#">Update group</a>');
   }
-  $('#groups').live('change',function(){
+  $('#groups').on('change',function(){
     var selval = $(this).val();
     if (selval==0) {
       $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
@@ -77,7 +77,7 @@ $(document).ready(function(){
     }
   });
   // Add group.
-  $('.groupoptions .a').die('click').live('click',function(e){
+  $('.groupoptions .a').off('click').on('click',function(e){
     var stopicid = $(this).parent().attr('title2');
     var group    = $('.ngroup').val();
     var $this = $(this);
@@ -94,7 +94,7 @@ $(document).ready(function(){
     e.preventDefault();
   });
   // Remove group.
-  $('.groupoptions .r').die('click').live('click',function(e){
+  $('.groupoptions .r').off('click').on('click',function(e){
     var stopicid = $(this).parent().attr('title2');
     var groupid = $('#groups').val();
     var $this   = $(this);
@@ -120,7 +120,7 @@ $(document).ready(function(){
   }
 
   // Update article
-  $('#updatearticle').die('click').live('click', function(e) {
+  $('#updatearticle').off('click').on('click', function(e) {
     var articleid = $(this).attr('title');
     $.ajax({
       "type":"POST",
