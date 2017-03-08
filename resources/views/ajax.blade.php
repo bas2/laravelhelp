@@ -20,7 +20,7 @@
 $(document).ready(function(){
 
   // Edit article - show form when clicking Edit.
-  $('#editarticle').die('click').live('click', function() {
+  $('#editarticle').off('click').on('click', function() {
     var articleid = $(this).attr('title');
     // Anchor the article title:
     var article = $(this).parent().parent().parent().parent().find('a');
