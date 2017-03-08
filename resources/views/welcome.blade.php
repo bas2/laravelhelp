@@ -7,10 +7,8 @@
   {!! Html::script('js/jquery/jquery-ui-1.12.1.custom/external/jquery/jquery.js') !!}
   {!! Html::script('js/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js') !!}
 
-  <script src="js/tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
-
-  <script src="js/goup.js"></script>
-  <script src="js/help.js"></script>
+  {!! Html::script('js/tinymce/jscripts/tiny_mce/jquery.tinymce.js') !!}
+  {!! Html::script('js/help.js') !!}
 @stop
 
 @section('content')
