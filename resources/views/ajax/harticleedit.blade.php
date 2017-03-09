@@ -66,14 +66,14 @@ $(document).ready(function(){
   if ($('#groups').val()==0) {
     $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
   } else {
-    $('.groupoptions').html('<a class="r" href="#">Remove group</a> <a class="u" href="#">Update group</a>');
+    $('.groupoptions').html('<a class="r" href="#">Remove group</a>');
   }
-  $('#groups').on('change',function(){
+  $('body').on('change','#groups',function(){
     var selval = $(this).val();
     if (selval==0) {
       $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
     } else {
-      $('.groupoptions').html('<a class="r" href="#">Remove group</a> <a class="u" href="#">Update group</a>');
+      $('.groupoptions').html('<a class="r" href="#">Remove group</a>');
     }
   });
   // Add group.
@@ -94,7 +94,7 @@ $(document).ready(function(){
     e.preventDefault();
   });
   // Remove group.
-  $('.groupoptions .r').off('click').on('click',function(e){
+  $('.groupoptions').off('click').on('click','.r',function(e){
     var stopicid = $(this).parent().attr('title2');
     var groupid = $('#groups').val();
     var $this   = $(this);
