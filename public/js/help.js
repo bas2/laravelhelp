@@ -21,14 +21,13 @@ $(document).ready(function() {
   hideshow();
 
   // Show option - menu icon.
-  $('a.mainarticle span.show').on('click', function(e) {
-     $('.article' + $(this).parent().parent().parent().parent().prev().prev().attr('id').substr(2) + 'option').toggle(); // .articlexxxoption
-     e.preventDefault();
+  $(document).on('click','.mainarticle span.show', function(e) {
+    $('.article' + $(this).parent().parent().parent().parent().prev().prev().attr('id').substr(2) + 'option').toggle(); // .articlexxxoption
+    e.preventDefault();
   });
 
-
   // Show article: click on a main article or reply to a main article.
-  $('body').off('click').on('click','.mainarticle, .subbarticle', function(e) {
+  $(document).on('click','.mainarticle, .subbarticle', function(e) {
     var articleid = $(this).attr('title2');
     var classsel  = '#' + $(this).attr('class') + articleid; // Main article or reply?
     if ($(this).attr('class')=='subbarticle') {
@@ -53,8 +52,13 @@ $(document).ready(function() {
   });
   
 
+
+
+
+
+
   // Close article view and edit forms.
-  $('#closeeditarticle').on('click', function() {
+  $(document).on('click','#closeeditarticle', function() {
     if ($(this).parent().parent().parent().parent().parent().attr('class')=='divharteditform') {
       var article=$(this).parent().parent().parent().parent().parent().parent().parent().find('a');
       if (article.attr('class')=='subbarticle'){article=article.parent().parent().parent().find('a');}
@@ -71,7 +75,7 @@ $(document).ready(function() {
   //transition: background-color 2s ease-out;
 
   // Delete
-  $('#deletearticle').on('click', function() {
+  $(document).on('click','#deletearticle', function() {
     if ($(this).val()=='Confirm?') { // Reply.
     var articleid = $(this).attr('title');
     $.ajax({
@@ -97,7 +101,7 @@ $(document).ready(function() {
   
    
   // Add new reply:
-  $('a.reply').off('click').on('click',function(e) {
+  $(document).on('click','a.reply',function(e) {
     var articleid = $(this).attr('title2');
     $.ajax({
       "type":"GET",
@@ -118,7 +122,7 @@ $(document).ready(function() {
    
 
   // Add new article:
-  $('.newarticle').off('click').on('click', function(e) {
+  $(document).on('click','.newarticle', function(e) {
     var stopicid = $(this).attr('title2');
     var test     = $(this); // So we can add new article before new article link
     $.ajax({
