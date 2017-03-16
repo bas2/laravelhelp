@@ -83,7 +83,7 @@ $(document).ready(function(){
     var $this = $(this);
     $.ajax({
       "type":"POST",
-      "url":"ajax/groups/add/" + parseInt(stopicid),
+      "url":"group/add/" + parseInt(stopicid),
       "data": 'name=' + encodeURIComponent(group) + '&_token={{ csrf_token() }}',
       "success":function(data){
         //alert(data);
@@ -100,7 +100,7 @@ $(document).ready(function(){
     var $this   = $(this);
     $.ajax({
       "type":"POST",
-      "url":"ajax/groups/remove/" + parseInt(groupid),
+      "url":"group/remove/" + parseInt(groupid),
       "data": 'stopicid=' + stopicid + '&_token={{ csrf_token() }}',
       "success":function(data){
         //alert(data);
@@ -124,7 +124,7 @@ $(document).ready(function(){
     var articleid = $(this).attr('title');
     $.ajax({
       "type":"POST",
-      "url":"ajax/harticleedit/" + parseInt(articleid),
+      "url":"article/edit/" + parseInt(articleid),
       "data": 
       '&txt_helptitle=' + encodeURIComponent( $('input[name=helptitle]').val() )
       + '&fedit_helpcontent=' + encodeURIComponent($('#helpcontent').val())
@@ -146,7 +146,7 @@ $(document).ready(function(){
         //$('body, html').css('overflow','auto');
         $.ajax({
           "type":"GET",
-          "url":"ajax/content/" + subtopic.attr('id').substring(2),
+          "url":"article/subtopic/" + subtopic.attr('id').substring(2),
           "data":"orderby=omoddate" ,
           "success":function(data) {
             //alert(data);
