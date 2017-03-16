@@ -15,17 +15,28 @@ a {
 h1 {text-align:center;display:none;}
 
 ul#projectsmenu {
-  position:absolute;top:0;
+  background-color: rgba(0,0,0,.5);
+  z-index: 1;
+  position:absolute;top:0;left:0;
   margin-top:0;padding-left: 0;
+  border-bottom-right-radius: 2px;
+  box-shadow: 2px 2px 2px;
   li {
     list-style: none;
-    padding: 0 0 .5em 0;
-    float:left;
+    float:none;
+    text-align: center;
+    font-family: verdana;
+    border-bottom: 1px solid rgba(196,196,196,.7);
+    cursor:pointer;
+    color:yellow;font-weight: bold;
+
     a {
-      margin-right: .5em;
       color:#ccc;
+      &:hover {background-color: rgba(255,255,255,.5);color:#000;};
     }
-    span {margin-right:.5em;font-weight: bold;color:yellow;}
+    &.sel {margin-right:.5em;color:yellow;border:0;}
+    &.sel, a {padding: 0 0 .5em 0;}
+    &:last-child{border:0;};
   }
 
 }
@@ -34,7 +45,7 @@ ul#projectsmenu {
 div.topicrow {
   display: flex;
   flex-wrap: wrap;
-  margin-top:1.3em;
+  margin-top:1.6em;
   div {
     /*float:left;*/
     width: 33%;
@@ -432,7 +443,7 @@ div.logout {
 
 a.btnNav {
   position: absolute;
-  right: 200px;
+  right: 200px;top:0;
   color: #fff;
 }
 
