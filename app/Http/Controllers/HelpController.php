@@ -127,7 +127,7 @@ class HelpController extends Controller
     return view('subtopicnew');
   }
 
-  public function addSubtopic(){
+  public function addSubtopic($topicid){
     $create= new App\Subtopic;
     $create->topicid = $topicid;
     $create->save();
