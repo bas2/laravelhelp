@@ -53,7 +53,7 @@ $(document).ready(function() {
     $(this).css('background','rgba(255, 0, 50, .2)');
     $.ajax({
       "type":"get",
-      "url":"ajax/" + parseInt(articleid),
+      "url":"article/" + parseInt(articleid),
       "success":function(data){
         if ($('#articlediv').is(":visible")) {$('#articlediv').remove();}
         if (!thisarticledivvisible||nextelement!='articlediv') {$('<div id="articlediv">'+data+'</div>').insertAfter(classsel).show();}
@@ -92,7 +92,7 @@ $(document).ready(function() {
     var articleid = $(this).attr('title');
     $.ajax({
       "type":"GET",
-      "url":"ajax/hdelarticle/" + parseInt(articleid),
+      "url":"article/delete/" + parseInt(articleid),
       //"success":function(data){
       //  alert(data);
       //} // End ajax success function
@@ -117,7 +117,7 @@ $(document).ready(function() {
     var articleid = $(this).attr('title2');
     $.ajax({
       "type":"GET",
-      "url":"ajax/hreplytoarticle/" + parseInt(articleid),
+      "url":"article/reply/" + parseInt(articleid),
       "success":function(data){
         //alert(data);
         var splitdata = data.split('|');
@@ -139,7 +139,7 @@ $(document).ready(function() {
     var test     = $(this); // So we can add new article before new article link
     $.ajax({
       "type":"GET",
-      "url":"ajax/hnewarticle/" + parseInt(stopicid),
+      "url":"article/new/subtopic/" + parseInt(stopicid),
       "success":function(articleid){
         var splitdata = articleid.split('|');
         $('<li class="article_li"><a id="mainarticle' + splitdata[0] + '" class="mainarticle" title2="'
@@ -161,7 +161,7 @@ $(document).ready(function() {
       var $that = $(this);
       $.ajax({
         "type":"POST",
-        "url":"_inc/ajax/ajax.nav.php",
+        "url":"nav",
         "success":function(data){
           var splitdata = data.split('=||=');
           data = splitdata[0] + splitdata[1];
@@ -182,7 +182,7 @@ $(document).ready(function() {
       var $that = $(this);
       $.ajax({
         "type":"POST",
-        "url":"_inc/ajax/ajax.nav.php",
+        "url":"nav",
         "data":"q=" + encodeURIComponent($that.val()),
         "success":function(data){
           var splitdata = data.split('=||=');
@@ -210,7 +210,7 @@ $(document).ready(function() {
     var $that = $(this);
     $.ajax({
       "type":"GET",
-      "url":"_inc/ajax/ajax.hidetopic.php",
+      "url":"hidetopic",
       "data":"topicid=" + $that.attr('title'),
 
       "success":function(data){
@@ -232,7 +232,7 @@ $(document).ready(function() {
       var $that = $(this);
       $.ajax({
         "type":"GET",
-        "url":"_inc/ajax/ajax.pincontent.php",
+        "url":"pincontent",
         "data":"contentid=" + $that.attr('value') + "&checked=" + $that.attr('checked'),
 
         "success":function(data){
@@ -277,7 +277,7 @@ $(document).ready(function() {
     var $this = $(this);
     $.ajax({
       "type":"GET",
-      "url":"ajax/content/" + stopicid,
+      "url":"article/subtopic/" + stopicid,
       "data":"orderby=" + $this.attr('class') ,
       "success":function(data){
         $($this).parent().next().html(data);
