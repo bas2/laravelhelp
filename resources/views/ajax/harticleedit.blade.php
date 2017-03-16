@@ -1,5 +1,5 @@
 <div class="divharteditform">
-<span class="close"><img src="img/close.png" width="16"></span>
+<span class="close">{{ Html::image('img/close.png','',['width'=>16]) }}</span>
 {!! Form::open() !!}
 <div>
 {!! Form::text('helptitle', $content->title, ['placeholder'=>'Title is required']) !!}
@@ -85,7 +85,6 @@ $(document).ready(function(){
       "url":"group/add/" + parseInt(stopicid),
       "data": 'name=' + encodeURIComponent(group) + '&_token={{ csrf_token() }}',
       "success":function(data){
-        //alert(data);
         $this.parent().prev().html(data);
         $('.groupoptions').html('<a class="r" href="#">Remove group</a> <a class="u" href="#">Update group</a>');
       } // End ajax success function
@@ -102,7 +101,6 @@ $(document).ready(function(){
       "url":"group/remove/" + parseInt(groupid),
       "data": 'stopicid=' + stopicid + '&_token={{ csrf_token() }}',
       "success":function(data){
-        //alert(data);
         $this.parent().prev().html(data);
         $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
       } // End ajax success function
@@ -129,10 +127,10 @@ $(document).ready(function(){
       + '&fedit_helpcontent=' + encodeURIComponent($('#helpcontent').val())
       + '&groupid=' + parseInt($('#groups').val())
       + '&stopicid=' + parseInt($('#subtopics').val())
-      + '&_token={{ csrf_token() }}'
-      + '&submitted=TRUE',
+      //+ '&_token={{ csrf_token() }}'
+      //+ '&submitted=TRUE'
+      ,
       "success":function(data){
-        //alert(data);
         var datasplit = data.split('=||=');
         var subtopic = $("#articlediv").parent().parent().parent().prev().prev();
         if ($("#articlediv").prev().attr('class')=='subbarticle') {
@@ -142,18 +140,15 @@ $(document).ready(function(){
         $('#mainarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+'<span class="show moveright"><img src="img/menu.png" width="30"></span>');
         $('#subbarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+' (0 days)');
         $('html, body').animate({scrollTop: subtopic.offset().top}, 0).css('overflow','auto');
-        //$('body, html').css('overflow','auto');
         $.ajax({
           "type":"GET",
           "url":"article/subtopic/" + subtopic.attr('id').substring(2),
           "data":"orderby=omoddate" ,
           "success":function(data) {
-            //alert(data);
             subtopic.next().next().html(data);
             $('.articleoption').hide();
             $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
      .appendTo($('#mainarticle'+articleid)).addClass('moveright');
-            //hideshow();
           } // End ajax success function
         });
 
@@ -162,10 +157,7 @@ $(document).ready(function(){
     e.preventDefault();
   });
 
-  $('.close').click(function(){
-    $('#articlediv').remove();
-  });
-
+  $('.close').click(function(){$('#articlediv').remove();});
 
 });
 </script>
