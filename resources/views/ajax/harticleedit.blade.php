@@ -18,11 +18,10 @@
 <div>
 
 <div class="article_btns">
-<input id="updatearticle" class="active" type="button" title="{{ $content->content_id }}" value="Update &gt;" />
-<input id="closeeditarticle" type="button"                          value="Close &gt;">
-<input id="deletearticle"    type="button" title="{{ $content->content_id }}" value="Delete &gt;">
+{!! Form::button('Update >',['class'=>'active','id'=>'updatearticle','title'=>$content->content_id]) !!}
+{!! Form::button('Close >',['id'=>'closeeditarticle']) !!}
+{!! Form::button('Delete >',['id'=>'deletearticle','title'=>$content->content_id]) !!}
 </div>
-
 {!! Form::close() !!}
 
 </div>
