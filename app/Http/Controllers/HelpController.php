@@ -16,16 +16,12 @@ class HelpController extends Controller
     $topics =\App\Topic::where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
     $stopics=App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']);
 
-    $topicsperros = 3; # Topics to show per row.
-
     $topicrows=[];foreach($topics as $topic) {$topics2[]=$topic;}
-    $topicrows=array_chunk($topics2, $topicsperros); # Group topics in threes.
+    $topicrows=array_chunk($topics2, 3); # Group topics in threes.
 
     return view('welcome')
     ->with('topics',$topics)
-    ->with('numtopics',count($topics))
     ->with('topicrows',$topicrows)
-    ->with('numtopicrows',count($topicrows))
     ->with('stopics',$stopics)
     ->with('projlist',$proj)
     ;
