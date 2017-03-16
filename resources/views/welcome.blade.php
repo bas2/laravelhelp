@@ -14,7 +14,7 @@
 @section('content')
   <h1>Topics: {{ $numtopics }}</h1>
   <a href="#" class="btnNav">Nav</a> <a href="#" class="scrollup">Scroll</a>
-  {{ App\ProjectsMenu::display() }}
+  @include('projectmenu')
   <div class="topicrow">
     @foreach ($topicrows as $topicrow)
     @for ($i=0; $i<=$numtopicrows; $i++)
