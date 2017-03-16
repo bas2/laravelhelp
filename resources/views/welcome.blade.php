@@ -13,7 +13,7 @@
 
 @section('content')
   <h1>Topics: {{ $numtopics=count($topics) }}</h1>
-  <a href="#" class="btnNav">Nav</a> <a href="#" class="scrollup">Scroll</a>
+  {{ link_to('#','Nav',['class'=>'btnNav']) }} {{ link_to('#','Scroll',['class'=>'scrollup']) }}
   @include('projectmenu')
   <div class="topicrow">
     @foreach ($topicrows as $topicrow)
@@ -34,13 +34,12 @@
         @endfor
         </div>
 
-        <span class="hidetopic"><img src="img/hide.png" width="40"></span>
+        <span class="hidetopic">{{ Html::image('img/hide.png','',['width'=>'40']) }}</span>
       </h2>
 
       @foreach (App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']) as $stopic)
       @if ($stopic->topicid==$topicrow[$i]->topic_id)
-      <h3 id="s_{{ $stopic->stopic_id }}"><a href="subtopic/{{ $stopic->stopic_id }}" class="stopic_a" title="Rename Sub topic">
-      <div>{{ $stopic->stopic }}</div>
+      <h3 id="s_{{ $stopic->stopic_id }}">{{ link_to("subtopic/{$stopic->stopic_id}",$stopic->stopic,['class'=>'stopic_a','title'=>'Rename Sub topic']) }}
         <div>
         @foreach (App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id) as $subtopic)
         @if ($subtopic->stopic==$stopic->stopic)
@@ -49,7 +48,7 @@
         <span title2="s_{{ $subtopic->stopic_id }}" title="{{ $subtopic->stopic }}">&bull;</span>
         @endif
         @endforeach
-        </div></a>
+        </div>
       </h3>
 
       <p>Order by: <span class="oname">Name</span> <span class="omoddate">Mod date</span></p>
@@ -60,7 +59,7 @@
       @endif
       @endforeach
 
-      <p><a href="subtopic/new/{{ $topicrow[$i]->topic_id }}" class="newsubtopic">New sub topic</a></p>
+      <p>{{ link_to("subtopic/new/{$topicrow[$i]->topic_id}",'New sub topic',['class'=>'newsubtopic']) }}</p>
 
     </div>
     @if ($i<count($topicrows))
