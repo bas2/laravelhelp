@@ -1,9 +1,9 @@
 <div class="divartcontent">
   
   <ul class="articleoptions">
-    <li class="edit"><img src="img/write.png" width="15"></li> 
-    <li class="close"><img src="img/close.png" width="16"></li> 
-    <li class="expand" title="Expand"><img src="img/expand.png" width="14"></li>
+    <li class="edit">{{ Html::image('img/write.png','',['width'=>15]) }}</li> 
+    <li class="close">{{ Html::image('img/close.png','',['width'=>16]) }}</li>
+    <li class="expand" title="Expand">{{ Html::image('img/expand.png','',['width'=>14]) }}</li>
   </ul>
 
   <div><em>{{ $content->content_id }} {{ \Carbon\Carbon::parse($content->created_at)->format('d/m/Y H:i') }} {{ \Carbon\Carbon::parse($content->updated_at)->format('d/m/Y H:i') }}</em></div>
@@ -11,8 +11,8 @@
   <div>{!! $content->content !!}</div>
 
   <div class="article_btns">
-    <input id="editarticle" class="active" title="{{ $content->content_id }}" type="button" value="Edit &gt;">
-    <input id="closeeditarticle" type="button" value="Close &gt;">
+    {{!! Form::button('Edit >',['id'=>'editarticle','class'=>'active','title'=>$content->content_id]) !!}}
+    {{!! Form::button('Close >',['id'=>'closeeditarticle']) !!}}
   </div>
 
 </div>
