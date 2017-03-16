@@ -18,7 +18,7 @@
   </a></li>
   @endforeach
   </ul>
-  <p class="articleoption article{{ $stopic->stopic_id }}option"><a id="reply{{ $content->content_id }}" class="reply" title2="{{ $content->content_id }}">Reply</a></p>
+  <p class="articleoption article{{ $stopic->stopic_id }}option">{{ link_to('#','Reply',['id'=>"reply{$content->content_id}",'class'=>'reply','title2'=>$content->content_id]) }}</a></p>
   </li>
 @endforeach
 </ul>
