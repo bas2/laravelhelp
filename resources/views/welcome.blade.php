@@ -12,12 +12,12 @@
 @stop
 
 @section('content')
-  <h1>Topics: {{ $numtopics }}</h1>
+  <h1>Topics: {{ $numtopics=count($topics) }}</h1>
   <a href="#" class="btnNav">Nav</a> <a href="#" class="scrollup">Scroll</a>
   @include('projectmenu')
   <div class="topicrow">
     @foreach ($topicrows as $topicrow)
-    @for ($i=0; $i<=$numtopicrows; $i++)
+    @for ($i=0; $i<=count($topicrows); $i++)
     <div>
 
       <h2 id="topic_{{ $topicrow[$i]->topic_id }}">{{ $topicrow[$i]->topic }}
@@ -61,10 +61,10 @@
       @endif
       @endforeach
 
-      <p><a href="stopic/new/{{ $topicrow[$i]->topic_id }}" class="newsubtopic">New sub topic</a></p>
+      <p><a href="subtopic/new/{{ $topicrow[$i]->topic_id }}" class="newsubtopic">New sub topic</a></p>
 
     </div>
-    @if ($i<$numtopicrows)
+    @if ($i<count($topicrows))
     <div class="sep"></div>
     @endif
     @endfor
