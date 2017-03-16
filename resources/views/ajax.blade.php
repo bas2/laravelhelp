@@ -29,7 +29,7 @@ $(document).ready(function(){
     }
     $.ajax({
       "type":"GET",
-      "url":"ajax/harticleedit/" + parseInt(articleid),
+      "url":"article/edit/" + parseInt(articleid),
       "success":function(data){
         $('#articlediv').html(data).fadeIn('slow');
         //if ($('#helpcontent').val().length==0) {$('#helpcontent').focus();}
@@ -71,7 +71,7 @@ $(document).ready(function(){
     var articleid = $(this).parent().parent().parent().parent().find('a').attr('title2');
     $.ajax({
       "type":"GET",
-      "url":"ajax/harticleedit/" + parseInt(articleid),
+      "url":"article/edit/" + parseInt(articleid),
       "success":function(data){$('#articlediv').html(data).fadeIn('slow');}
     });
   });
