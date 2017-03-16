@@ -2,21 +2,9 @@
 
 use App\Http\Requests;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-//Route::get('home', function() {
-  //return 'test';
-//});
-
 Route::get('home', function () {
+  $list = \File::directories('../..');
+  $proj=[];foreach($list as $project){$prj=str_replace('../../','',$project);if(substr($prj,0,1)!='_'){$proj[]=ucwords($prj);}}
 
   $topics =App\Topic::where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
   $stopics=App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']);
@@ -25,7 +13,6 @@ Route::get('home', function () {
 
   $topicrows=[];foreach($topics as $topic) {$topics2[]=$topic;}
   $topicrows=array_chunk($topics2, $topicsperros); # Group topics in threes.
-  //die(var_dump($stopics));
 
   return view('welcome')
   ->with('topics',$topics)
@@ -33,6 +20,7 @@ Route::get('home', function () {
   ->with('topicrows',$topicrows)
   ->with('numtopicrows',count($topicrows))
   ->with('stopics',$stopics)
+  ->with('projlist',$proj)
   ;
 });
 
