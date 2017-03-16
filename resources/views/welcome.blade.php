@@ -37,13 +37,12 @@
         <span class="hidetopic"><img src="img/hide.png" width="40"></span>
       </h2>
 
-      @foreach ($stopics as $stopic)
+      @foreach (App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']) as $stopic)
       @if ($stopic->topicid==$topicrow[$i]->topic_id)
       <h3 id="s_{{ $stopic->stopic_id }}"><a href="subtopic/{{ $stopic->stopic_id }}" class="stopic_a" title="Rename Sub topic">
       <div>{{ $stopic->stopic }}</div>
         <div>
-        <?php $subtopics=App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id); ?>
-        @foreach ($subtopics as $subtopic)
+        @foreach (App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id) as $subtopic)
         @if ($subtopic->stopic==$stopic->stopic)
         <span class="current">&bull;</span>
         @else
