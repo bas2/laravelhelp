@@ -1,4 +1,16 @@
 $(document).ready(function() {
+  $('ul#projectsmenu li').has('a[href]').hide();
+
+  $('ul#projectsmenu li').click(function() {
+    $('ul#projectsmenu li').has('a[href]').toggle();
+    if ($('ul#projectsmenu li').has('a[href]').is(':hidden')) {
+      $('ul#projectsmenu li.sel').css({'border-bottom':0,'margin-right':'.5em'});
+    } else {
+      $('ul#projectsmenu li.sel')
+      .css({'border-bottom':'1px solid rgba(196,196,196,.7)','margin-right':0});
+    }
+  });
+
 
   $('.scrollup').hide();
 
