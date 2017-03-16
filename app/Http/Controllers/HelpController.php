@@ -10,39 +10,34 @@ class HelpController extends Controller
 {
   
   public function index() {
-    $list = \File::directories('../..');
-    $proj=[];foreach($list as $project){$prj=str_replace('../../','',$project);if(substr($prj,0,1)!='_'){$proj[]=ucwords($prj);}}
+    $dirpath='../..';$proj=[];foreach(\File::directories($dirpath) as $project){$prj=str_replace($dirpath.'/','',$project);if(substr($prj,0,1)!='_'){$proj[]=ucwords($prj);}}
 
-    $topics =\App\Topic::where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
-    $stopics=App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']);
-
-    $topicrows=[];foreach($topics as $topic) {$topics2[]=$topic;}
-    $topicrows=array_chunk($topics2, 3); # Group topics in threes.
+    $topics=App\Topic::where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
+    $topicrows=[];foreach($topics as $topic){$topics2[]=$topic;}
 
     return view('welcome')
     ->with('topics',$topics)
-    ->with('topicrows',$topicrows)
-    ->with('stopics',$stopics)
+    ->with('topicrows',array_chunk($topics2, 3)) # Group topics in threes.
     ->with('projlist',$proj)
     ;
   }
 
   public function postArticleEdit($articleid) {
     $input=\Request::all();
-    $article = new \App\Content;
+    $article = new App\Content;
     $article = $article::where('content_id',$articleid);
     $article_body = (!empty($input['fedit_helpcontent'])) ? $input['fedit_helpcontent'] : '' ;
     $article->update(['title'=>$input['txt_helptitle'], 'content'=>$article_body, 'groupid'=>$input['groupid'], 'stopicid'=>$input['stopicid']]);
 
     // Update update_at for topic:
-    $content=\App\Content::getContentrow($articleid, ['stopicid','parentid']);
+    $content=App\Content::getContentrow($articleid, ['stopicid','parentid']);
     if ($content[0]->parentid>0) {
       // Also set updated_at for the main article for this reply.
-      $mainarticle=\App\Content::where('content_id',$content[0]->parentid)->update(['updated_at'=>\Carbon\Carbon::now()]);
+      $mainarticle=App\Content::where('content_id',$content[0]->parentid)->update(['updated_at'=>\Carbon\Carbon::now()]);
     }
-    $subtopic=\App\Subtopic::getTopicrow($content[0]->stopicid, ['topicid']);
-    $topic=\App\Topic::where('topic_id',$subtopic[0]->topicid)->update(['updated_at'=>\Carbon\Carbon::now()]);
-    $subtopic=\App\Subtopic::where('stopic_id',$content[0]->stopicid)->update(['updated_at'=>\Carbon\Carbon::now()]);
+    $subtopic=App\Subtopic::getTopicrow($content[0]->stopicid, ['topicid']);
+    $topic=App\Topic::where('topic_id',$subtopic[0]->topicid)->update(['updated_at'=>\Carbon\Carbon::now()]);
+    $subtopic=App\Subtopic::where('stopic_id',$content[0]->stopicid)->update(['updated_at'=>\Carbon\Carbon::now()]);
     return "{$articleid}=||={$input['txt_helptitle']}";
   }
 
@@ -111,7 +106,7 @@ class HelpController extends Controller
   public function subtopicActions($subtopicid) {
     $input=\Request::all();
     $action = (isset($input['d'])) ? 'd' : 'u';
-    $videos = new \App\Subtopic;
+    $videos = new App\Subtopic;
     $videos = $videos::where('stopic_id',$subtopicid);
     if ($action=='d') {$videos->delete();} 
     else {$videos->update(['stopic'=>$input['subtopic']]);}
