@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Requests;
+//use App\Http\Requests;
 
 Route::get('home', 'HelpController@index');
 
