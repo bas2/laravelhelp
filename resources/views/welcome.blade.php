@@ -13,7 +13,7 @@
 
 @section('content')
   <h1>Topics: {{ $numtopics=count($topics) }}</h1>
-  {{ link_to('#','Nav',['class'=>'btnNav']) }} {{ link_to('#','Scroll',['class'=>'scrollup']) }}
+  {{ link_to('#','Nav',['class'=>'btnNav']) }}
   @include('projectmenu')
   <div class="topicrow">
     @foreach ($topicrows as $topicrow)
