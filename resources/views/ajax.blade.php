@@ -11,8 +11,8 @@
   <div>{!! $content->content !!}</div>
 
   <div class="article_btns">
-    {{!! Form::button('Edit >',['id'=>'editarticle','class'=>'active','title'=>$content->content_id]) !!}}
-    {{!! Form::button('Close >',['id'=>'closeeditarticle']) !!}}
+    {!! Form::button('Edit >',['id'=>'editarticle','class'=>'active','title'=>$content->content_id]) !!}
+    {!! Form::button('Close >',['id'=>'closeeditarticle']) !!}
   </div>
 
 </div>
