@@ -9,16 +9,16 @@
   </a>
   <ul id="replylist{{ $content->content_id }}">
   @foreach (App\Content::getReplies($content->content_id) as $reply)
-  <li><a id="subbarticle{{ $reply->content_id }}" class="subbarticle" title2="{{ $reply->content_id }}">
-  @if(!empty($reply->title))
-  {{ $reply->title }}
-  @else
-  &nbsp;
-  @endif
-  </a></li>
+    <li><a id="subbarticle{{ $reply->content_id }}" class="subbarticle" title2="{{ $reply->content_id }}">
+    @if(!empty($reply->title))
+    {{ $reply->title }}
+    @else
+    &nbsp;
+    @endif
+    </a></li>
   @endforeach
   </ul>
-  <p class="articleoption article{{ $stopic->stopic_id }}option">{{ link_to('#','Reply',['id'=>"reply{$content->content_id}",'class'=>'reply','title2'=>$content->content_id]) }}</a></p>
+  <p class="articleoption hide article{{ $stopic->stopic_id }}option">{{ link_to('#','Reply',['id'=>"reply{$content->content_id}",'class'=>'reply','title2'=>$content->content_id]) }}</a></p>
   </li>
 @endforeach
 </ul>
