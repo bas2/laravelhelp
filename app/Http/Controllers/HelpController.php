@@ -128,7 +128,7 @@ class HelpController extends Controller
 
 
   public function addGroup($subtopicid) {
-    $input=Request::all();
+    $input=\Request::all();
     $create= new App\Group;
     $create->name = $input['name'];
     $create->stopicid = $subtopicid;
