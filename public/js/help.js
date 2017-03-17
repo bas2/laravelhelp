@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 
   function hideshow() {
-    $('.articleoption').hide();
+    $('.hide').hide();
     $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
      .appendTo('a.mainarticle').addClass('moveright');
   }
@@ -279,7 +279,7 @@ $(document).ready(function() {
       "data":"orderby=" + $this.attr('class') ,
       "success":function(data){
         $($this).parent().next().html(data);
-        $('.articleoption').hide();
+        $('.hide').hide();
         $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
      .appendTo($($this.parent().next().find('ul li a.mainarticle'))).addClass('moveright');
         //hideshow();
