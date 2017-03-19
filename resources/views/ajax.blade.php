@@ -44,9 +44,16 @@ $(document).ready(function(){
     var parentdiv = $(this).parent().parent().parent(); // #divarticle
     parentdiv.toggleClass('togglewidth');
     if (parentdiv.hasClass('togglewidth')) {
-      var subtopic = $(this).parent().parent().parent().parent().parent().parent().prev().prev().find('div').first().text();
-      var article_name = $(this).parent().parent().parent().parent().find('a').first().text();
-      $('<div class="prepended">'+subtopic+' &rarr; '+article_name+'</div>').prependTo($(this).parent().parent());
+      var subtopic = $(this).parent().parent().parent().parent().parent().parent().prev().prev().find('a').text();
+      var article_name=$(this).parent().parent().parent().parent().find('a').first().text();
+      if (parentdiv.parent().find('a').attr('class')=='subbarticle') { // Is a reply.
+        subtopic = $(this).parent().parent().parent().parent().parent().parent().parent().parent().prev().prev().find('a').text();
+        var article = $(this).parent().parent().parent().parent().parent().parent().parent().find('a').first().text();
+        var str = subtopic+' &rarr; '+article+' &rarr; '+article_name;
+      } else {
+        var str = subtopic+' &rarr; '+article_name;
+      }
+      $('<div class="prepended">'+str+'</div>').prependTo($(this).parent().parent());
       $(this).attr('title','Contract').html('<img src="img/expand2.png">');
       $('.article_btns').hide();
       $('li img[src*=close]').hide();
