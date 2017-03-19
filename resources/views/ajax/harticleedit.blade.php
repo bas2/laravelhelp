@@ -127,12 +127,10 @@ $(document).ready(function(){
       + '&fedit_helpcontent=' + encodeURIComponent($('#helpcontent').val())
       + '&groupid=' + parseInt($('#groups').val())
       + '&stopicid=' + parseInt($('#subtopics').val())
-      //+ '&_token={{ csrf_token() }}'
-      //+ '&submitted=TRUE'
       ,
       "success":function(data){
         var datasplit = data.split('=||=');
-        var subtopic = $("#articlediv").parent().parent().parent().prev().prev();
+        var subtopic = $("#articlediv").parent().parent().parent().prev().prev().find('a');
         if ($("#articlediv").prev().attr('class')=='subbarticle') {
           subtopic = $("#articlediv").parent().parent().parent().parent().parent().prev().prev();
         }
@@ -145,7 +143,7 @@ $(document).ready(function(){
           "url":"article/subtopic/" + subtopic.attr('id').substring(2),
           "data":"orderby=omoddate" ,
           "success":function(data) {
-            subtopic.next().next().html(data);
+            subtopic.parent().next().next().html(data);
             $('.hide').hide();
             $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
      .appendTo($('#mainarticle'+articleid)).addClass('moveright');
