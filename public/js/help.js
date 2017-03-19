@@ -241,7 +241,7 @@ $(document).ready(function() {
   });
 
   // Topic 'dots' tooltip.
-  $( "div.topicrow h2 div span, div.topicrow h3 div span" ).tooltip({
+  $( "div.topicrow h2 div span, div.topicrow div.subtopic-container div span" ).tooltip({
     tooltipClass: "jquerytooltip",
     position: {
       "my": "center top-54",
@@ -254,7 +254,7 @@ $(document).ready(function() {
     hide: { effect: "none" }
   });
 
-  $( "div.topicrow h3 div span" ).tooltip({
+  $( "div.topicrow div.subtopic-container div span" ).tooltip({
     tooltipClass: "jquerytooltip2",
     position: {
       "my": "center top-50",
@@ -263,15 +263,15 @@ $(document).ready(function() {
     hide: { effect: "none" }
   });
 
-  $('div.topicrow h2 div span, div.topicrow h3 div span').click(function(e){
+  $('div.topicrow h2 div span, div.topicrow div.subtopic-container div span').click(function(e){
     $('html, body').animate({scrollTop: $('#'+$(this).attr('title2')).offset().top}, 0);
     e.preventDefault();
   });
 
-  $('h3 + p span').click(function(){
+  $('div.subtopic-container + p span').click(function(){
     $(this).parent().find('span').css('color','white');
     $(this).css('color','yellow');
-    var stopicid = $(this).parent().prev().attr('id').substring(2);
+    var stopicid = $(this).parent().prev().find('a').attr('id').substring(2);
     var $this = $(this);
     $.ajax({
       "type":"GET",
@@ -282,7 +282,6 @@ $(document).ready(function() {
         $('.hide').hide();
         $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
      .appendTo($($this.parent().next().find('ul li a.mainarticle'))).addClass('moveright');
-        //hideshow();
       } // End ajax success function
 
     }); // End ajax.
