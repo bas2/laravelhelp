@@ -39,7 +39,8 @@
 
       @foreach (App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']) as $stopic)
       @if ($stopic->topicid==$topicrow[$i]->topic_id)
-      <h3 id="s_{{ $stopic->stopic_id }}">{{ link_to("subtopic/{$stopic->stopic_id}",$stopic->stopic,['class'=>'stopic_a','title'=>'Rename Sub topic']) }}
+      <div class="subtopic-container">
+      {{ link_to("subtopic/{$stopic->stopic_id}",$stopic->stopic,['id'=>"s_{$stopic->stopic_id}",'title'=>'Rename Sub topic']) }}
         <div>
         @foreach (App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id) as $subtopic)
         @if ($subtopic->stopic==$stopic->stopic)
@@ -49,7 +50,7 @@
         @endif
         @endforeach
         </div>
-      </h3>
+      </div>
 
       <p>Order by: <span class="oname">Name</span> <span class="omoddate">Mod date</span></p>
       <div>
