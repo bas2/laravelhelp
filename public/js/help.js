@@ -86,27 +86,22 @@ $(document).ready(function() {
 
   // Delete
   $(document).on('click','#deletearticle', function() {
-    if ($(this).val()=='Confirm?') { // Reply.
-    var articleid = $(this).attr('title');
-    $.ajax({
-      "type":"GET",
-      "url":"article/delete/" + parseInt(articleid),
-      //"success":function(data){
-      //  alert(data);
-      //} // End ajax success function
-    });
-      //$('#li_art'+$(this).attr('title')).remove();
+    if ($(this).text()=='Confirm?') { // Reply.
+      var articleid = $(this).attr('title');
+      $.ajax({
+        "type":"GET",
+        "url":"article/delete/" + parseInt(articleid),
+      });
       if ($(this).parent().parent().parent().parent().parent().parent().parent().find('a').attr('id').substr(0,3)=='sub') {
         $(this).parent().parent().parent().parent().parent().parent().parent().delay(2000).remove();
       } else {
         $(this).parent().parent().parent().parent().parent().parent().parent().delay(2000).remove();
       }
-      //$('body').append('');
       $('<p style="position:fixed;top:0;left:50%;font-weight:bold;background:yellow;color:black;padding:.5em;">Article was deleted!</p>')
       .appendTo('body')
       .fadeIn().delay(3000).fadeOut();
     }
-    $(this).val('Confirm?');
+    $(this).text('Confirm?');
   });
   
    
