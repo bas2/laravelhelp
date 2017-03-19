@@ -146,7 +146,7 @@ $(document).ready(function(){
           "data":"orderby=omoddate" ,
           "success":function(data) {
             subtopic.next().next().html(data);
-            $('.articleoption').hide();
+            $('.hide').hide();
             $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
      .appendTo($('#mainarticle'+articleid)).addClass('moveright');
           } // End ajax success function
