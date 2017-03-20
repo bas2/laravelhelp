@@ -13,29 +13,31 @@
 
 @section('content')
   <h1>Topics: {{ $numtopics=count($topics) }}</h1>
-  {{ link_to('#','Nav',['class'=>'btnNav']) }}
+  {{-- {{ link_to('#','Nav',['class'=>'btnNav']) }} --}}
   @include('projectmenu')
   <div class="topicrow">
     @foreach ($topicrows as $topicrow)
     @for ($i=0; $i<=count($topicrows); $i++)
     <div>
 
-      <h2 id="topic_{{ $topicrow[$i]->topic_id }}">{{ $topicrow[$i]->topic }}
-        <div>
-        @for ($j=1; $j<=$numtopics; $j++)
-        @if ($topicrow[$i]->topic==$topics[$j-1]->topic)
-        <span class="current">&bull;</span>
-        @else
-        <span title2="topic_{{ $topics[$j-1]->topic_id }}" title="{{ $topics[$j-1]->topic }}">&bull;</span>
-        @endif
-        @if ($j % 3 ==0)
-        <span class="sep">&VerticalSeparator;</span>
-        @endif
-        @endfor
-        </div>
+      <div>
+      <h2 id="topic_{{ $topicrow[$i]->topic_id }}">{{ $topicrow[$i]->topic }}</h2>
+      <div>
+      @for ($j=1; $j<=$numtopics; $j++)
+      @if ($topicrow[$i]->topic==$topics[$j-1]->topic)
+      <span class="current">&bull;</span>
+      @else
+      <span title2="topic_{{ $topics[$j-1]->topic_id }}" title="{{ $topics[$j-1]->topic }}">&bull;</span>
+      @endif
+      @if ($j % 3 ==0)
+      <span class="sep">&nbsp;</span>
+      @endif
+      @endfor
+      </div>
 
-        <span class="hidetopic">{{ Html::image('img/hide.png','',['width'=>'40']) }}</span>
-      </h2>
+      {{-- <span class="hidetopic">{{ Html::image('img/hide.png','',['width'=>'40']) }}</span> --}}
+      </div>
+      
 
       @foreach (App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']) as $stopic)
       @if ($stopic->topicid==$topicrow[$i]->topic_id)
