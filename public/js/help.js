@@ -32,7 +32,8 @@ $(document).ready(function() {
 
   // Show option - menu icon.
   $(document).on('click','.mainarticle span.show', function(e) {
-    $('.article' + $(this).parent().parent().parent().parent().prev().prev().attr('id').substr(2) + 'option').toggle(); // .articlexxxoption
+    $('.article' + $(this).parent().parent().parent().parent().prev().prev()
+      .find('a').attr('id').substr(2) + 'option').toggle(); // .articlexxxoption
     e.preventDefault();
   });
 
