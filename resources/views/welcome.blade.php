@@ -40,7 +40,7 @@
       @foreach (App\Subtopic::where('hide',0)->latest('updated_at')->get(['stopic_id','stopic','topicid']) as $stopic)
       @if ($stopic->topicid==$topicrow[$i]->topic_id)
       <div class="subtopic-container">
-      {{ link_to("subtopic/{$stopic->stopic_id}",$stopic->stopic,['id'=>"s_{$stopic->stopic_id}",'title'=>'Rename Sub topic']) }}
+      {{ link_to("subtopic/{$stopic->stopic_id}",(empty($stopic->stopic)?'&nbsp;':$stopic->stopic),['id'=>"s_{$stopic->stopic_id}",'title'=>'Rename Sub topic']) }}
         <div>
         @foreach (App\Subtopic::getTopicSubtopics($topicrow[$i]->topic_id) as $subtopic)
         @if ($subtopic->stopic==$stopic->stopic)
