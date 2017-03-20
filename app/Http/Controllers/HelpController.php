@@ -98,6 +98,20 @@ class HelpController extends Controller
   }
 
 
+  public function getAddSubtopic(){
+    return view('subtopicnew');
+  }
+
+  public function addSubtopic($topicid){
+    $input=\Request::all();
+    $create= new App\Subtopic;
+    $create->topicid = $topicid;
+    $create->stopic = $input['subtopic'];
+    $create->save();
+
+    return redirect('home');
+  }
+
   public function getSubtopicActions($subtopicid) {
     $subtopic=App\Subtopic::where('stopic_id',$subtopicid)->get(['stopic']);
     return view('subtopicrename')->with('subtopic', $subtopic[0]);
@@ -113,19 +127,6 @@ class HelpController extends Controller
 
     return redirect('home');
   }
-
-  public function getAddSubtopic(){
-    return view('subtopicnew');
-  }
-
-  public function addSubtopic($topicid){
-    $create= new App\Subtopic;
-    $create->topicid = $topicid;
-    $create->save();
-
-    return redirect('home');
-  }
-
 
   public function addGroup($subtopicid) {
     $input=\Request::all();
