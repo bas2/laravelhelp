@@ -132,7 +132,7 @@ $(document).ready(function(){
         var datasplit = data.split('=||=');
         var subtopic = $("#articlediv").parent().parent().parent().prev().prev().find('a');
         if ($("#articlediv").prev().attr('class')=='subbarticle') {
-          subtopic = $("#articlediv").parent().parent().parent().parent().parent().prev().prev();
+          subtopic = $("#articlediv").parent().parent().parent().parent().parent().prev().prev().find('a');
         }
         $('#articlediv').remove(); // Remove form.
         $('#mainarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+'<span class="show moveright"><img src="img/menu.png" width="30"></span>');
