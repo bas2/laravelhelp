@@ -237,7 +237,7 @@ $(document).ready(function() {
   });
 
   // Topic 'dots' tooltip.
-  $( "div.topicrow h2 div span, div.topicrow div.subtopic-container div span" ).tooltip({
+  $( "div.topicrow div span, div.topicrow div.subtopic-container div span" ).tooltip({
     tooltipClass: "jquerytooltip",
     position: {
       "my": "center top-54",
@@ -259,7 +259,7 @@ $(document).ready(function() {
     hide: { effect: "none" }
   });
 
-  $('div.topicrow h2 div span, div.topicrow div.subtopic-container div span').click(function(e){
+  $('div.topicrow div span, div.topicrow div.subtopic-container div span').click(function(e){
     $('html, body').animate({scrollTop: $('#'+$(this).attr('title2')).offset().top}, 0);
     e.preventDefault();
   });
