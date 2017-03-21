@@ -259,7 +259,7 @@ $(document).ready(function() {
     hide: { effect: "none" }
   });
 
-  $('div.topicrow div span, div.topicrow div.subtopic-container div span').click(function(e){
+  $('div.topicrow div div:first-child span, div.topicrow div.subtopic-container div span').click(function(e){
     $('html, body').animate({scrollTop: $('#'+$(this).attr('title2')).offset().top}, 0);
     e.preventDefault();
   });
