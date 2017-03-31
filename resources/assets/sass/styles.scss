@@ -1,7 +1,4 @@
 body {
-  background: #000;
-  color: #fff;
-  font: 100%/1 arial, helvetica, sans-serif;
   margin-top: 0;
 }
 
@@ -53,12 +50,304 @@ ul#projectsmenu {
   z-index: 2;
 }
 
-.hide {display:none;}
+.hide2 {display:none;}
 
 .topichidden {
   display: none;
   color: red;
 }
+
+.equal {  
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap:wrap;
+  margin-bottom: 2em;
+}
+
+div.container-fluid {
+    margin-top: 1em;
+  div.topic {
+    h2 {
+      margin:0;padding:0;
+      font: normal "Helvetica Neue", Sans-Serif;
+    }
+    background: rgba(255, 0, 50, .2); /* Purple */
+
+    h2:first-child { /* Topic */
+      border-radius: .4em; 
+      background:hsla(0,100%,25%,1);
+      text-align: center;
+    }
+
+    div.subtopic-container {
+      background: rgba(255,100,200,.4); /* Purple */
+      background: linear-gradient( rgba(255,100,200,.4), rgb(0,0,0) );
+      border-radius:.6em;
+      box-shadow: 0px 1px hsl(60, 100%, 50%);
+      width: 95%;
+      margin: 1em auto 0 auto;
+      padding: .4em 0;
+      a { /* Subtopic */
+        display: block;
+        text-align: center;
+        text-shadow: 1px 1px hsl(180, 100%, 20%);
+        color: hsla(180, 50%, 40%, 1); /* light blue */
+        font-size: 1.3em;
+      }
+      div { /* Sub topic dots */
+        text-align: center;
+        cursor: pointer;
+        font-size: 1.5em;
+        width:auto;
+        background: none;
+        span {
+          &.current {color:yellow;cursor: default;}
+        }
+      }
+      + p { /* Order by */
+        font: bold .9em verdana;
+        text-align: center;
+        font-variant: small-caps;
+        span {cursor: pointer;}
+        span.omoddate {color: yellow;}
+      }
+    }
+
+    div {
+      ul {
+        padding-left: 0;
+        ul {
+          padding-left: 1.5em;
+          list-style: square;
+        }
+      }
+      .articleoption {
+        border:1px solid #000;
+        background-color:#fff;
+        border-radius:.4em;
+        
+        a {
+          background: rgba(20,200,20,.2) url(../img/reply.png) no-repeat;
+          color:grey;
+          cursor: pointer;
+          padding: .5em .5em .5em 4em;
+          border-radius: .3em;
+        }
+
+      }
+      li.article_li {
+        list-style:none;
+        position:relative;
+        border-radius: .5em;
+        margin-bottom:.5em;
+        padding: .3em;
+        background: rgba(200,200,200,.2);
+
+        .moveright {
+          right:0;
+          top: 0; 
+        }
+
+        a.mainarticle {
+          padding: 0 23px 0 0;
+          cursor: pointer;
+          color: hsla(30,100%,50%,1);
+          text-shadow: 2px 1px 1px rgba(0,0,0,.8);
+
+          span.show {
+            position: absolute;
+            top:1px;
+            right:1px;
+          }
+          span.highlighted {
+            position: static;
+            display: block;
+            background:rgba(127,127,127,.5); 
+          }
+
+        }
+
+        a.mainarticle, a.subbarticle {font: bold 1em verdana;}
+
+        a.mainarticle:hover, a.subbarticle:hover {color: rgba(247,162,72,.8);}
+
+        a.subbarticle {
+          cursor: pointer;
+          color: rgba(247,162,72,.8);
+        }
+
+        #articlediv {
+          position: relative; /* So we can position an arrow to expand article width. */
+          display: none;
+          width: 100%;
+          background: linear-gradient( hsla(330,100%,20%,1), hsla(330,100%,20%,.1) );
+
+          .chkdiv_pintonav {
+            font-weight: bold;
+            float: right;
+          }
+          .article_btns {
+            position: absolute;
+            right:0;
+            text-align:right;
+            width:100%;
+            background:transparent;
+            margin:0 auto;
+            input {
+              background:hsla(30,100%,50%,.6);
+              border-radius: .3em;
+              border: 1px;
+            }
+            .active {
+              font-weight: bold;
+              font-size: 1.3em;
+            }
+          }
+
+          div.divharteditform {
+            text-align: left;
+            font-size: 1em;
+            margin-bottom:2em;
+            background:rgba(255,100,200,.4);
+            padding:1em;
+            border-radius: .3em;
+            border:none;
+
+            input[type=text] {
+              text-align: center;
+              background-color: #ccc;
+              font-weight: bold;
+              border-top-left-radius: .3em;
+              border-top-right-radius: .3em;
+            }
+            .tinymce {
+              font-size: 1.5em;
+            }
+            select {
+              font-size:80%;
+            }
+            .groupoptions a {
+              display: inline;
+              background-color:blue;color:#fff;
+            }
+            input[name=helptitle] {
+              width:100%;
+              border:none;
+            }
+          }
+
+          div.divartcontent {
+            font-size: 1em;
+            text-align: left;
+            margin-bottom:.5em;
+            background:rgba(255,100,200,1);
+            background:hsla(330,100%,40%,1);
+            color: #000;
+            padding:1em;
+            border-radius: .3em;
+            border-bottom: 2px solid #ccc;
+            div:nth-child(2) {
+              padding-bottom: .3em;
+              border-bottom:1px solid yellow;
+              text-align: left;
+            }
+            div > em {
+              color: yellow;
+              font-weight: bold;
+            }
+            a {
+              display: inline;
+              border-bottom: 1px dotted #000;
+            }
+            ul {margin-top: 1em;padding-left: 1em;}
+            li {
+              margin-bottom: .5em;
+              padding-left: 0;
+            }
+            ul li {
+              margin-bottom: .3em;
+              list-style-type: square;
+            }
+            ul.articleoptions {
+              position: absolute;
+              top:0;right:1em;
+              li {
+                list-style: none;
+                display: inline;
+                cursor: pointer;
+                color:#fff;      
+              }
+            }
+
+            .prepended {font-weight: bold;}
+          }
+          &.togglewidth {
+            position: fixed;
+            top:0;left:0;
+            width:100%;
+            overflow:auto;
+            height:100%;
+            font-size:200%;
+            z-index:3;
+            margin: 0;
+            background: hsla(30,0%,50%,.5);
+            .divartcontent {
+              margin-bottom: 0;
+              padding-top: .5em;
+              border-radius: 0;
+              box-shadow: 0 5px 10px 5px;
+            }
+            img {
+              width: 32px;
+            }
+            .divartcontent div:nth-child(2) {text-align: center;}
+          }
+
+        }
+
+        li ul #articlediv {
+          margin-left: -1em;
+          width:104%;
+        }
+
+
+
+      }
+
+      a.reply { /* Main article reply. */
+        text-transform: uppercase;
+        letter-spacing: .4em;
+        padding-left: 3em;
+      }
+
+      .newarticle a { /* New article. */
+        background: rgba(20,20,20,.2) url(../img/reply.png) no-repeat;
+        color:green;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: .4em;
+        padding-left: 3em;
+      }
+
+
+    }
+
+    a.newsubtopic { /* New subtopic */
+      background: rgba(20,20,20,.2) url(../img/reply.png) no-repeat;
+      color:red;
+      padding: .5em;
+      text-align: center;
+      border-radius: .3em;
+      text-transform: uppercase;
+      letter-spacing: .4em;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+  }
+  
+}
+
 
 
 div.topicrow {
