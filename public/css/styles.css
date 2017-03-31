@@ -15,135 +15,37 @@ h1 {
   display: none; }
 
 ul#projectsmenu {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
   position: absolute;
   top: 0;
+  left: 0;
   margin-top: 0;
-  padding-left: 0; }
+  padding-left: 0;
+  border-bottom-right-radius: 2px;
+  box-shadow: 4px 4px 2px;
+  color: rgba(0, 0, 0, 0.5); }
   ul#projectsmenu li {
     list-style: none;
-    padding: 0 0 .5em 0;
-    float: left; }
-    ul#projectsmenu li a {
-      margin-right: .5em;
-      color: #ccc; }
-    ul#projectsmenu li span {
-      margin-right: .5em;
-      font-weight: bold;
-      color: yellow; }
-
-div.topicrow {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 1.3em; }
-  div.topicrow div {
-    float: left;
-    width: 32.9%;
-    margin-right: 5px;
-    background: rgba(255, 0, 50, 0.2);
-    /* Purple */
-    /* Sub topic text */ }
-    div.topicrow div h2 {
-      position: relative;
-      margin: 0;
-      border-radius: .4em;
-      padding: 0;
-      background: maroon;
-      color: #fff;
-      font: 1.5em "Helvetica Neue", Sans-Serif;
-      text-align: center; }
-      div.topicrow div h2 div {
-        float: none;
-        width: auto;
-        background: none; }
-    div.topicrow div h3 {
-      text-align: center; }
-      div.topicrow div h3 div {
-        float: none;
-        width: auto;
-        margin-right: auto;
-        background: none; }
-      div.topicrow div h3 + p {
-        text-align: center; }
-        div.topicrow div h3 + p span {
-          cursor: pointer; }
-        div.topicrow div h3 + p span.omoddate {
-          color: yellow; }
-    div.topicrow div a.stopic_a {
-      border: 1px solid black;
-      background: rgba(255, 100, 200, 0.4);
-      /* Purple */
-      background: linear-gradient(rgba(255, 100, 200, 0.4), black);
-      color: #339999;
-      /* light blue */
-      text-shadow: 1px 1px #006666;
-      border-radius: .6em;
-      box-shadow: 0px 1px yellow;
-      width: 95%;
-      margin: 0 auto;
-      padding: .4em 0; }
-    div.topicrow div h2 span, div.topicrow div h3 span {
-      position: absolute;
-      top: 0;
-      right: 5px;
-      font-size: .5em;
-      cursor: pointer; }
-      div.topicrow div h2 span.current, div.topicrow div h3 span.current {
-        color: yellow;
-        cursor: default; }
-    div.topicrow div h2 div span.sep {
-      cursor: default;
-      font-size: .5em; }
-    div.topicrow div div {
-      float: none;
-      width: auto;
-      background: none; }
-      div.topicrow div div ul {
-        padding-left: 0; }
-        div.topicrow div div ul ul {
-          padding-left: 1.5em;
-          list-style: square; }
-  div.topicrow h2 div span, div.topicrow h3 div span {
-    /* Topic 'dots' */
-    position: static;
-    font-size: 1em;
-    margin-right: .2em; }
-  div.topicrow h3 div span {
-    font-size: 1.2em;
-    margin-right: .2em; }
-  div.topicrow .articleoption {
-    border: 1px solid #000;
-    background-color: #fff;
-    border-radius: .4em; }
-    div.topicrow .articleoption a {
-      background: rgba(20, 200, 20, 0.2) url(../img/reply.png) no-repeat;
-      color: grey;
-      cursor: pointer;
-      padding: .5em;
-      border-radius: .3em; }
-  div.topicrow a.reply {
-    /* Main article reply. */
-    text-transform: uppercase;
-    letter-spacing: .4em;
-    padding-left: 3em; }
-  div.topicrow .newarticle a {
-    /* New article. */
-    background: rgba(20, 20, 20, 0.2) url(../img/reply.png) no-repeat;
-    color: green;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: .4em;
-    padding-left: 3em; }
-  div.topicrow a.newsubtopic {
-    /* New subtopic */
-    background: rgba(20, 20, 20, 0.2) url(../img/reply.png) no-repeat;
-    color: red;
-    padding: .5em;
+    float: none;
     text-align: center;
-    border-radius: .3em;
-    text-transform: uppercase;
-    letter-spacing: .4em;
-    width: 80%;
-    margin: 0 auto; }
+    font-family: verdana;
+    border-bottom: 1px solid rgba(196, 196, 196, 0.7);
+    cursor: pointer;
+    font-weight: bold; }
+    ul#projectsmenu li a {
+      color: #ccc; }
+      ul#projectsmenu li a:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+        color: #000; }
+    ul#projectsmenu li.sel {
+      margin-right: .5em;
+      color: yellow;
+      border: 0; }
+    ul#projectsmenu li.sel, ul#projectsmenu li a {
+      padding: 0 0 0 0; }
+    ul#projectsmenu li:last-child {
+      border: 0; }
 
 .scrollup {
   width: 40px;
@@ -155,6 +57,265 @@ div.topicrow {
   right: 1%;
   background: url("../img/icon_top.png") center center no-repeat;
   z-index: 2; }
+
+.hide {
+  display: none; }
+
+.topichidden {
+  display: none;
+  color: red; }
+
+div.topicrow {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1em; }
+  div.topicrow div {
+    width: 33%;
+    background: rgba(255, 0, 50, 0.2);
+    /* Purple */
+    /* Sub topic text */ }
+    div.topicrow div div:first-child {
+      /* previous h2 */
+      border-radius: .4em;
+      background: maroon;
+      color: #fff;
+      text-align: center;
+      font-size: 1.3em; }
+      div.topicrow div div:first-child h2 {
+        margin: 0;
+        padding: 0;
+        font: normal 1em "Helvetica Neue", Sans-Serif; }
+      div.topicrow div div:first-child span {
+        font-size: 1.3em;
+        cursor: pointer; }
+        div.topicrow div div:first-child span.current {
+          color: yellow;
+          cursor: default; }
+      div.topicrow div div:first-child div {
+        background: none; }
+    div.topicrow div div.subtopic-container {
+      position: relative;
+      border: 1px solid black;
+      background: rgba(255, 100, 200, 0.4);
+      /* Purple */
+      background: linear-gradient(rgba(255, 100, 200, 0.4), black);
+      border-radius: .6em;
+      box-shadow: 0px 1px yellow;
+      width: 95%;
+      margin: 1em auto 0 auto;
+      padding: .4em 0; }
+      div.topicrow div div.subtopic-container a {
+        /* Subtopic */
+        display: block;
+        text-align: center;
+        text-shadow: 1px 1px #006666;
+        color: #339999;
+        /* light blue */
+        font-size: 1.3em; }
+      div.topicrow div div.subtopic-container div {
+        /* Sub topic dots */
+        text-align: center;
+        cursor: pointer;
+        font-size: 1.5em;
+        width: auto;
+        background: none; }
+        div.topicrow div div.subtopic-container div span.current {
+          color: yellow;
+          cursor: default; }
+      div.topicrow div div.subtopic-container + p {
+        /* Order by */
+        font: bold .9em verdana;
+        text-align: center;
+        font-variant: small-caps; }
+        div.topicrow div div.subtopic-container + p span {
+          cursor: pointer; }
+        div.topicrow div div.subtopic-container + p span.omoddate {
+          color: yellow; }
+    div.topicrow div div {
+      width: auto;
+      background: none; }
+      div.topicrow div div ul {
+        padding-left: 0; }
+        div.topicrow div div ul ul {
+          padding-left: 1.5em;
+          list-style: square; }
+      div.topicrow div div .articleoption {
+        border: 1px solid #000;
+        background-color: #fff;
+        border-radius: .4em; }
+        div.topicrow div div .articleoption a {
+          background: rgba(20, 200, 20, 0.2) url(../img/reply.png) no-repeat;
+          color: grey;
+          cursor: pointer;
+          padding: .5em .5em .5em 4em;
+          border-radius: .3em; }
+      div.topicrow div div li.article_li {
+        list-style: none;
+        position: relative;
+        border-radius: .5em;
+        margin-bottom: .5em;
+        padding: .3em;
+        background: rgba(200, 200, 200, 0.2); }
+        div.topicrow div div li.article_li .moveright {
+          right: 0;
+          top: 0; }
+        div.topicrow div div li.article_li a.mainarticle {
+          padding: 0 23px 0 0;
+          cursor: pointer;
+          color: #ff8000;
+          text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.8); }
+          div.topicrow div div li.article_li a.mainarticle span.show {
+            position: absolute;
+            top: 1px;
+            right: 1px; }
+          div.topicrow div div li.article_li a.mainarticle span.highlighted {
+            position: static;
+            display: block;
+            background: rgba(127, 127, 127, 0.5); }
+        div.topicrow div div li.article_li a.mainarticle, div.topicrow div div li.article_li a.subbarticle {
+          font: bold 1em verdana; }
+        div.topicrow div div li.article_li a.mainarticle:hover, div.topicrow div div li.article_li a.subbarticle:hover {
+          color: rgba(247, 162, 72, 0.8); }
+        div.topicrow div div li.article_li a.subbarticle {
+          cursor: pointer;
+          color: rgba(247, 162, 72, 0.8); }
+        div.topicrow div div li.article_li #articlediv {
+          position: relative;
+          /* So we can position an arrow to expand article width. */
+          display: none;
+          width: 100%;
+          background: linear-gradient(#660033, rgba(102, 0, 51, 0.1)); }
+          div.topicrow div div li.article_li #articlediv .chkdiv_pintonav {
+            font-weight: bold;
+            float: right; }
+          div.topicrow div div li.article_li #articlediv .article_btns {
+            position: absolute;
+            right: 0;
+            text-align: right;
+            width: 100%;
+            background: transparent;
+            margin: 0 auto; }
+            div.topicrow div div li.article_li #articlediv .article_btns input {
+              background: rgba(255, 128, 0, 0.6);
+              border-radius: .3em;
+              border: 1px; }
+            div.topicrow div div li.article_li #articlediv .article_btns .active {
+              font-weight: bold;
+              font-size: 1.3em; }
+          div.topicrow div div li.article_li #articlediv div.divharteditform {
+            text-align: left;
+            font-size: 1em;
+            margin-bottom: 2em;
+            background: rgba(255, 100, 200, 0.4);
+            padding: 1em;
+            border-radius: .3em;
+            border: none; }
+            div.topicrow div div li.article_li #articlediv div.divharteditform input[type=text] {
+              text-align: center;
+              background-color: #ccc;
+              font-weight: bold;
+              border-top-left-radius: .3em;
+              border-top-right-radius: .3em; }
+            div.topicrow div div li.article_li #articlediv div.divharteditform .tinymce {
+              font-size: 1.5em; }
+            div.topicrow div div li.article_li #articlediv div.divharteditform select {
+              font-size: 80%; }
+            div.topicrow div div li.article_li #articlediv div.divharteditform .groupoptions a {
+              display: inline;
+              background-color: blue;
+              color: #fff; }
+            div.topicrow div div li.article_li #articlediv div.divharteditform input[name=helptitle] {
+              width: 100%;
+              border: none; }
+          div.topicrow div div li.article_li #articlediv div.divartcontent {
+            font-size: 1em;
+            text-align: left;
+            margin-bottom: .5em;
+            background: #ff64c8;
+            background: #cc0066;
+            color: #000;
+            padding: 1em;
+            border-radius: .3em;
+            border-bottom: 2px solid #ccc; }
+            div.topicrow div div li.article_li #articlediv div.divartcontent div:nth-child(2) {
+              padding-bottom: .3em;
+              border-bottom: 1px solid yellow;
+              text-align: left; }
+            div.topicrow div div li.article_li #articlediv div.divartcontent div > em {
+              color: yellow;
+              font-weight: bold; }
+            div.topicrow div div li.article_li #articlediv div.divartcontent a {
+              display: inline;
+              border-bottom: 1px dotted #000; }
+            div.topicrow div div li.article_li #articlediv div.divartcontent ul {
+              margin-top: 1em;
+              padding-left: 1em; }
+            div.topicrow div div li.article_li #articlediv div.divartcontent li {
+              margin-bottom: .5em;
+              padding-left: 0; }
+            div.topicrow div div li.article_li #articlediv div.divartcontent ul li {
+              margin-bottom: .3em;
+              list-style-type: square; }
+            div.topicrow div div li.article_li #articlediv div.divartcontent ul.articleoptions {
+              position: absolute;
+              top: 0;
+              right: 1em; }
+              div.topicrow div div li.article_li #articlediv div.divartcontent ul.articleoptions li {
+                list-style: none;
+                display: inline;
+                cursor: pointer;
+                color: #fff; }
+            div.topicrow div div li.article_li #articlediv div.divartcontent .prepended {
+              font-weight: bold; }
+          div.topicrow div div li.article_li #articlediv.togglewidth {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: auto;
+            height: 100%;
+            font-size: 200%;
+            z-index: 3;
+            margin: 0;
+            background: rgba(128, 128, 128, 0.5); }
+            div.topicrow div div li.article_li #articlediv.togglewidth .divartcontent {
+              margin-bottom: 0;
+              padding-top: .5em;
+              border-radius: 0;
+              box-shadow: 0 5px 10px 5px; }
+            div.topicrow div div li.article_li #articlediv.togglewidth img {
+              width: 32px; }
+            div.topicrow div div li.article_li #articlediv.togglewidth .divartcontent div:nth-child(2) {
+              text-align: center; }
+        div.topicrow div div li.article_li li ul #articlediv {
+          margin-left: -1em;
+          width: 104%; }
+      div.topicrow div div a.reply {
+        /* Main article reply. */
+        text-transform: uppercase;
+        letter-spacing: .4em;
+        padding-left: 3em; }
+      div.topicrow div div .newarticle a {
+        /* New article. */
+        background: rgba(20, 20, 20, 0.2) url(../img/reply.png) no-repeat;
+        color: green;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: .4em;
+        padding-left: 3em; }
+    div.topicrow div a.newsubtopic {
+      /* New subtopic */
+      background: rgba(20, 20, 20, 0.2) url(../img/reply.png) no-repeat;
+      color: red;
+      padding: .5em;
+      text-align: center;
+      border-radius: .3em;
+      text-transform: uppercase;
+      letter-spacing: .4em;
+      width: 80%;
+      margin: 0 auto; }
+  div.topicrow div.sep {
+    width: .5%; }
 
 .jquerytooltip {
   background: maroon !important;
@@ -172,167 +333,14 @@ div.topicrow {
   font: .8em "Helvetica Neue", Sans-Serif !important;
   box-shadow: 0 0 7px black !important; }
 
-li.article_li {
-  list-style: none;
-  position: relative;
-  /*border: 1px hsla(180, 50%, 40%, .8) solid;  Light blue matching sub topic text */
-  border-radius: .5em;
-  margin-bottom: .5em;
-  padding: .3em;
-  background: rgba(200, 200, 200, 0.2); }
-
-.moveright {
-  right: .3em;
-  top: 0; }
-
-a.mainarticle {
-  clear: left;
-  padding: 0 23px 0 0;
-  cursor: pointer;
-  color: #ff8000;
-  text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.8); }
-  a.mainarticle span.show {
-    position: absolute;
-    top: 1px;
-    right: 1px; }
-  a.mainarticle span.highlighted {
-    position: static;
-    display: block;
-    background: rgba(127, 127, 127, 0.5);
-    /*text-indent:-1.4em;
-    margin-left:1.4em;*/ }
-
-a.mainarticle, a.subbarticle {
-  font: bold 1em verdana; }
-
-a.mainarticle:hover, a.subbarticle:hover {
-  color: rgba(247, 162, 72, 0.8); }
-
-a.subbarticle {
-  clear: left;
-  cursor: pointer;
-  color: rgba(247, 162, 72, 0.8); }
-
-#articlediv {
-  position: relative;
-  /* So we can position an arrow to expand article width. */
-  display: none;
-  width: 100%;
-  background: linear-gradient(#660033, rgba(102, 0, 51, 0.1)); }
-  #articlediv .chkdiv_pintonav {
-    font-weight: bold;
-    float: right; }
-
-li ul #articlediv {
-  margin-left: -1em;
-  width: 104%; }
-
-#articlediv div.divharteditform {
-  margin-bottom: 2em;
-  background: rgba(255, 100, 200, 0.4);
-  padding: 1em;
-  border-radius: .3em;
-  border: none; }
-  #articlediv div.divharteditform input[type=text] {
-    text-align: center;
-    background-color: #ccc;
-    font-weight: bold;
-    border-top-left-radius: .3em;
-    border-top-right-radius: .3em; }
-  #articlediv div.divharteditform .tinymce {
-    font-size: 1.5em; }
-  #articlediv div.divharteditform select {
-    font-size: 50%; }
-
-.active {
-  font-weight: bold;
-  font-size: 1.3em; }
-
 .aposter, .rposter {
   font-style: italic; }
 
-#articlecontent {
+#articlecontent222 {
   position: absolute;
   display: none; }
 
-#articlediv div.divartcontent {
-  margin-bottom: .5em;
-  background: #ff64c8;
-  background: #cc0066;
-  color: #000;
-  padding: 1em;
-  border-radius: .3em;
-  border-bottom: 2px solid #ccc; }
-  #articlediv div.divartcontent div:first-child {
-    border-bottom: 1px solid yellow;
-    text-align: center; }
-  #articlediv div.divartcontent div > em {
-    color: yellow;
-    font-weight: bold; }
-  #articlediv div.divartcontent a {
-    display: inline;
-    border-bottom: 1px dotted #000; }
-  #articlediv div.divartcontent ul {
-    margin-top: 1em; }
-  #articlediv div.divartcontent li {
-    margin-bottom: .3em;
-    /*margin-left: -1em;*/
-    padding-left: 0; }
-  #articlediv div.divartcontent ul li {
-    margin-bottom: .3em;
-    /*margin-left: -1em;*/
-    margin-left: 1em;
-    /* Properly indent lists in replies.  */
-    list-style-type: square; }
-  #articlediv div.divartcontent span {
-    position: absolute;
-    top: 0;
-    cursor: pointer; }
-    #articlediv div.divartcontent span.edit {
-      right: 3em; }
-    #articlediv div.divartcontent span.close {
-      right: 2em; }
-    #articlediv div.divartcontent span.expand {
-      right: 1em; }
-
-div#articlediv.togglewidth {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: auto;
-  height: 100%;
-  font-size: 200%;
-  z-index: 3;
-  margin: 0;
-  background: rgba(128, 128, 128, 0.5); }
-  div#articlediv.togglewidth .divartcontent {
-    margin-bottom: 0;
-    padding-top: .5em;
-    border-radius: 0; }
-
-.togglewidth .divartcontent div:nth-child(2) {
-  text-align: center; }
-
-.prepended {
-  font-weight: bold; }
-
-.article_btns {
-  float: left;
-  text-align: right;
-  width: 100%;
-  background: transparent;
-  margin: 0 auto; }
-  .article_btns input {
-    background: rgba(255, 50, 0, 0.6);
-    border-radius: .3em;
-    border: 1px; }
-
-input[name=helptitle] {
-  width: 100%;
-  border: none; }
-
-.defaultSkin table.mceLayout {
+.defaultSkin2 table.mceLayout {
   border: none; }
 
 div.logout a {
@@ -354,6 +362,7 @@ div.logout a:hover {
 a.btnNav {
   position: absolute;
   right: 200px;
+  top: 0;
   color: #fff; }
 
 div.divnav {
@@ -402,9 +411,5 @@ div.divnav {
     padding: 0 10px 0 10px;
     border-top-right-radius: .3em;
     border-bottom-left-radius: .3em; }
-
-.topichidden {
-  display: none;
-  color: red; }
 
 /*# sourceMappingURL=styles.css.map */
