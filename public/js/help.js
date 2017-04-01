@@ -25,7 +25,7 @@ $(document).ready(function() {
 
   function hideshow() {
     $('.hide').hide();
-    $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
+    $('<span class="show" title="Show"><img src="img/menu2.png" width="30"></span>')
      .appendTo('a.mainarticle').addClass('moveright');
   }
   hideshow();
@@ -49,7 +49,7 @@ $(document).ready(function() {
 
     var thisarticledivvisible = $(this).parent().find('#articlediv').is(":visible");
     var nextelement = $(this).next().attr('id');
-    $(this).css('background','rgba(255, 0, 50, .2)');
+    $(this).parent().css('background','rgba(0, 0, 0, 1)');
     $.ajax({
       "type":"get",
       "url":"article/" + parseInt(articleid),
@@ -113,7 +113,6 @@ $(document).ready(function() {
       "type":"GET",
       "url":"article/reply/" + parseInt(articleid),
       "success":function(data){
-        //alert(data);
         var splitdata = data.split('|');
         var str = '<li><a id="subbarticle'+splitdata[0]+'" class="subbarticle" href="#" title="View article" title2="'
         +splitdata[0]+'">View article</a><span id="rposter'+splitdata[0]
@@ -237,7 +236,7 @@ $(document).ready(function() {
   });
 
   // Topic 'dots' tooltip.
-  $( "div.topicrow div span, div.topicrow div.subtopic-container div span" ).tooltip({
+  $( "div.container-fluid div span, div.container-fluid div.subtopic-container div span" ).tooltip({
     tooltipClass: "jquerytooltip",
     position: {
       "my": "center top-54",
@@ -250,7 +249,7 @@ $(document).ready(function() {
     hide: { effect: "none" }
   });
 
-  $( "div.topicrow div.subtopic-container div span" ).tooltip({
+  $( "div.container-fluid div.subtopic-container div span" ).tooltip({
     tooltipClass: "jquerytooltip2",
     position: {
       "my": "center top-50",
@@ -259,7 +258,7 @@ $(document).ready(function() {
     hide: { effect: "none" }
   });
 
-  $('div.topicrow div div:first-child span, div.topicrow div.subtopic-container div span').click(function(e){
+  $('div.container-fluid div div:first-child span, div.container-fluid div.subtopic-container div span').click(function(e){
     $('html, body').animate({scrollTop: $('#'+$(this).attr('title2')).offset().top}, 0);
     e.preventDefault();
   });
