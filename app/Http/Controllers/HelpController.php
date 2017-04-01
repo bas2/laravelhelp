@@ -12,12 +12,13 @@ class HelpController extends Controller
   public function index() {
     $dirpath='../..';$proj=[];foreach(\File::directories($dirpath) as $project){$prj=str_replace($dirpath.'/','',$project);if(substr($prj,0,1)!='_'){$proj[]=ucwords($prj);}}
 
+    $topics2=[];
     $topics=App\Topic::where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
     $topicrows=[];foreach($topics as $topic){$topics2[]=$topic;}
 
     return view('welcome')
     ->with('topics',$topics)
-    ->with('topicrows',array_chunk($topics2, 3)) # Group topics in threes.
+    //->with('topicrows',array_chunk($topics2, 3)) # Group topics in threes.
     ->with('projlist',$proj)
     ;
   }
@@ -152,6 +153,20 @@ class HelpController extends Controller
     return view('ajax.groups')->with('groups',$groups)->with('groupid',$groupid);
   }
 
+
+  public function getTopicActions() {
+    //$subtopic=App\Topic::where('stopic_id',1)->get(['stopic']);
+    return view('topicnew')->with('topic', '');
+  }
+
+  public function postTopicActions(Request $request) {
+    $this->validate(request(),['topic'=>'required|min:3|max:300',]);
+    $createtopic=new \App\Topic;
+    $createtopic->topic=$request['topic'];
+    $createtopic->save();
+    session()->flash('message',"Topic {$request['topic']} was created");
+    return redirect('HomeScreen');
+  }
 
 
 
