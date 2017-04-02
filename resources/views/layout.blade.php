@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>PHP App::Help!</title>
+    <!-- Bootstrap -->
+  {!! Html::style('css/bootstrap.min.css') !!}
   {!! Html::style('css/styles.css') !!}
 @yield('mainheader')
 
@@ -11,5 +13,5 @@
 
 @yield('content')
 
-  </body>
+</body>
 </html>
