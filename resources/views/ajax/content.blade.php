@@ -18,7 +18,7 @@
     </a></li>
   @endforeach
   </ul>
-  <p class="articleoption hide article{{ $stopic->stopic_id }}option">{{ link_to('#','Reply',['id'=>"reply{$content->content_id}",'class'=>'reply','title2'=>$content->content_id]) }}</a></p>
+  <p class="articleoption hide2 article{{ $stopic->stopic_id }}option">{{ link_to('#','Reply',['id'=>"reply{$content->content_id}",'class'=>'reply','title2'=>$content->content_id]) }}</a></p>
   </li>
 @endforeach
 </ul>
