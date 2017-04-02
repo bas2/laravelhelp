@@ -2,25 +2,25 @@
 <span class="close">{{ Html::image('img/close.png','',['width'=>16]) }}</span>
 {!! Form::open() !!}
 <div>
-{!! Form::text('helptitle', $content->title, ['placeholder'=>'Title is required']) !!}
+{!! Form::text('helptitle', $content->title, ['class'=>'form-control','placeholder'=>'Title is required']) !!}
 </div>
 <div>
 {!! Form::textarea('helpcontent', $content->content, ['id'=>'helpcontent']) !!}
 </div>
 <div>
 {!! Form::label('groups', 'Add to group:') !!}
-{!! Form::select('groups', $groups, $content->groupid, ['id'=>'groups']) !!}
+{!! Form::select('groups', $groups, $content->groupid, ['class'=>'form-control','id'=>'groups']) !!}
 </div>
 <div class="groupoptions" title2="{{ $content->stopicid }}"></div>
 <div>
 {!! Form::label('subtopics', 'Subtopic:') !!}
-{!! Form::select('subtopics', $subtopics, $content->stopicid, ['id'=>'subtopics']) !!}
+{!! Form::select('subtopics', $subtopics, $content->stopicid, ['class'=>'form-control','id'=>'subtopics']) !!}
 <div>
 
 <div class="article_btns">
-{!! Form::button('Update >',['class'=>'active','id'=>'updatearticle','title'=>$content->content_id]) !!}
-{!! Form::button('Close >',['id'=>'closeeditarticle']) !!}
-{!! Form::button('Delete >',['id'=>'deletearticle','title'=>$content->content_id]) !!}
+{!! Form::button('Update >',['class'=>'btn btn-primary','id'=>'updatearticle','title'=>$content->content_id]) !!}
+{!! Form::button('Cancel >',['id'=>'closeeditarticle','class'=>'btn btn-default']) !!}
+{!! Form::button('Delete >',['id'=>'deletearticle','class'=>'btn btn-default','title'=>$content->content_id]) !!}
 </div>
 {!! Form::close() !!}
 
@@ -63,14 +63,14 @@ $(document).ready(function(){
   $('.close').css({'cursor':'pointer','position':'absolute','right':'.1em','top':'0'});
 
   if ($('#groups').val()==0) {
-    $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
+    $('.groupoptions').html('<input class="ngroup form-control" type="text"> <a class="a" href="#">Add group</a>');
   } else {
     $('.groupoptions').html('<a class="r" href="#">Remove group</a>');
   }
   $('body').on('change','#groups',function(){
     var selval = $(this).val();
     if (selval==0) {
-      $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
+      $('.groupoptions').html('<input class="ngroup form-control" type="text"> <a class="a" href="#">Add group</a>');
     } else {
       $('.groupoptions').html('<a class="r" href="#">Remove group</a>');
     }
@@ -102,7 +102,7 @@ $(document).ready(function(){
       "data": 'stopicid=' + stopicid + '&_token={{ csrf_token() }}',
       "success":function(data){
         $this.parent().prev().html(data);
-        $('.groupoptions').html('<input class="ngroup" type="text"> <a class="a" href="#">Add group</a>');
+        $('.groupoptions').html('<input class="ngroup form-control" type="text"> <a class="a" href="#">Add group</a>');
       } // End ajax success function
     });
     e.preventDefault();
