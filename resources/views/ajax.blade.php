@@ -1,8 +1,8 @@
-<div class="divartcontent">
+<div class="divartcontent panel">
   
   <ul class="articleoptions">
     <li class="edit">{{ Html::image('img/write.png','',['width'=>15]) }}</li> 
-    <li class="close">{{ Html::image('img/close.png','',['width'=>16]) }}</li>
+    <li class="close2">{{ Html::image('img/close.png','',['width'=>16]) }}</li>
     <li class="expand" title="Expand">{{ Html::image('img/expand.png','',['width'=>14]) }}</li>
   </ul>
 
@@ -11,8 +11,8 @@
   <div>{!! $content->content !!}</div>
 
   <div class="article_btns">
-    {!! Form::button('Edit >',['id'=>'editarticle','class'=>'active','title'=>$content->content_id]) !!}
-    {!! Form::button('Close >',['id'=>'closeeditarticle']) !!}
+    {!! Form::button('Edit >',['id'=>'editarticle','class'=>'btn btn-primary','title'=>$content->content_id]) !!}
+    {!! Form::button('Cancel >',['id'=>'closeeditarticle','class'=>'btn btn-default']) !!}
   </div>
 
 </div>
