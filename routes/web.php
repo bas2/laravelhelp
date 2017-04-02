@@ -1,5 +1,5 @@
 <?php
-Route::get('home', 'HelpController@index');
+Route::get('home', 'HelpController@index')->name('HomeScreen');
 
 Route::post('article/edit/{id}','HelpController@postArticleEdit'); #Complete article update
 Route::get('article/edit/{id}', 'HelpController@getArticleEdit'); #Display article edit form
@@ -13,6 +13,9 @@ Route::get( 'subtopic/new/{id}', 'HelpController@getAddSubtopic'); #New subtopic
 Route::post('subtopic/new/{id}', 'HelpController@addSubtopic');   #New subtopic
 Route::get('subtopic/{id}', 'HelpController@getSubtopicActions'); #Rename or delete subtopic page
 Route::post('subtopic/{id}', 'HelpController@subtopicActions'); #Rename or delete subtopic complete
+
+Route::get('topic/new', 'HelpController@getTopicActions');
+Route::post('topic/new', 'HelpController@postTopicActions');
 
 Route::post('group/add/{id}', 'HelpController@addGroup');       #Add group.
 Route::post('group/remove/{id}', 'HelpController@removeGroup'); #Remove group.
