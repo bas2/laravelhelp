@@ -258,7 +258,7 @@ $(document).ready(function() {
     hide: { effect: "none" }
   });
 
-  $('div.container-fluid div div:first-child span, div.container-fluid div.subtopic-container div span').click(function(e){
+  $('div.container-fluid div div div:first-child span, div.container-fluid div.subtopic-container div span').click(function(e){
     $('html, body').animate({scrollTop: $('#'+$(this).attr('title2')).offset().top}, 0);
     e.preventDefault();
   });
@@ -275,7 +275,7 @@ $(document).ready(function() {
       "success":function(data){
         $($this).parent().next().html(data);
         $('.hide').hide();
-        $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
+        $('<span class="show" title="Show"><img src="img/menu2.png" width="30"></span>')
      .appendTo($($this.parent().next().find('ul li a.mainarticle'))).addClass('moveright');
       } // End ajax success function
 
