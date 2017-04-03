@@ -66,11 +66,11 @@ ul#projectsmenu {
 
 div.container-fluid {
   margin-top: 1em;
-  background: rgba(200, 200, 200, .2); /* Purple */
+  background: rgba(200, 200, 200, .2); /* Grey */
   div.topic {
 
     >div:first-child {
-      background: rgb(20, 20, 200);
+      background: hsla(220, 100%, 50%, .5); /* Blue */
       border-radius: .4em; 
       box-shadow: 1px 1px 1px #fff;
       text-align: center;
@@ -80,7 +80,7 @@ div.container-fluid {
         +div span {
           cursor: pointer;
           font-size: 2em;
-          &.current {color:yellow;}
+          &.current {color:navy;}
         }
       }
       
@@ -133,13 +133,10 @@ div.container-fluid {
         }
       }
       .articleoption {
-        border:1px solid #000;
-        background-color:#fff;
         border-radius:.4em;
         
         a {
-          background: rgba(20,200,20,.2) url(../img/reply.png) no-repeat;
-          color:grey;
+          background: rgba(255,255,255,.2) url(../img/reply.png) no-repeat;
           cursor: pointer;
           padding: .5em .5em .5em 4em;
           border-radius: .3em;
@@ -186,7 +183,7 @@ div.container-fluid {
 
         a.subbarticle {
           cursor: pointer;
-          color: rgba(200,162,72,.8);
+          color: hsla(90,100%,50%,.6);
         }
 
         #articlediv {
@@ -206,7 +203,7 @@ div.container-fluid {
             text-align: left;
             font-size: 1em;
             margin: 0 0 0 0;
-            background:rgba(255,100,200,.4);
+            /*background:rgba(255,100,200,.4);*/
             padding:1em 1em 1em 1em;
             border-radius: .3em;
             border:none;
@@ -245,6 +242,7 @@ div.container-fluid {
             div:nth-child(2) {
               padding-bottom: .3em;
               border-bottom:1px solid yellow;
+              margin-bottom: 4px;
               text-align: left;
             }
             div > em {
@@ -303,13 +301,13 @@ div.container-fluid {
 
         ul li #articlediv {
           margin-left: -1em;
-          width: 100%;
+
         }
 
       } /* li.article_li */
 
       .newarticle a { /* New article. */
-        background: rgba(255,255,255,.2) url(../img/reply.png) no-repeat;
+        background: rgba(255,255,255,.5) url(../img/reply.png) no-repeat;
         cursor: pointer;
       }
 
