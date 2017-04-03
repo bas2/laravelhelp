@@ -63,7 +63,9 @@ class HelpController extends Controller
     $input=\Request::all();
     $subtopic1=new App\Subtopic;
     $subtopic1->stopic_id = $subtopicid;
-    return view('ajax.content')->with('stopic', $subtopic1)->with('orderby', $input['orderby'] );
+    return view('ajax.content')
+    ->with('stopic', $subtopic1)
+    ->with('orderby', $input['orderby'] );
   }
 
   public function article($articleid) {
