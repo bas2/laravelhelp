@@ -1,4 +1,4 @@
-<div class="divharteditform">
+<div class="divharteditform panel">
 <span class="close">{{ Html::image('img/close.png','',['width'=>16]) }}</span>
 {!! Form::open() !!}
 <div>
@@ -145,7 +145,7 @@ $(document).ready(function(){
           "success":function(data) {
             subtopic.parent().next().next().html(data);
             $('.hide').hide();
-            $('<span class="show" title="Show"><img src="img/menu.png" width="30"></span>')
+            $('<span class="show" title="Show"><img src="img/menu2.png" width="30"></span>')
      .appendTo($('#mainarticle'+articleid)).addClass('moveright');
           } // End ajax success function
         });
