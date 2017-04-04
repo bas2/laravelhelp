@@ -125,6 +125,11 @@ $(document).ready(function() {
     e.preventDefault();
   });
    
+  $('.newarticle a').hover(function(){
+    $(this).animate({paddingLeft:'+=15px'}, 200);
+  }, function() {
+    $(this).animate({paddingLeft: '-=15px'}, 200);
+  });
 
   // Add new article:
   $(document).on('click','.newarticle', function(e) {
