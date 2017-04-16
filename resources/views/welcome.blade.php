@@ -30,7 +30,7 @@
   </div>
 @else
   @foreach ($topics as $topicrow)
-  <div class="col-md-4 topic">
+  <div class="col-md-4 col-sm-6 col-xs-12 topic">
 
     <div>
       <h2 id="topic_{{ $topicrow->topic_id }}">{{ $topicrow->topic }}</h2>
