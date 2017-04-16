@@ -146,10 +146,12 @@ div.container-fluid {
       li.article_li {
         list-style:none;
         position:relative;
-        border-radius: .5em;
+        border-radius:.5em;
         margin-bottom:.5em;
         padding: .3em;
         background: rgba(200,200,200,.2);
+        box-shadow: 1px 1px;
+        color:rgba(0,0,0,.3);
 
         .moveright {
           right:0;
@@ -190,6 +192,7 @@ div.container-fluid {
           position: relative; /* So we can position an arrow to expand article width. */
           display: none;
           background: linear-gradient( hsla(330,100%,20%,1), hsla(330,100%,0%,1) );
+          color:#fff;
 
           .chkdiv_pintonav {
             font-weight: bold;
