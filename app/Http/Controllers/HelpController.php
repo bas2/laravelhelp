@@ -11,6 +11,7 @@ class HelpController extends Controller
   
   public function index() {
     $dirpath='../..';$proj=[];foreach(\File::directories($dirpath) as $project){$prj=str_replace($dirpath.'/','',$project);if(substr($prj,0,1)!='_'){$proj[]=ucwords($prj);}}
+    sort($proj);
 
     $topics2=[];
     $topics=App\Topic::where('hide',0)->latest('updated_at')->get(['topic_id','topic']);
