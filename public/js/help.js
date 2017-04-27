@@ -32,7 +32,7 @@ $(document).ready(function() {
   hideshow();
 
   // Show option - menu icon.
-  $(document).on('click','.mainarticle span.show', function(e) {
+  $('body').on('click','.mainarticle span.show', function(e) {
     $('.article' + $(this).parent().parent().parent().parent().prev().prev()
       .find('a').attr('id').substr(2) + 'option').toggle(); // .articlexxxoption
     e.preventDefault();
@@ -65,7 +65,7 @@ $(document).ready(function() {
   
 
   // Close article view and edit forms.
-  $(document).on('click','#closeeditarticle', function() {
+  $('body').on('click','#closeeditarticle', function() {
     if ($(this).parent().parent().parent().parent().parent().attr('class')=='divharteditform') {
       var article=$(this).parent().parent().parent().parent().parent().parent().parent().find('a');
       if (article.attr('class')=='subbarticle'){article=article.parent().parent().parent().find('a');}
@@ -103,7 +103,7 @@ $(document).ready(function() {
   
    
   // Add new reply:
-  $(document).on('click','a.reply',function(e) {
+  $('body').on('click','a.reply',function(e) {
     var articleid = $(this).attr('title2');
     $.ajax({
       "type":"GET",
