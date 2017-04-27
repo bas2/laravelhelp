@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // Projects menu.
   $('ul#projectsmenu li.sel').css({'border-bottom':0,'margin':'.2em .5em'});
   $('ul#projectsmenu li').has('a[href]').hide();
 
@@ -12,7 +13,7 @@ $(document).ready(function() {
     }
   });
 
-
+  // Scroll-up icon.
   $('<a href="#" class="scrollup"></a>').prependTo('body').hide().click(function(e){
     $("html, body").animate({ scrollTop: 0 }, 500);
     e.preventDefault();
@@ -38,7 +39,7 @@ $(document).ready(function() {
   });
 
   // Show article: click on a main article or reply to a main article.
-  $(document).on('click','.mainarticle, .subbarticle', function(e) {
+  $('body').on('click','.mainarticle,.subbarticle', function(e) {
     var articleid = $(this).attr('title2');
     var classsel  = '#' + $(this).attr('class') + articleid; // Main article or reply?
     if ($(this).attr('class')=='subbarticle') {
@@ -63,11 +64,6 @@ $(document).ready(function() {
   });
   
 
-
-
-
-
-
   // Close article view and edit forms.
   $(document).on('click','#closeeditarticle', function() {
     if ($(this).parent().parent().parent().parent().parent().attr('class')=='divharteditform') {
@@ -85,8 +81,8 @@ $(document).ready(function() {
   });
   //transition: background-color 2s ease-out;
 
-  // Delete
-  $(document).on('click','#deletearticle', function() {
+  // Delete article.
+  $('body').on('click','#deletearticle', function() {
     if ($(this).text()=='Confirm?') { // Reply.
       var articleid = $(this).attr('title');
       $.ajax({
@@ -125,6 +121,7 @@ $(document).ready(function() {
     e.preventDefault();
   });
    
+  // New article.
   $('.newarticle a').hover(function(){
     $(this).animate({paddingLeft:'+=15px'}, 200);
   }, function() {
@@ -132,7 +129,7 @@ $(document).ready(function() {
   });
 
   // Add new article:
-  $(document).on('click','.newarticle', function(e) {
+  $('body').on('click','.newarticle', function(e) {
     var stopicid = $(this).attr('title2');
     var test     = $(this); // So we can add new article before new article link
     $.ajax({
