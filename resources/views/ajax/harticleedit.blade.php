@@ -76,7 +76,7 @@ $(document).ready(function(){
     }
   });
   // Add group.
-  $('.groupoptions .a').off('click').on('click',function(e){
+  $(document).off('click').on('click','.groupoptions .a',function(e){
     var stopicid = $(this).parent().attr('title2');
     var group    = $('.ngroup').val();
     var $this = $(this);
@@ -144,7 +144,7 @@ $(document).ready(function(){
           "data":"orderby=omoddate" ,
           "success":function(data) {
             subtopic.parent().next().next().html(data);
-            $('.hide').hide();
+            $('.hide2').hide();
             $('<span class="show" title="Show"><img src="img/menu2.png" width="30"></span>')
      .appendTo($('#mainarticle'+articleid)).addClass('moveright');
           } // End ajax success function
