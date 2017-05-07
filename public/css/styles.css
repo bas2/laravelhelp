@@ -1,5 +1,6 @@
 body {
-  margin-top: 0; }
+  margin-top: 0;
+  font-size: 1.5em; }
 
 a {
   text-decoration: none !important;
@@ -148,6 +149,8 @@ div.container-fluid {
         margin-bottom: .5em;
         padding: .3em;
         background: rgba(200, 200, 200, 0.2);
+        box-shadow: 1px 1px;
+        color: rgba(0, 0, 0, 0.3);
         /* #articlediv */ }
         div.container-fluid div.topic div li.article_li .moveright {
           right: 0;
@@ -178,7 +181,8 @@ div.container-fluid {
           position: relative;
           /* So we can position an arrow to expand article width. */
           display: none;
-          background: linear-gradient(#660033, black); }
+          background: linear-gradient(#660033, black);
+          color: #fff; }
           div.container-fluid div.topic div li.article_li #articlediv .chkdiv_pintonav {
             font-weight: bold;
             float: right; }
