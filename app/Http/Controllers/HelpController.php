@@ -10,7 +10,7 @@ class HelpController extends Controller
 {
   
   public function index() {
-    $dirpath='../..';$proj=[];foreach(\File::directories($dirpath) as $project){$prj=str_replace($dirpath.'/','',$project);if(substr($prj,0,1)!='_'){$proj[]=ucwords($prj);}}
+    $dirpath='../..';$proj=[];foreach(\File::directories($dirpath) as $project){$prj=str_replace($dirpath.'/','',$project);if(substr($prj,0,1)!='_'&&!in_array($prj,['logs'])){$proj[]=ucwords($prj);}}
     sort($proj);
 
     $topics2=[];
