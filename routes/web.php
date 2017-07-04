@@ -1,5 +1,5 @@
 <?php
-Route::get('', 'HelpController@index')->name('HomeScreen');
+Route::get('home', 'HelpController@index')->name('HomeScreen');
 
 Route::post('article/edit/{id}','HelpController@postArticleEdit'); #Complete article update
 Route::get('article/edit/{id}', 'HelpController@getArticleEdit'); #Display article edit form
