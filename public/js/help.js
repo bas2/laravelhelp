@@ -208,8 +208,10 @@ $(document).ready(function()
             "success":function(articleid)
             {
                 var splitdata = articleid.split('|');
-                $('<li class="article_li"><a id="mainarticle' + splitdata[0] + '" class="mainarticle" title2="'
-                + splitdata[0] + '" href="#">[New article]</a><span class="aposter" id="aposter'
+                $('<li class="article_li"><a id="mainarticle' + splitdata[0] 
+                + '" class="mainarticle" title2="'
+                + splitdata[0] 
+                + '" href="#">[New article]</a><span class="aposter" id="aposter'
                 + splitdata[0] + '">By ['
                 + splitdata[1] + '] on ['
                 + splitdata[2] + ']</span></li>')
@@ -333,9 +335,7 @@ $(document).ready(function()
     // Topic 'dots' tooltip.
     $( "div.container-fluid div span, div.container-fluid div.subtopic-container div span" ).tooltip({
         tooltipClass: "jquerytooltip",
-        position: {
-            "my": "center top-54",
-        },
+        position: { "my": "center top-54" },
         show: { effect: "none" },
         hide: { effect: "none" }
     });
@@ -345,14 +345,17 @@ $(document).ready(function()
     {
         tooltipClass: "jquerytooltip2",
         position: { "my": "center top-50" },
-        show: { effect: "none" },
-        hide: { effect: "none" }
+        show:     { effect: "none" },
+        hide:     { effect: "none" }
     });
 
 
     $('div.container-fluid div div div:first-child span, div.container-fluid div.subtopic-container div span').click(function(e)
     {
-        $('html, body').animate({scrollTop: $('#' + $(this).attr('title2')).offset().top}, 0);
+        $('html, body').animate(
+        {
+            scrollTop: $('#' + $(this).attr('title2')).offset().top
+        }, 0);
         e.preventDefault();
     });
 
@@ -374,7 +377,10 @@ $(document).ready(function()
                 $($this).parent().next().html(data);
                 $('.hide').hide();
                 $('<span class="show" title="Show"><img src="img/menu2.png" width="30"></span>')
-                .appendTo($($this.parent().next().find('ul li a.mainarticle'))).addClass('moveright');
+                .appendTo($($this.parent()
+                .next()
+                .find('ul li a.mainarticle')))
+                .addClass('moveright');
             }
         });
 
