@@ -123,9 +123,11 @@ class HelpController extends Controller
      */
     public function article($articleid)
     {
-        $article = App\Content::where('content_id', $articleid)->get(['content_id', 'stopicid', 'created_at', 'updated_at', 'title', 'content']);
+        $article = App\Content::where('content_id', $articleid)
+        ->get(['content_id', 'stopicid', 'created_at', 'updated_at', 'title', 'content'])
+        ->first();
 
-        return view('ajax')->with('content', $article[0]);
+        return view('ajax')->with('content', $article);
     }
 
 
