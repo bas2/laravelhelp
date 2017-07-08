@@ -60,7 +60,7 @@ $(document).ready(function()
     });
 
     // Show article: click on a main article or reply to a main article.
-    $('body').on('click','.mainarticle,.subbarticle', function(e)
+    $('body').on('click', '.mainarticle, .subbarticle', function(e)
     {
         var articleid = $(this).attr('title2');
         var classsel  = '#' + $(this).attr('class') + articleid; // Main article or reply?
@@ -87,6 +87,7 @@ $(document).ready(function()
             "url":"article/" + parseInt(articleid),
             "success":function(data)
             {
+                //alert(data);
                 if ($('#articlediv').is(":visible"))
                 {
                     $('#articlediv').remove();
