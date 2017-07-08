@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use \App;
 
+use \Carbon\Carbon;
+
+
 class HelpController extends Controller
 {
 
@@ -33,7 +36,6 @@ class HelpController extends Controller
 
         return view('welcome')
         ->with('topics', $topics)
-        //->with('topicrows',array_chunk($topics2, 3)) # Group topics in threes.
         ->with('projlist', $proj)
         ;
     }
@@ -41,7 +43,7 @@ class HelpController extends Controller
 
     public function postArticleEdit($articleid)
     {
-        $input = \Request::all();
+        $input   = \Request::all();
         $article = new App\Content;
         $article = $article::where('content_id', $articleid);
         $article_body = (!empty($input['fedit_helpcontent'])) ? $input['fedit_helpcontent'] : '' ;
@@ -52,11 +54,11 @@ class HelpController extends Controller
         if ($content[0]->parentid > 0)
         {
             // Also set updated_at for the main article for this reply.
-            $mainarticle = App\Content::where('content_id', $content[0]->parentid)->update(['updated_at' => \Carbon\Carbon::now()]);
+            $mainarticle = App\Content::where('content_id', $content[0]->parentid)->update(['updated_at' => Carbon::now()]);
         }
         $subtopic = App\Subtopic::getTopicrow($content[0]->stopicid, ['topicid']);
-        $topic = App\Topic::where('topic_id', $subtopic[0]->topicid)->update(['updated_at' => \Carbon\Carbon::now()]);
-        $subtopic = App\Subtopic::where('stopic_id', $content[0]->stopicid)->update(['updated_at' => \Carbon\Carbon::now()]);
+        $topic    = App\Topic::where('topic_id', $subtopic[0]->topicid)->update(['updated_at' => Carbon::now()]);
+        $subtopic = App\Subtopic::where('stopic_id', $content[0]->stopicid)->update(['updated_at' => Carbon::now()]);
         return "{$articleid}=||={$input['txt_helptitle']}";
     }
 
@@ -90,7 +92,7 @@ class HelpController extends Controller
 
     public function articles($subtopicid)
     {
-        $input = \Request::all();
+        $input     = \Request::all();
         $subtopic1 = new App\Subtopic;
         $subtopic1->stopic_id = $subtopicid;
         return view('ajax.content')
@@ -109,9 +111,9 @@ class HelpController extends Controller
 
     public function replyToArticle($articleid)
     {
-        $subtopic=App\Content::where('content_id', $articleid)->get(['stopicid']);
+        $subtopic = App\Content::where('content_id', $articleid)->get(['stopicid']);
 
-        $create= new App\Content;
+        $create = new App\Content;
         $create->stopicid = $subtopic[0]->stopicid;
         $create->parentid = $articleid;
         $create->content = '';
@@ -171,6 +173,7 @@ class HelpController extends Controller
         $action = (isset($input['d'])) ? 'd' : 'u';
         $videos = new App\Subtopic;
         $videos = $videos::where('stopic_id', $subtopicid);
+
         if ($action == 'd')
         {
             $videos->delete();
@@ -199,7 +202,7 @@ class HelpController extends Controller
             $groups[$group->group_id] = "{$group->name}";
         }
 
-        return view('ajax.groups')->with('groups',$groups)->with('groupid',$create->id);
+        return view('ajax.groups')->with('groups', $groups)->with('groupid', $create->id);
     }
 
 
@@ -216,7 +219,7 @@ class HelpController extends Controller
             $groups[$group->group_id] = "{$group->name}";
         }
 
-        return view('ajax.groups')->with('groups',$groups)->with('groupid',$groupid);
+        return view('ajax.groups')->with('groups', $groups)->with('groupid', $groupid);
     }
 
 
