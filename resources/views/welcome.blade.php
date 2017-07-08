@@ -25,8 +25,8 @@
 <div class="container-fluid">
     <div class="row equal">
 @if(!count($topics))
-        <div class="alert alert-warning text-center">No topics
-        {{ link_to('topic/new', 'Add topic') }}
+        <div class="alert alert-warning text-center">
+        No topics {{ link_to('topic/new', 'Add topic') }}
         </div>
 @else
     @foreach ($topics as $topicrow)
@@ -36,10 +36,10 @@
                 <h2 id="topic_{{ $topicrow->topic_id }}">{{ $topicrow->topic }}</h2>
                 <div>
         @for ($j = 1; $j <= $numtopics; $j++)
-            @if ($topicrow->topic == $topics[$j-1]->topic)
+            @if ($topicrow->topic == $topics[$j - 1]->topic)
                     <span class="current">&bull;</span>
             @else
-                    <span title2="topic_{{ $topics[$j-1]->topic_id }}" title="{{ $topics[$j-1]->topic }}">&bull;</span>
+                    <span title2="topic_{{ $topics[$j - 1]->topic_id }}" title="{{ $topics[$j - 1]->topic }}">&bull;</span>
             @endif
 
             @if ($j % 3 == 0)
@@ -75,7 +75,8 @@
             @endif
         @endforeach
 
-            <p>{{ link_to("subtopic/new/{$topicrow->topic_id}", 'New sub topic', ['class'=>'newsubtopic']) }}</p>
+            <p>{{ link_to("subtopic/new/{$topicrow->topic_id}", 'New sub topic', 
+            ['class' => 'newsubtopic']) }}</p>
 
         </div>
     @endforeach
