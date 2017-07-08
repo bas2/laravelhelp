@@ -12,10 +12,14 @@ use \Carbon\Carbon;
 class HelpController extends Controller
 {
 
+    /*
+     * Display main application screen.
+     * GET: /.
+     */ 
     public function index()
     {
         $dirpath = '../..';
-        $proj = [];
+        $proj    = [];
         foreach(\File::directories($dirpath) as $project)
         {
             $prj = str_replace($dirpath . '/', '', $project);
@@ -27,7 +31,7 @@ class HelpController extends Controller
         sort($proj);
 
         $topics2 = [];
-        $topics = App\Topic::where('hide', 0)->latest('updated_at')->get(['topic_id', 'topic']);
+        $topics  = App\Topic::where('hide', 0)->latest('updated_at')->get(['topic_id', 'topic']);
         $topicrows = [];
         foreach ($topics as $topic)
         {
@@ -41,6 +45,10 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * 
+     * POST: article/edit/{id}.
+     */ 
     public function postArticleEdit($articleid)
     {
         $input   = \Request::all();
@@ -63,6 +71,10 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * 
+     * GET: article/edit/{id}.
+     */
     public function getArticleEdit($articleid)
     {
         $article = App\Content::where('content_id', $articleid)->get(['content_id', 'stopicid', 'groupid', 'title', 'content', 'pintonav']);
@@ -90,6 +102,10 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * 
+     * GET: article/subtopic/{id}.
+     */
     public function articles($subtopicid)
     {
         $input     = \Request::all();
@@ -101,6 +117,10 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * 
+     * GET: article/{id}.
+     */
     public function article($articleid)
     {
         $article = App\Content::where('content_id', $articleid)->get(['content_id', 'stopicid', 'created_at', 'updated_at', 'title', 'content']);
@@ -109,6 +129,10 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * 
+     * GET: article/reply/{id}.
+     */ 
     public function replyToArticle($articleid)
     {
         $subtopic = App\Content::where('content_id', $articleid)->get(['stopicid']);
@@ -124,12 +148,20 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * 
+     * GET: article/delete/{id}.
+     */ 
     public function deleteArticle($articleid)
     {
         $article = App\Content::where('content_id', $articleid)->delete();
     }
 
 
+    /*
+     * Add an article on a sub topic.
+     * GET: article/new/subtopic/{id}.
+     */ 
     public function addArticle($subtopicid)
     {
         $create = new App\Content;
@@ -142,12 +174,20 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * Show add sub topic form.
+     * GET: subtopic/new/{id}.
+     */ 
     public function getAddSubtopic()
     {
         return view('subtopicnew');
     }
 
 
+    /*
+     * Actually create the sub topic.
+     * POST: subtopic/new/{id}.
+     */ 
     public function addSubtopic($topicid)
     {
         $input = \Request::all();
@@ -160,6 +200,10 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * 
+     * GET: subtopic/{id}.
+     */ 
     public function getSubtopicActions($subtopicid)
     {
         $subtopic = App\Subtopic::where('stopic_id', $subtopicid)->get(['stopic']);
@@ -167,26 +211,36 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * 
+     * POST: subtopic/{id}.
+     */ 
     public function subtopicActions($subtopicid)
     {
-        $input  = \Request::all();
-        $action = (isset($input['d'])) ? 'd' : 'u';
-        $videos = new App\Subtopic;
-        $videos = $videos::where('stopic_id', $subtopicid);
+        $action   = (!empty(request('d'))) ? 'd' : 'u';
+        
+        $subtopic = new App\Subtopic;
+        $subtopic = $subtopic::where('stopic_id', $subtopicid);
 
         if ($action == 'd')
         {
-            $videos->delete();
+            $subtopic->delete();
         }
         else
         {
-            $videos->update(['stopic' => $input['subtopic']]);
+            $subtopic->update([
+                'stopic' => request('subtopic')
+            ]);
         }
 
         return redirect('home');
     }
 
 
+    /*
+     * Add the group.
+     * POST: group/add/{id}.
+     */ 
     public function addGroup($subtopicid)
     {
         $input  = \Request::all();
@@ -206,6 +260,10 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * Remove group with id.
+     * POST: group/remove/{id}.
+     */
     public function removeGroup($groupid)
     {
         $input = Request::all();
@@ -223,6 +281,10 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * Show add topic form.
+     * GET: topic/new.
+     */
     public function getTopicActions()
     {
         //$subtopic=App\Topic::where('stopic_id',1)->get(['stopic']);
@@ -230,6 +292,10 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * Add the new topic.
+     * POST: topic/new.
+     */
     public function postTopicActions(Request $request)
     {
         $this->validate(request(), ['topic' => 'required|min:3|max:300']);
