@@ -85,9 +85,8 @@ $(document).ready(function()
         {
             "type":"get",
             "url":"article/" + parseInt(articleid),
-            "success":function(data)
+            "success": function(data)
             {
-                //alert(data);
                 if ($('#articlediv').is(":visible"))
                 {
                     $('#articlediv').remove();
