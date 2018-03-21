@@ -46,7 +46,7 @@ class HelpController extends Controller
 
 
     /*
-     * 
+     * Complete article update with articleid.
      * POST: article/edit/{id}.
      */ 
     public function postArticleEdit($articleid)
@@ -72,7 +72,7 @@ class HelpController extends Controller
 
 
     /*
-     * 
+     * Edit article with id id.
      * GET: article/edit/{id}.
      */
     public function getArticleEdit($articleid)
@@ -103,7 +103,7 @@ class HelpController extends Controller
 
 
     /*
-     * 
+     * Get subtopics with id id.
      * GET: article/subtopic/{id}.
      */
     public function articles($subtopicid)
@@ -118,7 +118,7 @@ class HelpController extends Controller
 
 
     /*
-     * 
+     * Display article with id id.
      * GET: article/{id}.
      */
     public function article($articleid)
@@ -132,7 +132,7 @@ class HelpController extends Controller
 
 
     /*
-     * 
+     * Display article reply with id id.
      * GET: article/reply/{id}.
      */ 
     public function replyToArticle($articleid)
@@ -151,7 +151,7 @@ class HelpController extends Controller
 
 
     /*
-     * 
+     * Delete article with id id.
      * GET: article/delete/{id}.
      */ 
     public function deleteArticle($articleid)
@@ -214,7 +214,7 @@ class HelpController extends Controller
 
 
     /*
-     * 
+     * Complete delete / update of subtopic with id id.
      * POST: subtopic/{id}.
      */ 
     public function subtopicActions($subtopicid)
