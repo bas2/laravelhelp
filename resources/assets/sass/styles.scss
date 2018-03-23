@@ -140,18 +140,26 @@ div.container-fluid {
                     }
                 }
             }
-            + p { /* Order by */
-                margin-top: .5em;
-                font: bold .9em verdana;
+
+            + .sgroups {
+                margin-top: 5px;
                 text-align: center;
-                font-variant: small-caps;
-                span {
-                    cursor: pointer;
-                }
-                span.omoddate {
-                    color: yellow;
+                li { font-weight:bold; color:#fff; cursor: pointer; }
+                li.hilite, li:hover { color:yellow; }
+                + p { /* Order by */
+                    margin-top: .5em;
+                    font: bold .9em verdana;
+                    text-align: center;
+                    font-variant: small-caps;
+                    span {
+                        cursor: pointer;
+                    }
+                    span.hilite, span:hover {color: yellow;}
+
                 }
             }
+
+
         } /* div.subtopic-container */
 
         div {
