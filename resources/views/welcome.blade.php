@@ -66,10 +66,18 @@
                 @endforeach
                 </div>
             </div>
+            
+            <ul class="sgroups list-inline">
+            @foreach (App\Group::where('stopicid', $stopic->stopic_id)->orderby('name')->get(['group_id', 'name']) as $sgroup)
+                <li class="group-{{ $sgroup->group_id }}">{{ $sgroup->name }} 
+            @endforeach
+                <li class="group-0 hilite">All
+            </ul>
 
-            <p>Order by: <span class="oname">Name</span> <span class="omoddate">Mod date</span></p>
+            <p>Order by: <span class="oname">Name</span> <span class="omoddate hilite">Mod date</span></p>
+
             <div>
-            @include('ajax.content', ['orderby' => ['updated_at', 'desc']])
+            @include('ajax.content', ['orderby' => ['updated_at', 'desc'], 'filtergroup' => 0])
             </div>
 
             @endif
