@@ -44,10 +44,10 @@ $(document).ready(function(){
     var parentdiv = $(this).parent().parent().parent(); // #divarticle
     parentdiv.toggleClass('togglewidth');
     if (parentdiv.hasClass('togglewidth')) {
-      var subtopic = $(this).parent().parent().parent().parent().parent().parent().prev().prev().find('a').text();
+      var subtopic = $(this).parent().parent().parent().parent().parent().parent().prev().prev().prev().find('a').text();
       var article_name=$(this).parent().parent().parent().parent().find('a').first().text();
       if (parentdiv.parent().find('a').attr('class')=='subbarticle') { // Is a reply.
-        subtopic = $(this).parent().parent().parent().parent().parent().parent().parent().parent().prev().prev().find('a').text();
+        subtopic = $(this).parent().parent().parent().parent().parent().parent().parent().parent().prev().prev().prev().find('a').text();
         var article = $(this).parent().parent().parent().parent().parent().parent().parent().find('a').first().text();
         var str = subtopic+' &rarr; '+article+' &rarr; '+article_name;
       } else {
