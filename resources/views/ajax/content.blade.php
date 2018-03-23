@@ -1,5 +1,5 @@
 <ul>
-@foreach (App\Content::getContent($stopic->stopic_id, $orderby) as $content)
+@foreach (App\Content::getContent($stopic->stopic_id, $orderby, $filtergroup) as $content)
   <li class="article_li"><a id="mainarticle{{ $content->content_id }}" class="mainarticle" title2="{{ $content->content_id }}">
   @if (!empty($content->name.$content->title))
   {{ $content->name }} {{ $content->title }}
