@@ -360,10 +360,38 @@ $(document).ready(function()
     });
 
 
-    $('div.subtopic-container + p span').click(function()
+    $('div.subtopic-container + .sgroups + p span').click(function()
     {
-        $(this).parent().find('span').css('color','white');
-        $(this).css('color','yellow');
+        $(this).parent().find('span').removeClass('hilite');
+        $(this).addClass('hilite');
+        var stopicid = $(this).parent().prev().prev().find('a').attr('id').substring(2);
+        var $this = $(this);
+
+        $.ajax(
+        {
+            "type":"GET",
+            "url":"article/subtopic/" + stopicid,
+            "data":"orderby=" + $this.attr('class') + 
+            "&group=" + $(this).parent().prev().find('li.hilite').attr('class').substring(6),
+            "success":function(data)
+            {
+                $($this).parent().next().html(data);
+                $('.hide').hide();
+                $('<span class="show" title="Show"><img src="img/menu2.png" width="30"></span>')
+                .appendTo($($this.parent()
+                .next()
+                .find('ul li a.mainarticle')))
+                .addClass('moveright');
+            }
+        });
+
+    });
+
+
+    $('div.subtopic-container + .sgroups li').click(function()
+    {
+        $(this).parent().find('li').removeClass('hilite');
+        $(this).addClass('hilite');
         var stopicid = $(this).parent().prev().find('a').attr('id').substring(2);
         var $this = $(this);
 
@@ -371,10 +399,13 @@ $(document).ready(function()
         {
             "type":"GET",
             "url":"article/subtopic/" + stopicid,
-            "data":"orderby=" + $this.attr('class'),
+            "data":"orderby=" 
+            + $(this).parent().next().find('span.hilite').attr('class')
+            + "&group=" 
+            + $(this).attr('class').substring(6),
             "success":function(data)
             {
-                $($this).parent().next().html(data);
+                $($this).parent().next().next().html(data);
                 $('.hide').hide();
                 $('<span class="show" title="Show"><img src="img/menu2.png" width="30"></span>')
                 .appendTo($($this.parent()
