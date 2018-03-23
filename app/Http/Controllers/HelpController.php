@@ -113,7 +113,9 @@ class HelpController extends Controller
         $subtopic1->stopic_id = $subtopicid;
         return view('ajax.content')
         ->with('stopic', $subtopic1)
-        ->with('orderby', $input['orderby'] );
+        ->with('orderby', str_replace(' hilite', '', $input['orderby']) )
+        ->with('filtergroup', $input['group'] )
+        ;
     }
 
 
