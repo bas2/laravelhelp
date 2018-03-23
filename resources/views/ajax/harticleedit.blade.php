@@ -130,9 +130,9 @@ $(document).ready(function(){
       ,
       "success":function(data){
         var datasplit = data.split('=||=');
-        var subtopic = $("#articlediv").parent().parent().parent().prev().prev().find('a');
+        var subtopic = $("#articlediv").parent().parent().parent().prev().prev().prev().find('a');
         if ($("#articlediv").prev().attr('class')=='subbarticle') {
-          subtopic = $("#articlediv").parent().parent().parent().parent().parent().prev().prev().find('a');
+          subtopic = $("#articlediv").parent().parent().parent().parent().parent().prev().prev().prev().find('a');
         }
         $('#articlediv').remove(); // Remove form.
         $('#mainarticle'+datasplit[0]).css('background', 'black').html(datasplit[1]+'<span class="show moveright"><img src="img/menu.png" width="30"></span>');
@@ -141,9 +141,9 @@ $(document).ready(function(){
         $.ajax({
           "type":"GET",
           "url":"article/subtopic/" + subtopic.attr('id').substring(2),
-          "data":"orderby=omoddate" ,
+          "data":"orderby=omoddate&group=0" ,
           "success":function(data) {
-            subtopic.parent().next().next().html(data);
+            subtopic.parent().next().next().next().html(data);
             $('.hide2').hide();
             $('<span class="show" title="Show"><img src="img/menu2.png" width="30"></span>')
      .appendTo($('#mainarticle'+articleid)).addClass('moveright');
