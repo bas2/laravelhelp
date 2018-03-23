@@ -6,14 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model
 {
-    public static function getContent($subtopicid, $orderby='moddate') {
+    public static function getContent($subtopicid, $orderby='moddate', $filtergroup=0) {
       $orderby = ($orderby=='oname') ? 'concat_ws(" ",groups.name,contents.title)' 
       : 'contents.updated_at desc' ;
-      return static::where('contents.stopicid',$subtopicid)
-      ->leftJoin('groups','contents.groupid','=','groups.group_id')
-      ->where('parentid', 0)
-      ->orderByRaw($orderby)
-      ->get(['groups.name', 'contents.title', 'content_id']);
+      if($filtergroup==0) {
+        return static::where('contents.stopicid',$subtopicid)
+        ->leftJoin('groups','contents.groupid','=','groups.group_id')
+        ->where('parentid', 0)
+        ->orderByRaw($orderby)
+        ->get(['groups.name', 'contents.title', 'content_id']);
+      }
+      else {
+        return static::where('contents.stopicid',$subtopicid)
+        ->leftJoin('groups','contents.groupid','=','groups.group_id')
+        ->where('parentid', 0)
+        ->where('groupid', $filtergroup)
+        ->orderByRaw($orderby)
+        ->get(['groups.name', 'contents.title', 'content_id']);
+      }
     }
 
     public static function getReplies($mainarticleid) {
