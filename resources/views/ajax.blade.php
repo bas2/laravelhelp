@@ -39,6 +39,8 @@ $(document).ready(function(){
     $('html, body').animate({scrollTop: article.offset().top}, 0);
   });
 
+  $('.close2').click(function(){$('#articlediv').remove();});
+
   // Click option to expand article.
   $('.divartcontent li.expand').click(function(){
     var parentdiv = $(this).parent().parent().parent(); // #divarticle
