@@ -119,13 +119,14 @@ $(document).ready(function(){
   // Update article
   $('#updatearticle').off('click').on('click', function(e) {
     var articleid = $(this).attr('title');
+    var group = parseInt($('#groups').val());
     $.ajax({
       "type":"POST",
       "url":"article/edit/" + parseInt(articleid),
       "data": 
       '&txt_helptitle=' + encodeURIComponent( $('input[name=helptitle]').val() )
       + '&fedit_helpcontent=' + encodeURIComponent($('#helpcontent').val())
-      + '&groupid=' + parseInt($('#groups').val())
+      + '&groupid=' + group
       + '&stopicid=' + parseInt($('#subtopics').val())
       ,
       "success":function(data){
@@ -141,7 +142,7 @@ $(document).ready(function(){
         $.ajax({
           "type":"GET",
           "url":"article/subtopic/" + subtopic.attr('id').substring(2),
-          "data":"orderby=omoddate&group=0" ,
+          "data":"orderby=omoddate&group=" + group,
           "success":function(data) {
             subtopic.parent().next().next().next().html(data);
             $('.hide2').hide();
