@@ -19,3 +19,5 @@ Route::post('topic/new', 'HelpController@postTopicActions');
 
 Route::post('group/add/{id}', 'HelpController@addGroup');       #Add group.
 Route::post('group/remove/{id}', 'HelpController@removeGroup'); #Remove group.
+
+Route::get('time', 'HelpController@getTime');

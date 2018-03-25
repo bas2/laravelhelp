@@ -44,6 +44,8 @@ ul#projectsmenu {
       padding: 0; }
     ul#projectsmenu li:last-child {
       border: 0; }
+    ul#projectsmenu li.tm {
+      color: #fff; }
 
 .scrollup {
   width: 40px;

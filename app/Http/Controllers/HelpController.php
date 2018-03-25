@@ -311,5 +311,14 @@ class HelpController extends Controller
     }
 
 
+    /*
+     * Return current time.
+     * GET: time
+     */
+    public function getTime()
+    {
+        return date('H:i:s');
+    }
+
 
 }

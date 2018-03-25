@@ -42,6 +42,16 @@ $(document).ready(function()
         }
     });
 
+    setInterval(function(){
+        $.ajax({
+            "type":"GET",
+            "url":"time",
+            "success":function(data) {
+                $('#projectsmenu .tm').text(data);
+            }
+        });
+    }, 1000);
+
 
     function hideshow()
     {
