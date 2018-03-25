@@ -345,7 +345,12 @@ div.container-fluid {
                         }
                         img {
                             width: 32px;
+                            position:fixed;
+                            top:10px;
+                            opacity: .5;
                         }
+
+
                         .divartcontent div:nth-child(2) {text-align: center;}
                     }
 

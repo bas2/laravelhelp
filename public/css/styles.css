@@ -278,7 +278,10 @@ div.container-fluid {
               border-radius: 0;
               box-shadow: 0 5px 10px 5px; }
             div.container-fluid div.topic div li.article_li #articlediv.togglewidth img {
-              width: 32px; }
+              width: 32px;
+              position: fixed;
+              top: 10px;
+              opacity: .5; }
             div.container-fluid div.topic div li.article_li #articlediv.togglewidth .divartcontent div:nth-child(2) {
               text-align: center; }
         div.container-fluid div.topic div li.article_li ul li #articlediv {

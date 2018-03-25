@@ -56,11 +56,13 @@ $(document).ready(function(){
         var str = subtopic+' &rarr; '+article_name;
       }
       $('<div class="prepended">'+str+'</div>').prependTo($(this).parent().parent());
-      $(this).attr('title','Contract').html('<img src="img/expand2.png">');
+      $('.edit img').css({'right':'55px'});
+      $(this).attr('title','Contract').html('<img style="right:20px;" src="img/expand2.png">');
       $('.article_btns').hide();
       $('li img[src*=close]').hide();
       $('body, html').css('overflow','hidden');
     } else {
+      $('.edit img').css({'position': 'static'});
       $(this).attr('title','Expand').html('<img src="img/expand.png" width="16">');
       $('.article_btns').show();
       $('li img[src*=close]').show();
