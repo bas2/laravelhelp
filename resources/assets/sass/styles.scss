@@ -52,7 +52,7 @@ ul#projectsmenu {
         &:last-child {
             border: 0;
         }
-        &.tm { color: #fff; }
+        &.tm { color: #fff; font-family: Impact, arial }
     }
 
 }
@@ -85,6 +85,16 @@ ul#projectsmenu {
     margin-bottom: 2em;
 }
 
+ul#projectsmenu .tm.expand-time {
+    position: fixed;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    background: hsl(0,0%,10%);
+    font: 1200% "Impact", arial;
+    color: hsl(0,0%,30%);
+}
+
 div.container-fluid {
     margin-top: 1em;
     background: rgba(200, 200, 200, .2); /* Grey */
@@ -96,7 +106,8 @@ div.container-fluid {
             box-shadow: 1px 1px 1px #fff;
             text-align: center;
             h2 { /* Topic */
-                font: normal 1.5em "Helvetica Neue", Sans-Serif;
+                font: normal 1.5em Impact, "Helvetica Neue", Sans-Serif;
+                letter-spacing: .2em;
                 margin: 0;
                 padding: 0;
                 +div span {
