@@ -50,7 +50,21 @@ $(document).ready(function()
                 $('#projectsmenu .tm').text(data);
             }
         });
-    }, 1000);
+    }, 60000);
+
+    $('#projectsmenu .tm').click(function(){
+        if ($(this).hasClass('expand-time'))
+        {
+            $(this).removeClass('expand-time');
+            $('body, html').css('overflow','auto');
+        }
+        else
+        {
+            $(this).addClass('expand-time');
+            $('body, html').css('overflow','hidden');
+        }
+
+    });
 
 
     function hideshow()
