@@ -45,7 +45,8 @@ ul#projectsmenu {
     ul#projectsmenu li:last-child {
       border: 0; }
     ul#projectsmenu li.tm {
-      color: #fff; }
+      color: #fff;
+      font-family: Impact, arial; }
 
 .scrollup {
   width: 40px;
@@ -71,6 +72,16 @@ ul#projectsmenu {
   flex-wrap: wrap;
   margin-bottom: 2em; }
 
+ul#projectsmenu .tm.expand-time {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;
+  font: 1200% "Impact", arial;
+  color: #4d4d4d; }
+
 div.container-fluid {
   margin-top: 1em;
   background: rgba(200, 200, 200, 0.2);
@@ -85,7 +96,8 @@ div.container-fluid {
       text-align: center; }
       div.container-fluid div.topic > div:first-child h2 {
         /* Topic */
-        font: normal 1.5em "Helvetica Neue", Sans-Serif;
+        font: normal 1.5em Impact, "Helvetica Neue", Sans-Serif;
+        letter-spacing: .2em;
         margin: 0;
         padding: 0; }
         div.container-fluid div.topic > div:first-child h2 + div span {
