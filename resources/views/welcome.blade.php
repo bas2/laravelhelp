@@ -74,7 +74,7 @@
                 <li class="group-0 hilite">All
             </ul>
 
-            <p>Order by: <span class="oname">Name</span> <span class="omoddate hilite">Mod date</span></p>
+            <p>Order by: <span class="oname">Name</span> <span class="omoddate hilite">Mod date</span> <span class="ofree">Free</span></p>
 
             <div>
             @include('ajax.content', ['orderby' => ['updated_at', 'desc'], 'filtergroup' => 0])
