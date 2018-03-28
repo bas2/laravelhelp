@@ -132,6 +132,7 @@ $(document).ready(function(){
       "success":function(data){
         var datasplit = data.split('=||=');
         var subtopic = $("#articlediv").parent().parent().parent().prev().prev().prev().find('a');
+        var $order = $("#articlediv").parent().parent().parent().prev().find('span.hilite').attr('class');
         if ($("#articlediv").prev().attr('class')=='subbarticle') {
           subtopic = $("#articlediv").parent().parent().parent().parent().parent().prev().prev().prev().find('a');
         }
@@ -142,7 +143,8 @@ $(document).ready(function(){
         $.ajax({
           "type":"GET",
           "url":"article/subtopic/" + subtopic.attr('id').substring(2),
-          "data":"orderby=omoddate&group=" + group,
+          "data":"orderby=" + $order.substring($order, $order.indexOf(' ')) + 
+          "&group=" + group,
           "success":function(data) {
             subtopic.parent().next().next().next().html(data);
             $('.hide2').hide();
