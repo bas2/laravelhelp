@@ -15,6 +15,7 @@ class CreateContentTable extends Migration
     {
         Schema::create('content', function (Blueprint $table) {
             $table->increments('content_id')->unsigned();
+            $table->integer('free_order')->unsigned();
             $table->integer('stopicid')->unsigned();
             $table->integer('parentid')->unsigned();
             $table->integer('groupid')->unsigned();
