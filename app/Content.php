@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     public static function getContent($subtopicid, $orderby='moddate', $filtergroup=0) {
-      $orderby = ($orderby=='oname') ? 'concat_ws(" ",groups.name,contents.title)' 
+      $orderby2 = ($orderby=='oname') ? 'concat_ws(" ",groups.name,contents.title)' 
       : 'contents.updated_at desc' ;
+      if ($orderby == 'ofree') { $orderby2 = 'contents.free_order'; }
+
       if($filtergroup==0) {
         return static::where('contents.stopicid',$subtopicid)
         ->leftJoin('groups','contents.groupid','=','groups.group_id')
         ->where('parentid', 0)
-        ->orderByRaw($orderby)
+        ->orderByRaw($orderby2)
         ->get(['groups.name', 'contents.title', 'content_id']);
       }
       else {
@@ -21,7 +23,7 @@ class Content extends Model
         ->leftJoin('groups','contents.groupid','=','groups.group_id')
         ->where('parentid', 0)
         ->where('groupid', $filtergroup)
-        ->orderByRaw($orderby)
+        ->orderByRaw($orderby2)
         ->get(['groups.name', 'contents.title', 'content_id']);
       }
     }
