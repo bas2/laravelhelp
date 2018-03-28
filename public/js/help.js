@@ -389,14 +389,15 @@ $(document).ready(function()
         $(this).parent().find('span').removeClass('hilite');
         $(this).addClass('hilite');
         var stopicid = $(this).parent().prev().prev().find('a').attr('id').substring(2);
+        var $group = $(this).parent().prev().find('li.hilite').attr('class').substring(6);
         var $this = $(this);
 
         $.ajax(
         {
             "type":"GET",
             "url":"article/subtopic/" + stopicid,
-            "data":"orderby=" + $this.attr('class') + 
-            "&group=" + $(this).parent().prev().find('li.hilite').attr('class').substring(6),
+            "data":"orderby=" + $this.attr('class').substring($this.attr('class'), $this.attr('class').indexOf(' ')) + 
+            "&group=" + $group.substring(0, $group.indexOf(' ')),
             "success":function(data)
             {
                 $($this).parent().next().html(data);
@@ -417,6 +418,8 @@ $(document).ready(function()
         $(this).parent().find('li').removeClass('hilite');
         $(this).addClass('hilite');
         var stopicid = $(this).parent().prev().find('a').attr('id').substring(2);
+        var $order = $(this).parent().next().find('span.hilite').attr('class');
+        var $group = $(this).attr('class').substring(6);
         var $this = $(this);
 
         $.ajax(
@@ -424,9 +427,9 @@ $(document).ready(function()
             "type":"GET",
             "url":"article/subtopic/" + stopicid,
             "data":"orderby=" 
-            + $(this).parent().next().find('span.hilite').attr('class')
+            + $order.substring($order, $order.indexOf(' '))
             + "&group=" 
-            + $(this).attr('class').substring(6),
+            + $group.substring(0, $group.indexOf(' ')),
             "success":function(data)
             {
                 $($this).parent().next().next().html(data);
