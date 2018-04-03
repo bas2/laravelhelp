@@ -182,7 +182,7 @@ $(document).ready(function()
     // Add new reply:
     $('body').on('click','a.reply',function(e)
     {
-        console.log('New reply');
+        //console.log('New reply');
         var articleid = $(this).attr('title2');
         $.ajax(
         {
@@ -225,7 +225,7 @@ $(document).ready(function()
     // Add new article:
     $('body').on('click','.newarticle', function(e)
     {
-        console.log('New article');
+        //console.log('New article');
         var stopicid = $(this).attr('title2');
         var test     = $(this); // So we can add new article before new article link
         $.ajax({
