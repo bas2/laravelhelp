@@ -45,6 +45,9 @@ ul#projectsmenu {
     ul#projectsmenu li:last-child {
       border: 0; }
     ul#projectsmenu li.tm {
+      position: fixed;
+      right: 50%;
+      border: none;
       color: #fff;
       font-family: Impact, arial; }
 
@@ -72,6 +75,20 @@ ul#projectsmenu {
   flex-wrap: wrap;
   margin-bottom: 2em; }
 
+.openedart {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: rgba(192, 33, 33, 0.842);
+  font: 1.5em Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: 1.5px;
+  background: rgba(255, 174, 0, 0.877);
+  text-shadow: #ffee00 1px 1px 2px;
+  box-shadow: black -1px -1px 1px; }
+
 ul#projectsmenu .tm.expand-time {
   position: fixed;
   top: 0;
@@ -89,7 +106,7 @@ div.container-fluid {
   div.container-fluid div.topic {
     /* div.subtopic-container */ }
     div.container-fluid div.topic > div:first-child {
-      background: rgba(0, 85, 255, 0.5);
+      background: rgba(255, 0, 98, 0.5);
       /* Blue */
       border-radius: .4em;
       box-shadow: 1px 1px 1px #fff;
@@ -103,8 +120,10 @@ div.container-fluid {
         div.container-fluid div.topic > div:first-child h2 + div span {
           cursor: pointer;
           font-size: 2em; }
+          div.container-fluid div.topic > div:first-child h2 + div span a {
+            color: #000000ad; }
           div.container-fluid div.topic > div:first-child h2 + div span.current {
-            color: navy; }
+            color: #800f00; }
     div.container-fluid div.topic div.subtopic-container {
       background: rgba(255, 100, 200, 0.4);
       /* Purple */
@@ -196,7 +215,7 @@ div.container-fluid {
         div.container-fluid div.topic div li.article_li a.mainarticle, div.container-fluid div.topic div li.article_li a.subbarticle {
           font: bold 1em verdana; }
         div.container-fluid div.topic div li.article_li a.mainarticle:hover, div.container-fluid div.topic div li.article_li a.subbarticle:hover {
-          color: rgba(247, 162, 72, 0.8); }
+          color: rgba(255, 174, 0, 0.877); }
         div.container-fluid div.topic div li.article_li a.subbarticle {
           cursor: pointer;
           color: rgba(128, 255, 0, 0.6); }

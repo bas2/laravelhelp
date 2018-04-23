@@ -52,7 +52,12 @@ ul#projectsmenu {
         &:last-child {
             border: 0;
         }
-        &.tm { color: #fff; font-family: Impact, arial }
+        &.tm {
+            position:fixed;right:50%;
+            border: none;
+            color: #fff; 
+            font-family: Impact, arial 
+        }
     }
 
 }
@@ -85,6 +90,22 @@ ul#projectsmenu {
     margin-bottom: 2em;
 }
 
+.openedart {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    color: rgba(192, 33, 33, 0.842);
+    font: 1.5em Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 1.5px;
+    background: rgba(255, 174, 0, 0.877);
+    text-shadow: rgb(255, 238, 0) 1px 1px 2px;
+    box-shadow: black -1px -1px 1px;
+
+}
+
 ul#projectsmenu .tm.expand-time {
     position: fixed;
     top:0;left:0;
@@ -101,7 +122,7 @@ div.container-fluid {
     div.topic {
 
         >div:first-child {
-            background: hsla(220, 100%, 50%, .5); /* Blue */
+            background: rgba(255, 0, 98, 0.5); /* Blue */
             border-radius: .4em; 
             box-shadow: 1px 1px 1px #fff;
             text-align: center;
@@ -111,10 +132,11 @@ div.container-fluid {
                 margin: 0;
                 padding: 0;
                 +div span {
+                    a{color: #000000ad;}
                     cursor: pointer;
                     font-size: 2em;
                     &.current {
-                        color: navy;
+                        color: rgb(128, 15, 0);
                     }
                 }
             }
@@ -233,7 +255,7 @@ div.container-fluid {
 
                 a.mainarticle, a.subbarticle {font: bold 1em verdana;}
 
-                a.mainarticle:hover, a.subbarticle:hover {color: rgba(247,162,72,.8);}
+                a.mainarticle:hover, a.subbarticle:hover {color: rgba(255, 174, 0, 0.877);}
 
                 a.subbarticle {
                     cursor: pointer;
