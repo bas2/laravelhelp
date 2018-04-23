@@ -104,7 +104,7 @@ $(document).ready(function()
         var nextelement = $(this).next().attr('id');
 
         $(this).parent().css('background', 'rgba(0, 0, 0, 1)');
-
+        $that = $(this);
         $.ajax(
         {
             "type":"get",
@@ -113,11 +113,19 @@ $(document).ready(function()
             {
                 if ($('#articlediv').is(":visible"))
                 {
-                    $('#articlediv').remove();
+                    closeArticleDivs()
                 }
                 
                 if (!thisarticledivvisible || nextelement != 'articlediv')
                 {
+                    $('.openedart').remove();
+                    $that.clone()
+                    .appendTo('body')
+                    .removeAttr('id')
+                    .removeClass('mainarticle')
+                    .addClass('openedart')
+                    ;
+                    $('.openedart').find('span').remove();
                     $('<div id="articlediv">' + data + '</div>').insertAfter(classsel).show();
                 }
 
@@ -125,6 +133,10 @@ $(document).ready(function()
             }
         });
         e.preventDefault();
+    });
+
+    $('body').on('click', '.openedart', function(e){
+        $('html, body').animate({scrollTop: $('#mainarticle'+$(this).attr('title2')).offset().top}, 500);
     });
 
 
@@ -151,9 +163,15 @@ $(document).ready(function()
         $("#articlediv").parent().find('a').first()
         .css({'background':'blue','transition':'background 4s ease-out'})
         ;
-        $('#articlediv').remove();
+        closeArticleDivs()
     });
-    //transition: background-color 2s ease-out;
+    
+
+    function closeArticleDivs()
+    {
+        $('#articlediv').remove();
+        $('.openedart').remove();
+    }
 
 
     // Delete article.
