@@ -119,6 +119,9 @@ ul#projectsmenu .tm.expand-time {
     border:none; border-radius: 0%;
     font: 1500% "Impact", arial;
     color: hsla(0,0%,30%,.2);
+    &:hover {
+        color: hsl(0,0%,30%);
+    }
 }
 
 div.container-fluid {

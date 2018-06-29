@@ -104,6 +104,8 @@ ul#projectsmenu .tm.expand-time {
   border-radius: 0%;
   font: 1500% "Impact", arial;
   color: rgba(77, 77, 77, 0.2); }
+  ul#projectsmenu .tm.expand-time:hover {
+    color: #4d4d4d; }
 
 div.container-fluid {
   margin-top: 1em;
