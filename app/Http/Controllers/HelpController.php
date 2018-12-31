@@ -317,7 +317,7 @@ class HelpController extends Controller
      */
     public function getTime()
     {
-        return date('H:i');
+        return date('d') . '|' . date('H:i');
     }
 
 

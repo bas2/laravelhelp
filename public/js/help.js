@@ -47,7 +47,8 @@ $(document).ready(function()
             "type":"GET",
             "url":"time",
             "success":function(data) {
-                $('#projectsmenu .tm').text(data);
+                var timestring = data.split('|');
+                $('#projectsmenu .tm').text(timestring[1]);
             }
         });
     }, 60000);
