@@ -133,6 +133,7 @@ $(document).ready(function()
                 $('html, body').animate({scrollTop: $(mainarticle).offset().top}, 500);
             }
         });
+    
         e.preventDefault();
     });
 
@@ -164,7 +165,7 @@ $(document).ready(function()
         $("#articlediv").parent().find('a').first()
         .css({'background':'blue','transition':'background 4s ease-out'})
         ;
-        closeArticleDivs()
+        closeArticleDivs();
     });
     
 
@@ -246,12 +247,18 @@ $(document).ready(function()
     {
         //console.log('New article');
         var stopicid = $(this).attr('title2');
+        var groupid = $(this).parent().prev().prev().find('.hilite').attr('class');
+        var groupid_split = groupid.split(' ');
+        var groupid1_split = groupid_split[0].split('-');
+        groupid = groupid1_split[1];
+        //console.log(groupid);
         var test     = $(this); // So we can add new article before new article link
         $.ajax({
             "type":"GET",
-            "url":"article/new/subtopic/" + parseInt(stopicid),
+            "url":"article/new/subtopic/" + parseInt(stopicid) + "/" + parseInt(groupid),
             "success":function(articleid)
             {
+                //console.log("New article on Subtopic:" + stopicid + " with ID: " + articleid);
                 var splitdata = articleid.split('|');
                 $('<li class="article_li"><a id="mainarticle' + splitdata[0] 
                 + '" class="mainarticle" title2="'

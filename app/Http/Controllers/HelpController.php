@@ -164,12 +164,13 @@ class HelpController extends Controller
 
     /*
      * Add an article on a sub topic.
-     * GET: article/new/subtopic/{id}.
+     * GET: article/new/subtopic/{id}/{gid}.
      */ 
-    public function addArticle($subtopicid)
+    public function addArticle($subtopicid, $groupid)
     {
         $create = new App\Content;
         $create->stopicid = $subtopicid;
+        $create->groupid = $groupid;
         $create->content = '';
         $create->controllerid = 4;
         $create->save();

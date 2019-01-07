@@ -7,7 +7,7 @@ Route::get('article/subtopic/{id}', 'HelpController@articles' ); #Get subtopic a
 Route::get('article/{id}',          'HelpController@article'); #Get article contents
 Route::get('article/reply/{id}',    'HelpController@replyToArticle'); #Add new reply
 Route::get('article/delete/{id}',   'HelpController@deleteArticle'); #Delete article
-Route::get('article/new/subtopic/{id}', 'HelpController@addArticle'); #New article
+Route::get('article/new/subtopic/{id}/{groupid}', 'HelpController@addArticle'); #New article on subtopic/group
 
 Route::get( 'subtopic/new/{id}', 'HelpController@getAddSubtopic'); #New subtopic
 Route::post('subtopic/new/{id}', 'HelpController@addSubtopic');   #New subtopic

@@ -26,6 +26,7 @@
 
 </div>
 <script>
+$('input[name=helptitle]').focus();
 $('textarea#helpcontent').tinymce({
   // Location of TinyMCE script
   script_url : 'js/tinymce/jscripts/tiny_mce/tiny_mce.js',
