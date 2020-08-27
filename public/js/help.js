@@ -87,6 +87,7 @@ $(document).ready(function()
     // Show article: click on a main article or reply to a main article.
     $('body').on('click', '.mainarticle, .subbarticle', function(e)
     {
+        //alert('');
         var articleid = $(this).attr('title2');
         var classsel  = '#' + $(this).attr('class') + articleid; // Main article or reply?
         if ($(this).attr('class') == 'subbarticle')
@@ -114,7 +115,9 @@ $(document).ready(function()
             {
                 if ($('#articlediv').is(":visible"))
                 {
-                    closeArticleDivs()
+                    closeArticleDivs();
+                    //$('#updatearticle').remove();
+                    //alert('');
                 }
                 
                 if (!thisarticledivvisible || nextelement != 'articlediv')
@@ -127,6 +130,8 @@ $(document).ready(function()
                     .addClass('openedart')
                     ;
                     $('.openedart').find('span').remove();
+                    //alert('');
+                    //$('#updatearticle').remove();
                     $('<div id="articlediv">' + data + '</div>').insertAfter(classsel).show();
                 }
 
@@ -145,6 +150,7 @@ $(document).ready(function()
     // Close article view and edit forms.
     $('body').on('click','#closeeditarticle', function()
     {
+        alert('Close article');
         if ($(this).parent().parent().parent().parent().parent().attr('class') == 'divharteditform')
         {
             var article = $(this).parent().parent().parent().parent().parent().parent().parent().find('a');
@@ -166,6 +172,7 @@ $(document).ready(function()
         .css({'background':'blue','transition':'background 4s ease-out'})
         ;
         closeArticleDivs();
+        //alert('');
     });
     
 
@@ -173,6 +180,7 @@ $(document).ready(function()
     {
         $('#articlediv').remove();
         $('.openedart').remove();
+        //$('#updatearticle').remove();
     }
 
 
@@ -183,13 +191,13 @@ $(document).ready(function()
         { // Reply.
             var articleid = $(this).attr('title');
             $.ajax({
-            "type":"GET",
-            "url":"article/delete/" + parseInt(articleid),
+                "type":"GET",
+                "url":"article/delete/" + parseInt(articleid),
             });
             if ($(this).parent().parent().parent().parent().parent().parent().parent().find('a').attr('id').substr(0,3)=='sub') {
-            $(this).parent().parent().parent().parent().parent().parent().parent().delay(2000).remove();
+                $(this).parent().parent().parent().parent().parent().parent().parent().delay(2000).remove();
             } else {
-            $(this).parent().parent().parent().parent().parent().parent().parent().delay(2000).remove();
+                $(this).parent().parent().parent().parent().parent().parent().parent().delay(2000).remove();
             }
             $('<p style="position:fixed;top:0;left:50%;font-weight:bold;background:yellow;color:black;padding:.5em;">Article was deleted!</p>')
             .appendTo('body')
