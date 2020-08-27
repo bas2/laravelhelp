@@ -48,6 +48,7 @@ ul#projectsmenu {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
+      background-color: rgba(192, 33, 33, 0.842);
       border: 1px solid #fff;
       border-radius: .3em;
       color: #fff;
@@ -179,8 +180,8 @@ div.container-fluid {
             cursor: pointer; }
           div.container-fluid div.topic div.subtopic-container + .sgroups + p span.hilite, div.container-fluid div.topic div.subtopic-container + .sgroups + p span:hover {
             color: yellow; }
-    div.container-fluid div.topic div {
-      /* li.article_li */ }
+    /* div.container-fluid div.topic div {
+      li.article_li } */
       div.container-fluid div.topic div ul {
         padding-left: 0; }
         div.container-fluid div.topic div ul ul {
